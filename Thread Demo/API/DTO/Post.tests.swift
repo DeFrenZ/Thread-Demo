@@ -11,6 +11,6 @@ extension PostTests {
 		let exampleResponse = try Data(contentsOf: url)
 		let decoder = JSONDecoder()
 
-		_ = try decoder.decode([Post].self, from: exampleResponse)
+		_ = try decoder.decode([API.Post].self, from: exampleResponse)
 	}
 }

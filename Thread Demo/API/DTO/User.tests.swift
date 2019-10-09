@@ -11,6 +11,6 @@ extension UserTests {
 		let exampleResponse = try Data(contentsOf: url)
 		let decoder = JSONDecoder()
 
-		_ = try decoder.decode([User].self, from: exampleResponse)
+		_ = try decoder.decode([API.User].self, from: exampleResponse)
 	}
 }
