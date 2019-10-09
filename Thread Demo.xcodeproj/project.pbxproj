@@ -118,10 +118,7 @@
 		03DD9AE2234DF5DA00140291 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				03DD9B05234E1BF300140291 /* Post.swift */,
-				03DD9B07234E1C0200140291 /* User.swift */,
-				03DD9B09234E1C0F00140291 /* Comment.swift */,
-				03DD9B0B234E226600140291 /* Email.swift */,
+				03DD9B14234E414200140291 /* Entities */,
 				03DD9B10234E26F300140291 /* Post+API.swift */,
 			);
 			path = Model;
@@ -164,6 +161,17 @@
 				03DD9AF5234E083E00140291 /* StringError.swift */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		03DD9B14234E414200140291 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				03DD9B05234E1BF300140291 /* Post.swift */,
+				03DD9B07234E1C0200140291 /* User.swift */,
+				03DD9B09234E1C0F00140291 /* Comment.swift */,
+				03DD9B0B234E226600140291 /* Email.swift */,
+			);
+			path = Entities;
 			sourceTree = "<group>";
 		};
 		03E8A7E5234DE23900259855 = {
