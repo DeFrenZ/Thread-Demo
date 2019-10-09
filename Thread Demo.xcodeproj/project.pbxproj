@@ -20,6 +20,10 @@
 		03DD9AFF234E164800140291 /* API.User.tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9AFD234E163300140291 /* API.User.tests.swift */; };
 		03DD9B02234E165E00140291 /* users.response.json in Resources */ = {isa = PBXBuildFile; fileRef = 03DD9B00234E165400140291 /* users.response.json */; };
 		03DD9B04234E17DF00140291 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9B03234E17DF00140291 /* API.swift */; };
+		03DD9B06234E1BF300140291 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9B05234E1BF300140291 /* Post.swift */; };
+		03DD9B08234E1C0200140291 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9B07234E1C0200140291 /* User.swift */; };
+		03DD9B0A234E1C0F00140291 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9B09234E1C0F00140291 /* Comment.swift */; };
+		03DD9B0C234E226600140291 /* Email.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9B0B234E226600140291 /* Email.swift */; };
 		03E8A7F2234DE23900259855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8A7F1234DE23900259855 /* AppDelegate.swift */; };
 		03E8A7F4234DE23900259855 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8A7F3234DE23900259855 /* SceneDelegate.swift */; };
 		03E8A7F6234DE23900259855 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8A7F5234DE23900259855 /* ContentView.swift */; };
@@ -60,6 +64,10 @@
 		03DD9AFD234E163300140291 /* API.User.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.User.tests.swift; sourceTree = "<group>"; };
 		03DD9B00234E165400140291 /* users.response.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = users.response.json; sourceTree = "<group>"; };
 		03DD9B03234E17DF00140291 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		03DD9B05234E1BF300140291 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		03DD9B07234E1C0200140291 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		03DD9B09234E1C0F00140291 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		03DD9B0B234E226600140291 /* Email.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Email.swift; sourceTree = "<group>"; };
 		03E8A7EE234DE23900259855 /* Thread Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Thread Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E8A7F1234DE23900259855 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03E8A7F3234DE23900259855 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +111,10 @@
 		03DD9AE2234DF5DA00140291 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				03DD9B05234E1BF300140291 /* Post.swift */,
+				03DD9B07234E1C0200140291 /* User.swift */,
+				03DD9B09234E1C0F00140291 /* Comment.swift */,
+				03DD9B0B234E226600140291 /* Email.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -349,7 +361,11 @@
 				03DD9AE8234DF6A700140291 /* API.Comment.swift in Sources */,
 				03E8A7F2234DE23900259855 /* AppDelegate.swift in Sources */,
 				03DD9AEA234DF6F800140291 /* API.User.swift in Sources */,
+				03DD9B06234E1BF300140291 /* Post.swift in Sources */,
+				03DD9B0C234E226600140291 /* Email.swift in Sources */,
 				03E8A7F4234DE23900259855 /* SceneDelegate.swift in Sources */,
+				03DD9B0A234E1C0F00140291 /* Comment.swift in Sources */,
+				03DD9B08234E1C0200140291 /* User.swift in Sources */,
 				03E8A7F6234DE23900259855 /* ContentView.swift in Sources */,
 				03DD9AE6234DF62400140291 /* API.Post.swift in Sources */,
 				03DD9B04234E17DF00140291 /* API.swift in Sources */,
