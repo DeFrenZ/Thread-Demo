@@ -14,7 +14,7 @@ extension SceneDelegate: UISceneDelegate {
 		guard let windowScene = scene as? UIWindowScene else { return }
 
 		let window = UIWindow(windowScene: windowScene)
-		let rootView = ContentView()
+		let rootView = RootView()
 		let rootViewController = UIHostingController(rootView: rootView)
 		window.rootViewController = rootViewController
 		self.window = window
