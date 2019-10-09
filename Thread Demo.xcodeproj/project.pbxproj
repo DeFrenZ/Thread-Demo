@@ -3,18 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03DD9AE1234DF4EE00140291 /* App.tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9ADF234DF4D200140291 /* App.tests.swift */; };
 		03E8A7F2234DE23900259855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8A7F1234DE23900259855 /* AppDelegate.swift */; };
 		03E8A7F4234DE23900259855 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8A7F3234DE23900259855 /* SceneDelegate.swift */; };
 		03E8A7F6234DE23900259855 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8A7F5234DE23900259855 /* ContentView.swift */; };
 		03E8A7F8234DE23A00259855 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03E8A7F7234DE23A00259855 /* Assets.xcassets */; };
 		03E8A7FB234DE23A00259855 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 03E8A7FA234DE23A00259855 /* Preview Assets.xcassets */; };
 		03E8A7FE234DE23A00259855 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 03E8A7FC234DE23A00259855 /* LaunchScreen.storyboard */; };
-		03E8A809234DE23A00259855 /* Thread_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8A808234DE23A00259855 /* Thread_DemoTests.swift */; };
-		03E8A814234DE23A00259855 /* Thread_DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8A813234DE23A00259855 /* Thread_DemoUITests.swift */; };
+		03E8A831234DF21C00259855 /* App.uitests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8A813234DE23A00259855 /* App.uitests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03DD9ADF234DF4D200140291 /* App.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.tests.swift; sourceTree = "<group>"; };
 		03E8A7EE234DE23900259855 /* Thread Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Thread Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E8A7F1234DE23900259855 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		03E8A7F3234DE23900259855 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,12 +44,11 @@
 		03E8A7FA234DE23A00259855 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		03E8A7FD234DE23A00259855 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03E8A7FF234DE23A00259855 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03E8A804234DE23A00259855 /* Thread DemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Thread DemoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		03E8A808234DE23A00259855 /* Thread_DemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thread_DemoTests.swift; sourceTree = "<group>"; };
-		03E8A80A234DE23A00259855 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		03E8A80F234DE23A00259855 /* Thread DemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Thread DemoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		03E8A813234DE23A00259855 /* Thread_DemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thread_DemoUITests.swift; sourceTree = "<group>"; };
-		03E8A815234DE23A00259855 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		03E8A804234DE23A00259855 /* Thread Demo Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Thread Demo Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		03E8A80A234DE23A00259855 /* Info.tests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.tests.plist; sourceTree = "<group>"; };
+		03E8A80F234DE23A00259855 /* Thread Demo UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Thread Demo UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		03E8A813234DE23A00259855 /* App.uitests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.uitests.swift; sourceTree = "<group>"; };
+		03E8A815234DE23A00259855 /* Info.uitests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.uitests.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,8 +80,6 @@
 			isa = PBXGroup;
 			children = (
 				03E8A7F0234DE23900259855 /* Thread Demo */,
-				03E8A807234DE23A00259855 /* Thread DemoTests */,
-				03E8A812234DE23A00259855 /* Thread DemoUITests */,
 				03E8A7EF234DE23900259855 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,8 +88,8 @@
 			isa = PBXGroup;
 			children = (
 				03E8A7EE234DE23900259855 /* Thread Demo.app */,
-				03E8A804234DE23A00259855 /* Thread DemoTests.xctest */,
-				03E8A80F234DE23A00259855 /* Thread DemoUITests.xctest */,
+				03E8A804234DE23A00259855 /* Thread Demo Tests.xctest */,
+				03E8A80F234DE23A00259855 /* Thread Demo UITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,18 +97,13 @@
 		03E8A7F0234DE23900259855 /* Thread Demo */ = {
 			isa = PBXGroup;
 			children = (
-				03E8A7F1234DE23900259855 /* AppDelegate.swift */,
-				03E8A7F3234DE23900259855 /* SceneDelegate.swift */,
-				03E8A7F5234DE23900259855 /* ContentView.swift */,
-				03E8A7F7234DE23A00259855 /* Assets.xcassets */,
-				03E8A7FC234DE23A00259855 /* LaunchScreen.storyboard */,
-				03E8A7FF234DE23A00259855 /* Info.plist */,
-				03E8A7F9234DE23A00259855 /* Preview Content */,
+				03E8A82E234DEE1F00259855 /* App */,
+				03E8A82F234DEE3300259855 /* UI */,
 			);
 			path = "Thread Demo";
 			sourceTree = "<group>";
 		};
-		03E8A7F9234DE23A00259855 /* Preview Content */ = {
+		03E8A823234DED8900259855 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
 				03E8A7FA234DE23A00259855 /* Preview Assets.xcassets */,
@@ -118,22 +111,29 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		03E8A807234DE23A00259855 /* Thread DemoTests */ = {
+		03E8A82E234DEE1F00259855 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				03E8A808234DE23A00259855 /* Thread_DemoTests.swift */,
-				03E8A80A234DE23A00259855 /* Info.plist */,
+				03E8A7F1234DE23900259855 /* AppDelegate.swift */,
+				03E8A7F3234DE23900259855 /* SceneDelegate.swift */,
+				03DD9ADF234DF4D200140291 /* App.tests.swift */,
+				03E8A813234DE23A00259855 /* App.uitests.swift */,
+				03E8A7FC234DE23A00259855 /* LaunchScreen.storyboard */,
+				03E8A7FF234DE23A00259855 /* Info.plist */,
+				03E8A80A234DE23A00259855 /* Info.tests.plist */,
+				03E8A815234DE23A00259855 /* Info.uitests.plist */,
 			);
-			path = "Thread DemoTests";
+			path = App;
 			sourceTree = "<group>";
 		};
-		03E8A812234DE23A00259855 /* Thread DemoUITests */ = {
+		03E8A82F234DEE3300259855 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				03E8A813234DE23A00259855 /* Thread_DemoUITests.swift */,
-				03E8A815234DE23A00259855 /* Info.plist */,
+				03E8A7F7234DE23A00259855 /* Assets.xcassets */,
+				03E8A823234DED8900259855 /* Preview Content */,
+				03E8A7F5234DE23900259855 /* ContentView.swift */,
 			);
-			path = "Thread DemoUITests";
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,9 +156,9 @@
 			productReference = 03E8A7EE234DE23900259855 /* Thread Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		03E8A803234DE23A00259855 /* Thread DemoTests */ = {
+		03E8A803234DE23A00259855 /* Thread Demo Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 03E8A81B234DE23A00259855 /* Build configuration list for PBXNativeTarget "Thread DemoTests" */;
+			buildConfigurationList = 03E8A81B234DE23A00259855 /* Build configuration list for PBXNativeTarget "Thread Demo Tests" */;
 			buildPhases = (
 				03E8A800234DE23A00259855 /* Sources */,
 				03E8A801234DE23A00259855 /* Frameworks */,
@@ -169,14 +169,14 @@
 			dependencies = (
 				03E8A806234DE23A00259855 /* PBXTargetDependency */,
 			);
-			name = "Thread DemoTests";
+			name = "Thread Demo Tests";
 			productName = "Thread DemoTests";
-			productReference = 03E8A804234DE23A00259855 /* Thread DemoTests.xctest */;
+			productReference = 03E8A804234DE23A00259855 /* Thread Demo Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		03E8A80E234DE23A00259855 /* Thread DemoUITests */ = {
+		03E8A80E234DE23A00259855 /* Thread Demo UITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 03E8A81E234DE23A00259855 /* Build configuration list for PBXNativeTarget "Thread DemoUITests" */;
+			buildConfigurationList = 03E8A81E234DE23A00259855 /* Build configuration list for PBXNativeTarget "Thread Demo UITests" */;
 			buildPhases = (
 				03E8A80B234DE23A00259855 /* Sources */,
 				03E8A80C234DE23A00259855 /* Frameworks */,
@@ -187,9 +187,9 @@
 			dependencies = (
 				03E8A811234DE23A00259855 /* PBXTargetDependency */,
 			);
-			name = "Thread DemoUITests";
+			name = "Thread Demo UITests";
 			productName = "Thread DemoUITests";
-			productReference = 03E8A80F234DE23A00259855 /* Thread DemoUITests.xctest */;
+			productReference = 03E8A80F234DE23A00259855 /* Thread Demo UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -216,7 +216,7 @@
 				};
 			};
 			buildConfigurationList = 03E8A7E9234DE23900259855 /* Build configuration list for PBXProject "Thread Demo" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 11.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -229,8 +229,8 @@
 			projectRoot = "";
 			targets = (
 				03E8A7ED234DE23900259855 /* Thread Demo */,
-				03E8A803234DE23A00259855 /* Thread DemoTests */,
-				03E8A80E234DE23A00259855 /* Thread DemoUITests */,
+				03E8A803234DE23A00259855 /* Thread Demo Tests */,
+				03E8A80E234DE23A00259855 /* Thread Demo UITests */,
 			);
 		};
 /* End PBXProject section */
@@ -277,7 +277,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03E8A809234DE23A00259855 /* Thread_DemoTests.swift in Sources */,
+				03DD9AE1234DF4EE00140291 /* App.tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,7 +285,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				03E8A814234DE23A00259855 /* Thread_DemoUITests.swift in Sources */,
+				03E8A831234DF21C00259855 /* App.uitests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,9 +435,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Thread Demo/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Thread Demo/UI/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Thread Demo/Info.plist";
+				INFOPLIST_FILE = "Thread Demo/App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -454,9 +454,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Thread Demo/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Thread Demo/UI/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Thread Demo/Info.plist";
+				INFOPLIST_FILE = "Thread Demo/App/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -474,14 +474,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Thread DemoTests/Info.plist";
+				INFOPLIST_FILE = "Thread Demo/App/Info.tests.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.logiccraft.Thread-DemoTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.logiccraft.Thread-Demo.tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -495,14 +495,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Thread DemoTests/Info.plist";
+				INFOPLIST_FILE = "Thread Demo/App/Info.tests.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.logiccraft.Thread-DemoTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.logiccraft.Thread-Demo.tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -515,13 +515,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Thread DemoUITests/Info.plist";
+				INFOPLIST_FILE = "Thread Demo/App/Info.uitests.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.logiccraft.Thread-DemoUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.logiccraft.Thread-Demo.uitests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -534,13 +534,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Thread DemoUITests/Info.plist";
+				INFOPLIST_FILE = "Thread Demo/App/Info.uitests.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.logiccraft.Thread-DemoUITests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.logiccraft.Thread-Demo.uitests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -569,7 +569,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		03E8A81B234DE23A00259855 /* Build configuration list for PBXNativeTarget "Thread DemoTests" */ = {
+		03E8A81B234DE23A00259855 /* Build configuration list for PBXNativeTarget "Thread Demo Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				03E8A81C234DE23A00259855 /* Debug */,
@@ -578,7 +578,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		03E8A81E234DE23A00259855 /* Build configuration list for PBXNativeTarget "Thread DemoUITests" */ = {
+		03E8A81E234DE23A00259855 /* Build configuration list for PBXNativeTarget "Thread Demo UITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				03E8A81F234DE23A00259855 /* Debug */,

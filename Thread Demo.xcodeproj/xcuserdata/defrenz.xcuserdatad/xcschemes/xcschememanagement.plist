@@ -4,10 +4,33 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Thread Demo.xcscheme_^#shared#^_</key>
+		<key>App.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>UITests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>03E8A7ED234DE23900259855</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>03E8A803234DE23A00259855</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>03E8A80E234DE23A00259855</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
