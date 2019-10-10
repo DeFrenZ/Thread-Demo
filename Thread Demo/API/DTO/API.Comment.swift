@@ -1,5 +1,5 @@
-extension API {
-	struct Comment: Codable {
+public extension API {
+	struct Comment: Hashable, Codable {
 		var postId: Int
 		var id: Int
 		var name: String
