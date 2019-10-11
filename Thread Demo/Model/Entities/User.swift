@@ -21,6 +21,7 @@ struct User: Identifiable {
 		var city: String
 		var postalCode: String
 		var coordinates: CLLocationCoordinate2D
+		// ???: Doesn't have `country`?
 
 		// TODO: Add conversion from `User.Address` to `CNPostalAddress`
 	}
@@ -35,4 +36,15 @@ struct User: Identifiable {
 	}
 
 	// TODO: Add conversion from `User` to `CNContact`
+}
+
+extension User {
+	final class Connected {
+		let user: User
+		var posts: [Post.Connected]?
+
+		init(user: User) {
+			self.user = user
+		}
+	}
 }

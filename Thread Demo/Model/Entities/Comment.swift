@@ -9,3 +9,14 @@ struct Comment: Identifiable {
 		var value: Int
 	}
 }
+
+extension Comment {
+	final class Connected {
+		let comment: Comment
+		weak var post: Post.Connected?
+
+		init(comment: Comment) {
+			self.comment = comment
+		}
+	}
+}
