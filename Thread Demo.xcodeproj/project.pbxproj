@@ -133,10 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				03DD9B14234E414200140291 /* Entities */,
-				03DD9B10234E26F300140291 /* Post+API.swift */,
-				03DD9B28234F93B500140291 /* User+API.swift */,
-				03DD9B2C234F97B600140291 /* Comment+API.swift */,
-				03DD9B2A234F951C00140291 /* ConversionError.swift */,
+				03DD9B322350841D00140291 /* API Integration */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -193,6 +190,17 @@
 				03DD9B0B234E226600140291 /* Email.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		03DD9B322350841D00140291 /* API Integration */ = {
+			isa = PBXGroup;
+			children = (
+				03DD9B10234E26F300140291 /* Post+API.swift */,
+				03DD9B28234F93B500140291 /* User+API.swift */,
+				03DD9B2C234F97B600140291 /* Comment+API.swift */,
+				03DD9B2A234F951C00140291 /* ConversionError.swift */,
+			);
+			path = "API Integration";
 			sourceTree = "<group>";
 		};
 		03E8A7E5234DE23900259855 = {
