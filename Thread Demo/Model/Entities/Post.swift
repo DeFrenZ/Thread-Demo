@@ -10,7 +10,8 @@ struct Post: Identifiable {
 }
 
 extension Post {
-	final class Connected {
+	@dynamicMemberLookup
+	final class Connected: Identifiable {
 		let post: Post
 		weak var user: User.Connected?
 		var comments: [Comment.Connected]?
@@ -18,5 +19,9 @@ extension Post {
 		init(post: Post) {
 			self.post = post
 		}
+
+		subscript <T> (dynamicMember keyPath: KeyPath<Post, T>) -> T { post[keyPath: keyPath] }
+
+		var id: Post.ID { post.id }
 	}
 }

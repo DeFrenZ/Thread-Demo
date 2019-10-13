@@ -39,12 +39,17 @@ struct User: Identifiable {
 }
 
 extension User {
-	final class Connected {
+	@dynamicMemberLookup
+	final class Connected: Identifiable {
 		let user: User
 		var posts: [Post.Connected]?
 
 		init(user: User) {
 			self.user = user
 		}
+
+		subscript <T> (dynamicMember keyPath: KeyPath<User, T>) -> T { user[keyPath: keyPath] }
+
+		var id: User.ID { user.id }
 	}
 }
