@@ -2,7 +2,7 @@ import SwiftUI
 import Combine
 
 /// A view that displays a list of posts.
-struct PostsListView: View {
+struct PostsList: View {
 	@EnvironmentObject var postsStore: PostsStore
 
     var body: some View {
@@ -14,29 +14,22 @@ struct PostsListView: View {
 	@ViewBuilder
 	private var root: some View {
 		if let posts = self.posts {
-			return postsList(with: posts)
+			return List(posts) { post in
+				PostCell(post: post)
+			}
 		} else {
 			return ActivityIndicator(style: .large)
-		}
-	}
-
-	private func postsList(with posts: [Post.Connected]) -> some View {
-		List(posts) { post in
-			Text(post.title)
-				.lineLimit(3)
-				// Make the `Text` reach its ideal height
-				.fixedSize(horizontal: false, vertical: true)
 		}
 	}
 }
 
 // MARK: Presentation
-extension PostsListView {
+extension PostsList {
 	var posts: [Post.Connected]? { postsStore.posts.lastValidData }
 }
 
 // MARK: Effects
-extension PostsListView {
+extension PostsList {
 	enum Action {
 		case fetchPosts(forceFetch: Bool = false)
 	}
@@ -58,35 +51,10 @@ extension PostsListView {
 }
 
 // MARK: - Preview
-struct ContentView_Previews: PreviewProvider {
+struct PostsList_Previews: PreviewProvider {
 	static var previews: some View {
 		NavigationView {
-			PostsListView()
+			PostsList()
 		}.environmentObject(PostsStore.sample)
-	}
-}
-
-private extension PostsStore {
-	static var sample: PostsStore {
-		.init(getPosts: {
-			Just<[Post]>(.samples)
-				.setFailureType(to: FetchError.self)
-				.eraseToAnyPublisher()
-		})
-	}
-}
-
-private extension Array where Element == Post {
-	static var samples: [Post]! {
-		guard
-			let url = Bundle.main.url(forResource: "posts.response", withExtension: "json"),
-			let exampleResponse = try? Data(contentsOf: url)
-		else { return nil }
-
-		let decoder = JSONDecoder()
-
-		return try? decoder
-			.decode([API.Post].self, from: exampleResponse)
-			.map(Post.init(apiModel:))
 	}
 }
