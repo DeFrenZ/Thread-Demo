@@ -15,4 +15,6 @@ extension AppUITests {
             }
         }
     }
+
+	// TODO: Add end to end tests for the most relevant happy paths (smoke tests)
 }

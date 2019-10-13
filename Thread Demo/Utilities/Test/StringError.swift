@@ -33,7 +33,7 @@ extension StringError: LocalizedError {
 ///
 /// Necessary if you want to throw a `StringError` within an expression. e.g.
 /// ```
-/// let value = optionalValue ?? throw("The value is `nil`")
+/// let value = optionalValue ?? `throw`("The value is `nil`")
 /// ```
 func `throw` <T> (
 	_ message: String,

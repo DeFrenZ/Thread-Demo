@@ -4,14 +4,16 @@ import Combine
 
 final class APIClientTests: XCTestCase {
 	var stubs: [String: Result<(data: Data, response: URLResponse), URLError>] = [:]
+	// `lazy` to allow capture of other properties
 	lazy var client: API.Client = .init(
 		baseURL: .testBaseURL,
 		performNetworkRequest: { [stubs] request in
-			// Arbitrarily chosen `badServerResponse` as a default error for missing stub, as it needs to be an `URLError` to type match
 			guard
 				let path = request.url?.relativePath,
 				let stub = stubs[path]
+			// Arbitrarily chosen `badServerResponse` as a default error for missing stub, as it needs to be an `URLError` to type match
 			else { return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher() }
+
 			return Result.Publisher(stub).eraseToAnyPublisher()
 		}
 	)
