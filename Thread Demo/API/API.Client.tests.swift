@@ -22,11 +22,7 @@ final class APIClientTests: XCTestCase {
 // MARK: Tests
 extension APIClientTests {
 	func test_givenAClient_whenFetchingPosts_andTheResponseIsValid_thenTheDecodedModelIsReturned() {
-		let responseBody: [API.Post] = [
-			.init(userId: 1, id: 1, title: "Test", body: "This is a test"),
-			.init(userId: 1, id: 2, title: "Test 2", body: "This is a test (again)"),
-			.init(userId: 2, id: 3, title: "Wow", body: "Such a nice test"),
-		]
+		let responseBody = [API.Post].samples
 		stubAPICall(atPath: "/posts", responseBody: responseBody)
 
 		let response = client.getPosts()
@@ -36,11 +32,7 @@ extension APIClientTests {
 	}
 
 	func test_givenAClient_whenFetchingPosts_andTheResponseDoesntMatch_thenAnErrorIsReturned() {
-		let responseBody: [TestCodable] = [
-			.init(a: 1, b: "a"),
-			.init(a: 2, b: "b"),
-			.init(a: 3, b: "c"),
-		]
+		let responseBody = [TestCodable].samples
 		stubAPICall(atPath: "/posts", responseBody: responseBody)
 
 		let response = client.getPosts()
@@ -59,11 +51,7 @@ extension APIClientTests {
 	}
 
 	func test_givenAClient_whenFetchingUsers_andTheResponseIsValid_thenTheDecodedModelIsReturned() {
-		let responseBody: [API.User] = [
-			.init(id: 1, name: "User 1", username: "user1", email: "user1@test.com", address: .init(street: "1, Test Street", suite: "", city: "Test Town", zipcode: "XXX XXX", geo: .init(lat: "0", lng: "0")), phone: "XXX XXXXXX", website: "http://www.test.com", company: .init(name: "Testy", catchPhrase: "We test it all", bs: "multi-threaded automatic test verification")),
-			.init(id: 2, name: "User 2", username: "user2", email: "user2@test.com", address: .init(street: "2, Test Street", suite: "", city: "Test Town", zipcode: "XXX XXX", geo: .init(lat: "0", lng: "0")), phone: "XXX XXXXXX", website: "http://www.test.com", company: .init(name: "Testy", catchPhrase: "We test it all", bs: "multi-threaded automatic test verification")),
-			.init(id: 3, name: "User 3", username: "user3", email: "user3@test.com", address: .init(street: "3, Test Street", suite: "", city: "Test Town", zipcode: "XXX XXX", geo: .init(lat: "0", lng: "0")), phone: "XXX XXXXXX", website: "http://www.test.com", company: .init(name: "Testy", catchPhrase: "We test it all", bs: "multi-threaded automatic test verification")),
-		]
+		let responseBody = [API.User].samples
 		stubAPICall(atPath: "/users", responseBody: responseBody)
 
 		let response = client.getUsers()
@@ -73,11 +61,7 @@ extension APIClientTests {
 	}
 
 	func test_givenAClient_whenFetchingUsers_andTheResponseDoesntMatch_thenAnErrorIsReturned() {
-		let responseBody: [TestCodable] = [
-			.init(a: 1, b: "a"),
-			.init(a: 2, b: "b"),
-			.init(a: 3, b: "c"),
-		]
+		let responseBody = [TestCodable].samples
 		stubAPICall(atPath: "/users", responseBody: responseBody)
 
 		let response = client.getUsers()
@@ -96,11 +80,7 @@ extension APIClientTests {
 	}
 
 	func test_givenAClient_whenFetchingComments_andTheResponseIsValid_thenTheDecodedModelIsReturned() {
-		let responseBody: [API.Comment] = [
-			.init(postId: 1, id: 1, name: "User 1", email: "user1@test.com", body: "Well well well"),
-			.init(postId: 1, id: 2, name: "User 2", email: "user2@test.com", body: "Let's see what we have here"),
-			.init(postId: 2, id: 3, name: "User 1", email: "user1@test.com", body: "It is I! Testy McTestFace!"),
-		]
+		let responseBody = [API.Comment].samples
 		stubAPICall(atPath: "/comments", responseBody: responseBody)
 
 		let response = client.getComments()
@@ -110,11 +90,7 @@ extension APIClientTests {
 	}
 
 	func test_givenAClient_whenFetchingComments_andTheResponseDoesntMatch_thenAnErrorIsReturned() {
-		let responseBody: [TestCodable] = [
-			.init(a: 1, b: "a"),
-			.init(a: 2, b: "b"),
-			.init(a: 3, b: "c"),
-		]
+		let responseBody = [TestCodable].samples
 		stubAPICall(atPath: "/comments", responseBody: responseBody)
 
 		let response = client.getComments()
@@ -172,4 +148,12 @@ private extension URL {
 private struct TestCodable: Hashable, Codable {
 	var a: Int
 	var b: String
+}
+
+extension Array where Element == TestCodable {
+	static let samples: [TestCodable] = [
+		.init(a: 1, b: "a"),
+		.init(a: 2, b: "b"),
+		.init(a: 3, b: "c"),
+	]
 }
