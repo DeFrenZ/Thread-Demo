@@ -7,6 +7,20 @@ struct StringError: Error {
 	var line: UInt
 	var column: UInt
 	var function: StaticString
+
+	init(
+		message: String,
+		file: StaticString = #file,
+		line: UInt = #line,
+		column: UInt = #column,
+		function: StaticString = #function
+	) {
+		self.message = message
+		self.file = file
+		self.line = line
+		self.column = column
+		self.function = function
+	}
 }
 
 // Conformance to `LocalizedError` so that when it is converted to an `NSError` it still shows the `message`
