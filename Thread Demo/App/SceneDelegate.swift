@@ -17,8 +17,12 @@ extension SceneDelegate: UISceneDelegate {
 
 		guard let windowScene = scene as? UIWindowScene else { return }
 
+		// TODO: Move to somewhere where all scenes share the same data
+		let dataStore = DataStore(api: .init())
+
 		let window = UIWindow(windowScene: windowScene)
 		let rootView = RootView()
+			.environmentObject(dataStore)
 		let rootViewController = UIHostingController(rootView: rootView)
 		window.rootViewController = rootViewController
 		self.window = window
