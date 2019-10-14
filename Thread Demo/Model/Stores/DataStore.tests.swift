@@ -68,45 +68,57 @@ extension DataStoreTests {
 		// TODO: Should wait aynchronously for all three publishers, but not synchronously on each
 		postsStore.$posts.awaitSynchronouslyForNextOutputs(count: 2)
 
+		assertPostsAreConnectedToUsers()
+		assertCommentsAreConnectedToPosts()
+	}
+}
+
+// MARK: Utilities
+private extension DataStoreTests {
+	func assertPostsAreConnectedToUsers(file: StaticString = #file, line: UInt = #line) {
 		for post in postsStore.posts.lastValidData ?? [] {
 			if let connectedUser = usersStore.users.lastValidData?.first(where: { $0.id == post.userID }) {
-				XCTAssert(post.user === connectedUser, "There should be a connected user")
+				XCTAssert(post.user === connectedUser, "There should be a connected user", file: file, line: line)
 				let isPostConnected = connectedUser.posts?.contains(where: { $0 === post }) == true
-				XCTAssertTrue(isPostConnected, "The connected user should be connected to the post")
+				XCTAssertTrue(isPostConnected, "The connected user should be connected to the post", file: file, line: line)
 			} else {
-				XCTAssertNil(post.user, "There should not be a connected user")
-			}
-
-			if let comments = post.comments {
-				for comment in comments {
-					XCTAssertEqual(comment.postID, post.id, "The post ID should match")
-					XCTAssert(comment.post === post, "The post should be connected")
-				}
-			} else {
-				let matchingComment = commentsStore.comments.lastValidData?.first(where: { $0.postID == post.id })
-				XCTAssertNil(matchingComment, "There should not be a matching comment that is not connected")
+				XCTAssertNil(post.user, "There should not be a connected user", file: file, line: line)
 			}
 		}
 
 		for user in usersStore.users.lastValidData ?? [] {
 			if let posts = user.posts {
 				for post in posts {
-					XCTAssertEqual(post.userID, user.id, "The user ID should match")
-					XCTAssert(post.user === user, "The user should be connected")
+					XCTAssertEqual(post.userID, user.id, "The user ID should match", file: file, line: line)
+					XCTAssert(post.user === user, "The user should be connected", file: file, line: line)
 				}
 			} else {
 				let matchingPost = postsStore.posts.lastValidData?.first(where: { $0.userID == user.id })
-				XCTAssertNil(matchingPost, "There should not be a matching post that is not connected")
+				XCTAssertNil(matchingPost, "There should not be a matching post that is not connected", file: file, line: line)
+			}
+		}
+	}
+
+	func assertCommentsAreConnectedToPosts(file: StaticString = #file, line: UInt = #line) {
+		for post in postsStore.posts.lastValidData ?? [] {
+			if let comments = post.comments {
+				for comment in comments {
+					XCTAssertEqual(comment.postID, post.id, "The post ID should match", file: file, line: line)
+					XCTAssert(comment.post === post, "The post should be connected", file: file, line: line)
+				}
+			} else {
+				let matchingComment = commentsStore.comments.lastValidData?.first(where: { $0.postID == post.id })
+				XCTAssertNil(matchingComment, "There should not be a matching comment that is not connected", file: file, line: line)
 			}
 		}
 
 		for comment in commentsStore.comments.lastValidData ?? [] {
 			if let connectedPost = postsStore.posts.lastValidData?.first(where: { $0.id == comment.postID }) {
-				XCTAssert(comment.post === connectedPost, "There should be a connected post")
+				XCTAssert(comment.post === connectedPost, "There should be a connected post", file: file, line: line)
 				let isCommentConnected = connectedPost.comments?.contains(where: { $0 === comment }) == true
-				XCTAssertTrue(isCommentConnected, "The connected post should be connected to the comment")
+				XCTAssertTrue(isCommentConnected, "The connected post should be connected to the comment", file: file, line: line)
 			} else {
-				XCTAssertNil(comment.post, "There should not be a connected post")
+				XCTAssertNil(comment.post, "There should not be a connected post", file: file, line: line)
 			}
 		}
 	}
