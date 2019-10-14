@@ -1,4 +1,5 @@
 import Combine
+import Foundation
 
 /// An object managing all the data relative to posts. It's responsible for retrieving them, storing them and vending them.
 final class CommentsStore: ObservableObject {
@@ -23,6 +24,7 @@ extension CommentsStore {
 		getCommentsCancellable = getComments()
 			// TODO: Retry for recoverable errors
 			.map({ $0.map(Comment.Connected.init(comment:)) })
+			.receive(on: RunLoop.main)
 			.sink(
 				// !!!: `self` is strongly retained, but once the pipeline finishes this gets released so there's no permanent retain cycle
 				receiveCompletion: {

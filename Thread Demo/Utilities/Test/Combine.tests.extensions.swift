@@ -2,14 +2,56 @@ import Combine
 import XCTest
 
 extension Publisher {
+	@discardableResult
+	func awaitSynchronouslyForNextOutput(
+		timeout: TimeInterval = 1,
+		file: StaticString = #file,
+		line: UInt = #line
+	) -> Result<Output, Failure> {
+		return awaitSynchronouslyForNextOutputs(count: 1, timeout: timeout, file: file, line: line)
+			.map({ $0.first! })
+	}
+
+	@discardableResult
+	func awaitSynchronouslyForNextOutputs(
+		count: Int,
+		timeout: TimeInterval = 1,
+		file: StaticString = #file,
+		line: UInt = #line
+	) -> Result<[Output], Failure> {
+		var result: Result<[Output], Failure>!
+		let expectation = XCTestExpectation(description: "The publisher \(self) receives \(count) values")
+		let cancellable = collect(count).sink(
+			receiveCompletion: { completion in
+				switch completion {
+				case .finished: break
+				case .failure(let error): result = .failure(error)
+				}
+				expectation.fulfill()
+			}, receiveValue: { value in
+				result = .success(value)
+				expectation.fulfill()
+			}
+		)
+
+		let waitResult = XCTWaiter.wait(for: [expectation], timeout: timeout)
+		if waitResult != .completed {
+			XCTFail("The publisher \(self) didn't receive a value: \(waitResult)", file: file, line: line)
+		}
+		// Make the subscription survive until after the wait
+		_ = cancellable
+		return result
+	}
+
+	@discardableResult
 	func awaitSynchronouslyForCompletion(
 		timeout: TimeInterval = 1,
 		file: StaticString = #file,
 		line: UInt = #line
 	) -> Result<[Output], Failure> {
-		var result: Result<[Output], Failure> = .success([])
+		var result: Result<[Output], Failure>!
 		let expectation = XCTestExpectation(description: "The publisher \(self) completes")
-		_ = collect().sink(
+		let cancellable = collect().sink(
 			receiveCompletion: { completion in
 				switch completion {
 				case .finished: break
@@ -25,6 +67,8 @@ extension Publisher {
 		if waitResult != .completed {
 			XCTFail("The publisher \(self) didn't complete: \(waitResult)", file: file, line: line)
 		}
+		// Make the subscription survive until after the wait
+		_ = cancellable
 		return result
 	}
 
