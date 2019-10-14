@@ -24,6 +24,7 @@
 		0393B533235389E200FEC0E1 /* CommentsStore.preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B532235389E200FEC0E1 /* CommentsStore.preview.swift */; };
 		0393B53623538A0100FEC0E1 /* CommentsStore.tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B534235389FE00FEC0E1 /* CommentsStore.tests.swift */; };
 		0393B53823538EC200FEC0E1 /* Identifiable.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B53723538EC200FEC0E1 /* Identifiable.extensions.swift */; };
+		0393B5412354B76F00FEC0E1 /* DataStore.preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B5402354B76F00FEC0E1 /* DataStore.preview.swift */; };
 		0393B5442354B88200FEC0E1 /* DataStore.tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B5422354B87D00FEC0E1 /* DataStore.tests.swift */; };
 		03DD9AE1234DF4EE00140291 /* App.tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9ADF234DF4D200140291 /* App.tests.swift */; };
 		03DD9AE6234DF62400140291 /* API.Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9AE5234DF62400140291 /* API.Post.swift */; };
@@ -56,6 +57,7 @@
 		03DD9B2D234F97B600140291 /* Comment+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9B2C234F97B600140291 /* Comment+API.swift */; };
 		03DD9B34235084B600140291 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9B33235084B600140291 /* DataStore.swift */; };
 		03DD9B362350863B00140291 /* RemoteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9B352350863B00140291 /* RemoteData.swift */; };
+		03DD9B382350ACD900140291 /* DataStore+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9B372350ACD900140291 /* DataStore+API.swift */; };
 		03DD9B3D2350C94500140291 /* PostsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9B3C2350C94500140291 /* PostsStore.swift */; };
 		03E8A7F2234DE23900259855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8A7F1234DE23900259855 /* AppDelegate.swift */; };
 		03E8A7F4234DE23900259855 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8A7F3234DE23900259855 /* SceneDelegate.swift */; };
@@ -101,6 +103,7 @@
 		0393B532235389E200FEC0E1 /* CommentsStore.preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsStore.preview.swift; sourceTree = "<group>"; };
 		0393B534235389FE00FEC0E1 /* CommentsStore.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsStore.tests.swift; sourceTree = "<group>"; };
 		0393B53723538EC200FEC0E1 /* Identifiable.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.extensions.swift; sourceTree = "<group>"; };
+		0393B5402354B76F00FEC0E1 /* DataStore.preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.preview.swift; sourceTree = "<group>"; };
 		0393B5422354B87D00FEC0E1 /* DataStore.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.tests.swift; sourceTree = "<group>"; };
 		03DD9ADF234DF4D200140291 /* App.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.tests.swift; sourceTree = "<group>"; };
 		03DD9AE5234DF62400140291 /* API.Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.Post.swift; sourceTree = "<group>"; };
@@ -130,6 +133,7 @@
 		03DD9B2C234F97B600140291 /* Comment+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+API.swift"; sourceTree = "<group>"; };
 		03DD9B33235084B600140291 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		03DD9B352350863B00140291 /* RemoteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteData.swift; sourceTree = "<group>"; };
+		03DD9B372350ACD900140291 /* DataStore+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataStore+API.swift"; sourceTree = "<group>"; };
 		03DD9B3C2350C94500140291 /* PostsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsStore.swift; sourceTree = "<group>"; };
 		03E8A7EE234DE23900259855 /* Thread Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Thread Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E8A7F1234DE23900259855 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -250,6 +254,7 @@
 				03DD9B28234F93B500140291 /* User+API.swift */,
 				03DD9B2C234F97B600140291 /* Comment+API.swift */,
 				03DD9B2A234F951C00140291 /* ConversionError.swift */,
+				03DD9B372350ACD900140291 /* DataStore+API.swift */,
 			);
 			path = "API Integration";
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				03DD9B33235084B600140291 /* DataStore.swift */,
+				0393B5402354B76F00FEC0E1 /* DataStore.preview.swift */,
 				0393B5422354B87D00FEC0E1 /* DataStore.tests.swift */,
 				03DD9B3C2350C94500140291 /* PostsStore.swift */,
 				0393B51D235379E000FEC0E1 /* PostsStore.preview.swift */,
@@ -479,6 +485,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0393B52C2353889100FEC0E1 /* UsersStore.preview.swift in Sources */,
+				0393B5412354B76F00FEC0E1 /* DataStore.preview.swift in Sources */,
 				03DD9B34235084B600140291 /* DataStore.swift in Sources */,
 				03DD9B11234E26F300140291 /* Post+API.swift in Sources */,
 				03DD9AE8234DF6A700140291 /* API.Comment.swift in Sources */,
@@ -498,6 +505,7 @@
 				03DD9B1E234E652100140291 /* API.Client.swift in Sources */,
 				03DD9B27234F6FF700140291 /* Result.extensions.swift in Sources */,
 				03DD9B08234E1C0200140291 /* User.swift in Sources */,
+				03DD9B382350ACD900140291 /* DataStore+API.swift in Sources */,
 				0393B52823537D0A00FEC0E1 /* Comment.preview.swift in Sources */,
 				03DD9B362350863B00140291 /* RemoteData.swift in Sources */,
 				03DD9B13234E28C900140291 /* RootView.swift in Sources */,
