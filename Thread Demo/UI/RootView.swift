@@ -5,7 +5,9 @@ struct RootView: View {
 	@EnvironmentObject var dataStore: DataStore
 
     var body: some View {
-		PostsList()
+		NavigationView {
+			PostsList()
+		}
 			.environmentObject(dataStore.postsStore)
 			.onAppear { self.performAction(.fetchData) }
     }

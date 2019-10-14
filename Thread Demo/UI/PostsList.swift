@@ -6,19 +6,16 @@ struct PostsList: View {
 	@EnvironmentObject var postsStore: PostsStore
 
     var body: some View {
-		root
+		ZStack {
+			posts.map({ List($0) { post in
+				PostCell(post: post)
+			} })
+			if isLoading {
+				ActivityIndicator(style: .large)
+			}
+		}
 			.navigationBarTitle("Posts")
     }
-
-	@ViewBuilder
-	private var root: some View {
-		posts.map({ List($0) { post in
-			PostCell(post: post)
-		} })
-		if isLoading {
-			ActivityIndicator(style: .large)
-		}
-	}
 }
 
 // MARK: Presentation
