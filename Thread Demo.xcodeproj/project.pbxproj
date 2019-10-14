@@ -52,6 +52,7 @@
 		03DD9B29234F93B500140291 /* User+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9B28234F93B500140291 /* User+API.swift */; };
 		03DD9B2B234F951C00140291 /* ConversionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9B2A234F951C00140291 /* ConversionError.swift */; };
 		03DD9B2D234F97B600140291 /* Comment+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9B2C234F97B600140291 /* Comment+API.swift */; };
+		03DD9B34235084B600140291 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9B33235084B600140291 /* DataStore.swift */; };
 		03DD9B362350863B00140291 /* RemoteData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9B352350863B00140291 /* RemoteData.swift */; };
 		03DD9B3D2350C94500140291 /* PostsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9B3C2350C94500140291 /* PostsStore.swift */; };
 		03E8A7F2234DE23900259855 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03E8A7F1234DE23900259855 /* AppDelegate.swift */; };
@@ -123,6 +124,7 @@
 		03DD9B28234F93B500140291 /* User+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "User+API.swift"; sourceTree = "<group>"; };
 		03DD9B2A234F951C00140291 /* ConversionError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionError.swift; sourceTree = "<group>"; };
 		03DD9B2C234F97B600140291 /* Comment+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Comment+API.swift"; sourceTree = "<group>"; };
+		03DD9B33235084B600140291 /* DataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		03DD9B352350863B00140291 /* RemoteData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteData.swift; sourceTree = "<group>"; };
 		03DD9B3C2350C94500140291 /* PostsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsStore.swift; sourceTree = "<group>"; };
 		03E8A7EE234DE23900259855 /* Thread Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Thread Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -250,6 +252,7 @@
 		03DD9B3B2350C8EA00140291 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				03DD9B33235084B600140291 /* DataStore.swift */,
 				03DD9B3C2350C94500140291 /* PostsStore.swift */,
 				0393B51D235379E000FEC0E1 /* PostsStore.preview.swift */,
 				0393B51623533F4300FEC0E1 /* PostsStore.tests.swift */,
@@ -470,6 +473,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0393B52C2353889100FEC0E1 /* UsersStore.preview.swift in Sources */,
+				03DD9B34235084B600140291 /* DataStore.swift in Sources */,
 				03DD9B11234E26F300140291 /* Post+API.swift in Sources */,
 				03DD9AE8234DF6A700140291 /* API.Comment.swift in Sources */,
 				0393B515235214B500FEC0E1 /* ActivityIndicator.swift in Sources */,

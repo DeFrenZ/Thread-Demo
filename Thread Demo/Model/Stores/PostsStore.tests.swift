@@ -45,7 +45,7 @@ extension PostsStoreTests {
 
 	func test_givenANewStore_whenItFetches_andReceivesAFailure_thenItsFailed_andHasNoPosts() {
 		store.fetch()
-		let error = FetchError.unrecognized(StringError(message: "Forced failure"))
+		let error = FetchError.badResource
 		postsSubject.send(completion: .failure(error))
 
 		if case .failed = store.posts.state {} else {
@@ -88,7 +88,7 @@ extension PostsStoreTests {
 		postsSubject.send(completion: .finished)
 
 		store.fetch()
-		let error = FetchError.unrecognized(StringError(message: "Forced failure"))
+		let error = FetchError.badResource
 		postsSubject.send(completion: .failure(error))
 
 		if case .failed = store.posts.state {} else {
