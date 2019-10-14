@@ -19,6 +19,7 @@ extension CommentsStore {
 		getCommentsCancellable?.cancel()
 
 		comments.state = .retrieving
+		var value: [Comment.Connected]?
 		getCommentsCancellable = getComments()
 			// TODO: Retry for recoverable errors
 			.map({ $0.map(Comment.Connected.init(comment:)) })
@@ -27,13 +28,15 @@ extension CommentsStore {
 				receiveCompletion: {
 					switch $0 {
 					case .finished:
+						// ???: Check that a value was actually received before finishing
+						self.comments.lastValidData = value
 						self.comments.state = .idle
-						self.getCommentsCancellable = nil
 					case .failure(let error):
 						self.comments.state = .failed(error)
 					}
+					self.getCommentsCancellable = nil
 				},
-				receiveValue: { self.comments.lastValidData = $0 }
+				receiveValue: { value = $0 }
 			)
 	}
 }

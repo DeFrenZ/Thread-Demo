@@ -19,6 +19,7 @@ extension UsersStore {
 		getUsersCancellable?.cancel()
 
 		users.state = .retrieving
+		var value: [User.Connected]?
 		getUsersCancellable = getUsers()
 			// TODO: Retry for recoverable errors
 			.map({ $0.map(User.Connected.init(user:)) })
@@ -27,13 +28,15 @@ extension UsersStore {
 				receiveCompletion: {
 					switch $0 {
 					case .finished:
+						// ???: Check that a value was actually received before finishing
+						self.users.lastValidData = value
 						self.users.state = .idle
-						self.getUsersCancellable = nil
 					case .failure(let error):
 						self.users.state = .failed(error)
 					}
+					self.getUsersCancellable = nil
 				},
-				receiveValue: { self.users.lastValidData = $0 }
+				receiveValue: { value = $0 }
 			)
 	}
 }

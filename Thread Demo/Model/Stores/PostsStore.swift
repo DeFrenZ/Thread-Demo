@@ -19,6 +19,7 @@ extension PostsStore {
 		getPostsCancellable?.cancel()
 
 		posts.state = .retrieving
+		var value: [Post.Connected]?
 		getPostsCancellable = getPosts()
 			// TODO: Retry for recoverable errors
 			.map({ $0.map(Post.Connected.init(post:)) })
@@ -27,13 +28,15 @@ extension PostsStore {
 				receiveCompletion: {
 					switch $0 {
 					case .finished:
+						// ???: Check that a value was actually received before finishing
+						self.posts.lastValidData = value
 						self.posts.state = .idle
-						self.getPostsCancellable = nil
 					case .failure(let error):
 						self.posts.state = .failed(error)
 					}
+					self.getPostsCancellable = nil
 				},
-				receiveValue: { self.posts.lastValidData = $0 }
+				receiveValue: { value = $0 }
 			)
 	}
 }
