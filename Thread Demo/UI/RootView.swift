@@ -5,8 +5,24 @@ struct RootView: View {
 	@EnvironmentObject var dataStore: DataStore
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
+		PostsList()
+			.environmentObject(dataStore.postsStore)
+			.onAppear { self.performAction(.fetchData) }
     }
+}
+
+// MARK: Effects
+extension RootView {
+	enum Action {
+		case fetchData
+	}
+
+	func performAction(_ action: Action) {
+		switch action {
+		case .fetchData:
+			dataStore.fetchAll()
+		}
+	}
 }
 
 // MARK: - Preview

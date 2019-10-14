@@ -8,17 +8,15 @@ struct PostsList: View {
     var body: some View {
 		root
 			.navigationBarTitle("Posts")
-			.onAppear(perform: { self.performAction(.fetchPosts()) })
     }
 
 	@ViewBuilder
 	private var root: some View {
-		if let posts = self.posts {
-			return List(posts) { post in
-				PostCell(post: post)
-			}
-		} else {
-			return ActivityIndicator(style: .large)
+		posts.map({ List($0) { post in
+			PostCell(post: post)
+		} })
+		if isLoading {
+			ActivityIndicator(style: .large)
 		}
 	}
 }
@@ -26,26 +24,16 @@ struct PostsList: View {
 // MARK: Presentation
 extension PostsList {
 	var posts: [Post.Connected]? { postsStore.posts.lastValidData }
-}
-
-// MARK: Effects
-extension PostsList {
-	enum Action {
-		case fetchPosts(forceFetch: Bool = false)
+	var isLoading: Bool {
+		guard case .retrieving = postsStore.posts.state else { return false }
+		return true
 	}
+	var errorMessage: String? {
+		guard case .failed(let error) = postsStore.posts.state else { return nil }
 
-	func performAction(_ action: Action) {
-		switch action {
-		case .fetchPosts(let forceFetch):
-			guard forceFetch || shouldFetch else { return }
-			postsStore.fetch()
-		}
-	}
-
-	private var shouldFetch: Bool {
-		switch postsStore.posts.state {
-		case .idle, .failed: return postsStore.posts.lastValidData == nil
-		case .retrieving: return false
+		// TODO: Give more detailed error messages
+		switch error {
+		default: return "Could not retrieve data"
 		}
 	}
 }
