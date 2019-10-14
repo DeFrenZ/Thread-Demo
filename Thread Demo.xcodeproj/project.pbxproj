@@ -23,6 +23,8 @@
 		0393B5312353897900FEC0E1 /* CommentsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B5302353897900FEC0E1 /* CommentsStore.swift */; };
 		0393B533235389E200FEC0E1 /* CommentsStore.preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B532235389E200FEC0E1 /* CommentsStore.preview.swift */; };
 		0393B53623538A0100FEC0E1 /* CommentsStore.tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B534235389FE00FEC0E1 /* CommentsStore.tests.swift */; };
+		0393B53823538EC200FEC0E1 /* Identifiable.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B53723538EC200FEC0E1 /* Identifiable.extensions.swift */; };
+		0393B5442354B88200FEC0E1 /* DataStore.tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B5422354B87D00FEC0E1 /* DataStore.tests.swift */; };
 		03DD9AE1234DF4EE00140291 /* App.tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9ADF234DF4D200140291 /* App.tests.swift */; };
 		03DD9AE6234DF62400140291 /* API.Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9AE5234DF62400140291 /* API.Post.swift */; };
 		03DD9AE8234DF6A700140291 /* API.Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9AE7234DF6A700140291 /* API.Comment.swift */; };
@@ -98,6 +100,8 @@
 		0393B5302353897900FEC0E1 /* CommentsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsStore.swift; sourceTree = "<group>"; };
 		0393B532235389E200FEC0E1 /* CommentsStore.preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsStore.preview.swift; sourceTree = "<group>"; };
 		0393B534235389FE00FEC0E1 /* CommentsStore.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsStore.tests.swift; sourceTree = "<group>"; };
+		0393B53723538EC200FEC0E1 /* Identifiable.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Identifiable.extensions.swift; sourceTree = "<group>"; };
+		0393B5422354B87D00FEC0E1 /* DataStore.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStore.tests.swift; sourceTree = "<group>"; };
 		03DD9ADF234DF4D200140291 /* App.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.tests.swift; sourceTree = "<group>"; };
 		03DD9AE5234DF62400140291 /* API.Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.Post.swift; sourceTree = "<group>"; };
 		03DD9AE7234DF6A700140291 /* API.Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.Comment.swift; sourceTree = "<group>"; };
@@ -210,6 +214,7 @@
 			children = (
 				03DD9AF1234E06CB00140291 /* Test */,
 				03DD9B26234F6FF700140291 /* Result.extensions.swift */,
+				0393B53723538EC200FEC0E1 /* Identifiable.extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				03DD9B33235084B600140291 /* DataStore.swift */,
+				0393B5422354B87D00FEC0E1 /* DataStore.tests.swift */,
 				03DD9B3C2350C94500140291 /* PostsStore.swift */,
 				0393B51D235379E000FEC0E1 /* PostsStore.preview.swift */,
 				0393B51623533F4300FEC0E1 /* PostsStore.tests.swift */,
@@ -501,6 +507,7 @@
 				03E8A7F6234DE23900259855 /* PostsList.swift in Sources */,
 				0393B51C2353798100FEC0E1 /* Post.preview.swift in Sources */,
 				03DD9B29234F93B500140291 /* User+API.swift in Sources */,
+				0393B53823538EC200FEC0E1 /* Identifiable.extensions.swift in Sources */,
 				03DD9AE6234DF62400140291 /* API.Post.swift in Sources */,
 				0393B5312353897900FEC0E1 /* CommentsStore.swift in Sources */,
 				03DD9B2B234F951C00140291 /* ConversionError.swift in Sources */,
@@ -513,6 +520,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0393B5442354B88200FEC0E1 /* DataStore.tests.swift in Sources */,
 				03DD9AEC234DF79200140291 /* API.Post.tests.swift in Sources */,
 				0393B52F235388D100FEC0E1 /* UsersStore.tests.swift in Sources */,
 				0393B51823533F4600FEC0E1 /* PostsStore.tests.swift in Sources */,
