@@ -6,14 +6,10 @@ struct PostsList: View {
 	@EnvironmentObject var postsStore: PostsStore
 
     var body: some View {
-		ZStack {
-			posts.map({ List($0) { post in
-				PostCell(connected: post)
-			} })
-			if isLoading {
-				ActivityIndicator(style: .large)
-			}
+		List(posts ?? []) { post in
+			PostCell(connected: post)
 		}
+			.overlay(isLoading ? ActivityIndicator(style: .large) : nil)
 			.navigationBarTitle("Posts")
     }
 }
