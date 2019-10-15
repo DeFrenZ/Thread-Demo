@@ -16,8 +16,20 @@ extension Array where Element == User.Connected {
 		[User].samples
 			.map(User.Connected.init(user:))
 	}
+
+	static var samplesConnected: [User.Connected]! {
+		guard
+			let users = samples,
+			let posts = [Post.Connected].samples
+		else { return nil }
+
+		DataStore.connectPosts(posts, toUsers: users)
+		DataStore.connectComments(.samples, toPosts: posts)
+		return users
+	}
 }
 
 extension User.Connected {
 	static var sample: User.Connected! { [User.Connected].samples.first }
+	static var sampleConnected: User.Connected! { [User.Connected].samplesConnected.first }
 }

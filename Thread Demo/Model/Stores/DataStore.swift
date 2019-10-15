@@ -28,6 +28,30 @@ extension DataStore {
 		usersStore.fetch()
 		commentsStore.fetch()
 	}
+
+	static func connectPosts(_ posts: [Post.Connected], toUsers users: [User.Connected]) {
+		let usersByID = Dictionary(groupingByID: users)
+		for post in posts {
+			post.user = usersByID[post.post.userID]
+		}
+
+		let postsByUserID = Dictionary(grouping: posts, by: { $0.userID })
+		for user in users {
+			user.posts = postsByUserID[user.id]
+		}
+	}
+
+	static func connectComments(_ comments: [Comment.Connected], toPosts posts: [Post.Connected]) {
+		let postsByID = Dictionary(groupingByID: posts)
+		for comment in comments {
+			comment.post = postsByID[comment.comment.postID]
+		}
+
+		let commentsByPostID = Dictionary(grouping: comments, by: { $0.postID })
+		for post in posts {
+			post.comments = commentsByPostID[post.id]
+		}
+	}
 }
 
 private extension DataStore {
@@ -50,18 +74,9 @@ private extension DataStore {
 			return
 		}
 
-		let usersByID = Dictionary(groupingByID: users)
-		for post in posts {
-			post.user = usersByID[post.post.userID]
-		}
-
-		let postsByUserID = Dictionary(grouping: posts, by: { $0.userID })
-		for user in users {
-			user.posts = postsByUserID[user.id]
-		}
+		Self.connectPosts(posts, toUsers: users)
 	}
 
-	// ???: Might be worth DRYing with `connectPostsToUsers`
 	func connectCommentsToPosts() {
 		guard let posts = posts.lastValidData else { return }
 
@@ -72,15 +87,7 @@ private extension DataStore {
 			return
 		}
 
-		let postsByID = Dictionary(groupingByID: posts)
-		for comment in comments {
-			comment.post = postsByID[comment.comment.postID]
-		}
-
-		let commentsByPostID = Dictionary(grouping: comments, by: { $0.postID })
-		for post in posts {
-			post.comments = commentsByPostID[post.id]
-		}
+		Self.connectComments(comments, toPosts: posts)
 	}
 }
 
