@@ -38,8 +38,13 @@ extension PostsList {
 // MARK: - Preview
 struct PostsList_Previews: PreviewProvider {
 	static var previews: some View {
-		NavigationView {
+		let store = DataStore.sample
+		store.fetchAll()
+		return NavigationView {
 			PostsList()
-		}.environmentObject(PostsStore.sample)
+		}
+			// Keeping the `DataStore` as well to retain the connections
+			.environmentObject(store)
+			.environmentObject(store.postsStore)
 	}
 }

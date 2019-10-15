@@ -30,6 +30,7 @@ extension RootView {
 // MARK: - Preview
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
-        RootView()
+        return RootView()
+			.environmentObject(DataStore.sample)
     }
 }
