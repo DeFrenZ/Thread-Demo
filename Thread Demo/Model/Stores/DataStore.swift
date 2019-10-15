@@ -67,6 +67,7 @@ private extension DataStore {
 	func connectPostsToUsers() {
 		guard let users = users.lastValidData else { return }
 
+		usersStore.objectWillChange.send()
 		guard let posts = posts.lastValidData else {
 			for user in users {
 				user.posts = nil
@@ -74,12 +75,14 @@ private extension DataStore {
 			return
 		}
 
+		postsStore.objectWillChange.send()
 		Self.connectPosts(posts, toUsers: users)
 	}
 
 	func connectCommentsToPosts() {
 		guard let posts = posts.lastValidData else { return }
 
+		postsStore.objectWillChange.send()
 		guard let comments = comments.lastValidData else {
 			for post in posts {
 				post.comments = nil
@@ -87,6 +90,7 @@ private extension DataStore {
 			return
 		}
 
+		commentsStore.objectWillChange.send()
 		Self.connectComments(comments, toPosts: posts)
 	}
 }
