@@ -13,10 +13,17 @@ struct PostCell: View {
 				.lineLimit(3)
 				// Make the `Text` reach its ideal height
 				.fixedSize(horizontal: false, vertical: true)
-			footer.map(Text.init)?
-				.font(.footnote)
-				.foregroundColor(.secondary)
-				.frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+			commentsCount.map({ count in
+				HStack(alignment: .firstTextBaseline, spacing: 6) {
+					Text("\(count)")
+					Image(systemName: "text.bubble")
+						.imageScale(.small)
+						.offset(.init(width: 0, height: 1))
+				}
+					.font(.footnote)
+					.foregroundColor(.secondary)
+					.frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
+			})
 		}
 	}
 }
@@ -36,7 +43,7 @@ extension PostCell {
 	var username: String? { user?.username }
 	var title: String { post.title }
 	// TODO: Support pluralization
-	var footer: String? { comments.map({ "\($0.count) comments" }) }
+	var commentsCount: Int? { comments?.count }
 }
 
 // MARK: - Preview
