@@ -1,9 +1,7 @@
 import SwiftUI
 
 struct PostCell: View {
-	var post: Post
-	var user: User?
-	var comments: [Comment]?
+	var post: Post.Connected
 
 	var body: some View {
 		VStack(alignment: .leading, spacing: 4) {
@@ -28,32 +26,18 @@ struct PostCell: View {
 	}
 }
 
-extension PostCell {
-	init(connected: Post.Connected) {
-		self.init(
-			post: connected.post,
-			user: connected.user?.user,
-			comments: connected.comments?.map({ $0.comment })
-		)
-	}
-}
-
 // MARK: Presentation
 extension PostCell {
-	var username: String? { user?.username }
+	var username: String? { post.user?.username }
 	var title: String { post.title }
 	// TODO: Support pluralization
-	var commentsCount: Int? { comments?.count }
+	var commentsCount: Int? { post.comments?.count }
 }
 
 // MARK: - Preview
 struct PostCell_Preview: PreviewProvider {
 	static var previews: some View {
-		PostCell(
-			post: .sample,
-			user: .sample,
-			comments: .samples
-		)
+		PostCell(post: .sample)
 			.previewLayout(.sizeThatFits)
 	}
 }

@@ -1,7 +1,7 @@
 import Foundation
 import struct CoreLocation.CLLocationCoordinate2D
 
-struct User: Identifiable {
+struct User: Identifiable, Hashable {
 	var id: ID
 	var name: String
 	var username: String
@@ -15,7 +15,7 @@ struct User: Identifiable {
 		var value: Int
 	}
 
-	struct PostalAddress {
+	struct PostalAddress: Hashable {
 		var street: String
 		var suite: String
 		var city: String
@@ -29,7 +29,7 @@ struct User: Identifiable {
 	// TODO: Convert to a proper type that validates its contents
 	typealias PhoneNumber = String
 
-	struct CompanyDetails {
+	struct CompanyDetails: Hashable {
 		var name: String
 		var catchPhrase: String
 		var technobabble: String
@@ -40,13 +40,9 @@ struct User: Identifiable {
 
 extension User {
 	@dynamicMemberLookup
-	final class Connected: Identifiable {
+	struct Connected: Identifiable, Hashable {
 		let user: User
-		var posts: [Post.Connected]?
-
-		init(user: User) {
-			self.user = user
-		}
+		var posts: [Post]?
 
 		subscript <T> (dynamicMember keyPath: KeyPath<User, T>) -> T { user[keyPath: keyPath] }
 

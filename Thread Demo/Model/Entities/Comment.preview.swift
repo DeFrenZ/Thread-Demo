@@ -14,7 +14,7 @@ extension Comment {
 extension Array where Element == Comment.Connected {
 	static var samples: [Comment.Connected]! {
 		[Comment].samples
-			.map(Comment.Connected.init(comment:))
+			.map({ Comment.Connected(comment: $0) })
 	}
 }
 

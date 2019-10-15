@@ -14,7 +14,7 @@ extension User {
 extension Array where Element == User.Connected {
 	static var samples: [User.Connected]! {
 		[User].samples
-			.map(User.Connected.init(user:))
+			.map({ User.Connected(user: $0) })
 	}
 
 	static var samplesConnected: [User.Connected]! {
@@ -23,9 +23,8 @@ extension Array where Element == User.Connected {
 			let posts = [Post.Connected].samples
 		else { return nil }
 
-		DataStore.connectPosts(posts, toUsers: users)
-		DataStore.connectComments(.samples, toPosts: posts)
-		return users
+		let (_, connected) = DataStore.connectPosts(posts, toUsers: users)
+		return connected
 	}
 }
 

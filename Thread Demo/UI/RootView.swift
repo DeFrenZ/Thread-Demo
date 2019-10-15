@@ -8,7 +8,6 @@ struct RootView: View {
 		NavigationView {
 			PostsList()
 		}
-			.environmentObject(dataStore.postsStore)
 			.onAppear { self.performAction(.fetchData) }
     }
 }

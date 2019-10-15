@@ -3,7 +3,7 @@ import Foundation
 
 /// An object managing all the data relative to posts. It's responsible for retrieving them, storing them and vending them.
 final class PostsStore: ObservableObject {
-	@Published private(set) var posts: RemoteData<[Post.Connected]> = .init()
+	@Published private(set) var posts: StoreData<[Post]> = .init()
 
 	private let getPosts: () -> AnyPublisher<[Post], FetchError>
 	private var getPostsCancellable: AnyCancellable?
@@ -20,10 +20,9 @@ extension PostsStore {
 		getPostsCancellable?.cancel()
 
 		posts.state = .retrieving
-		var value: [Post.Connected]?
+		var value: [Post]?
 		getPostsCancellable = getPosts()
 			// TODO: Retry for recoverable errors
-			.map({ $0.map(Post.Connected.init(post:)) })
 			.receive(on: RunLoop.main)
 			.sink(
 				// !!!: `self` is strongly retained, but once the pipeline finishes this gets released so there's no permanent retain cycle

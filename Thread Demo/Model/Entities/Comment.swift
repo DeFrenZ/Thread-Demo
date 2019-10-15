@@ -1,4 +1,4 @@
-struct Comment: Identifiable {
+struct Comment: Identifiable, Hashable {
 	var id: ID
 	var postID: Post.ID
 	var authorName: String
@@ -12,13 +12,9 @@ struct Comment: Identifiable {
 
 extension Comment {
 	@dynamicMemberLookup
-	final class Connected: Identifiable {
+	struct Connected: Identifiable, Hashable {
 		let comment: Comment
-		weak var post: Post.Connected?
-
-		init(comment: Comment) {
-			self.comment = comment
-		}
+		var post: Post?
 
 		subscript <T> (dynamicMember keyPath: KeyPath<Comment, T>) -> T { comment[keyPath: keyPath] }
 

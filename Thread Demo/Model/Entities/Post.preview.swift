@@ -14,7 +14,7 @@ extension Post {
 extension Array where Element == Post.Connected {
 	static var samples: [Post.Connected]! {
 		[Post].samples
-			.map(Post.Connected.init(post:))
+			.map({ Post.Connected(post: $0) })
 	}
 }
 

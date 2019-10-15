@@ -1,4 +1,4 @@
-struct Post: Identifiable {
+struct Post: Identifiable, Hashable {
 	var id: ID
 	var userID: User.ID
 	var title: String
@@ -11,14 +11,10 @@ struct Post: Identifiable {
 
 extension Post {
 	@dynamicMemberLookup
-	final class Connected: Identifiable {
+	struct Connected: Identifiable, Hashable {
 		let post: Post
-		weak var user: User.Connected?
-		var comments: [Comment.Connected]?
-
-		init(post: Post) {
-			self.post = post
-		}
+		var user: User?
+		var comments: [Comment]?
 
 		subscript <T> (dynamicMember keyPath: KeyPath<Post, T>) -> T { post[keyPath: keyPath] }
 

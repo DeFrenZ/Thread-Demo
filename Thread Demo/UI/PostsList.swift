@@ -3,11 +3,11 @@ import Combine
 
 /// A view that displays a list of posts.
 struct PostsList: View {
-	@EnvironmentObject var postsStore: PostsStore
+	@EnvironmentObject var dataStore: DataStore
 
     var body: some View {
 		List(posts ?? []) { post in
-			PostCell(connected: post)
+			PostCell(post: post)
 		}
 			.overlay(isLoading ? ActivityIndicator(style: .large) : nil)
 			.navigationBarTitle("Posts")
@@ -16,13 +16,15 @@ struct PostsList: View {
 
 // MARK: Presentation
 extension PostsList {
-	var posts: [Post.Connected]? { postsStore.posts.lastValidData }
+	private var postsData: StoreData<[Post.Connected]> { dataStore.posts }
+
+	var posts: [Post.Connected]? { postsData.lastValidData }
 	var isLoading: Bool {
-		guard case .retrieving = postsStore.posts.state else { return false }
+		guard case .retrieving = postsData.state else { return false }
 		return true
 	}
 	var errorMessage: String? {
-		guard case .failed(let error) = postsStore.posts.state else { return nil }
+		guard case .failed(let error) = postsData.state else { return nil }
 
 		// TODO: Give more detailed error messages
 		switch error {
@@ -39,8 +41,6 @@ struct PostsList_Previews: PreviewProvider {
 		return NavigationView {
 			PostsList()
 		}
-			// Keeping the `DataStore` as well to retain the connections
 			.environmentObject(store)
-			.environmentObject(store.postsStore)
 	}
 }
