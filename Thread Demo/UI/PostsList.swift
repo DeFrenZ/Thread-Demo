@@ -8,7 +8,7 @@ struct PostsList: View {
     var body: some View {
 		ZStack {
 			posts.map({ List($0) { post in
-				PostCell(post: post)
+				PostCell(connected: post)
 			} })
 			if isLoading {
 				ActivityIndicator(style: .large)

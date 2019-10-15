@@ -7,6 +7,10 @@ extension Array where Element == Post {
 	}
 }
 
+extension Post {
+	static var sample: Post! { [Post].samples.first }
+}
+
 extension Array where Element == Post.Connected {
 	static var samples: [Post.Connected]! {
 		[Post].samples

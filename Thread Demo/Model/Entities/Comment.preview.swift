@@ -7,6 +7,10 @@ extension Array where Element == Comment {
 	}
 }
 
+extension Comment {
+	static var sample: Comment! { [Comment].samples.first }
+}
+
 extension Array where Element == Comment.Connected {
 	static var samples: [Comment.Connected]! {
 		[Comment].samples

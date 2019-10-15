@@ -7,6 +7,10 @@ extension Array where Element == User {
 	}
 }
 
+extension User {
+	static var sample: User! { [User].samples.first }
+}
+
 extension Array where Element == User.Connected {
 	static var samples: [User.Connected]! {
 		[User].samples
