@@ -7,7 +7,9 @@ struct PostsList: View {
 
     var body: some View {
 		List(posts ?? []) { post in
-			PostCell(post: post)
+			NavigationLink(destination: PostDetailView(post: post)) {
+				PostCell(post: post)
+			}
 		}
 			.overlay(isLoading ? ActivityIndicator(style: .large) : nil)
 			.navigationBarTitle("Posts")
