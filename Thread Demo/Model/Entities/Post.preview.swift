@@ -12,9 +12,15 @@ extension Post {
 }
 
 extension Array where Element == Post.Connected {
-	static var samples: [Post.Connected]! {
+	static var baseSamples: [Post.Connected]! {
 		[Post].samples
 			.map({ Post.Connected(post: $0) })
+	}
+
+	static var samples: [Post.Connected]! {
+		let (withUsers, _) = DataStore.connectPosts(.baseSamples, toUsers: .baseSamples)
+		let (_, connected) = DataStore.connectComments(.baseSamples, toPosts: withUsers)
+		return connected
 	}
 }
 

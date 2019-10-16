@@ -12,9 +12,13 @@ extension Comment {
 }
 
 extension Array where Element == Comment.Connected {
-	static var samples: [Comment.Connected]! {
+	static var baseSamples: [Comment.Connected]! {
 		[Comment].samples
 			.map({ Comment.Connected(comment: $0) })
+	}
+
+	static var samples: [Comment.Connected]! {
+		DataStore.connectComments(.baseSamples, toPosts: .baseSamples).comments
 	}
 }
 

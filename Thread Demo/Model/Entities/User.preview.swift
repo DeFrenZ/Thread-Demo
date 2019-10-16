@@ -12,23 +12,16 @@ extension User {
 }
 
 extension Array where Element == User.Connected {
-	static var samples: [User.Connected]! {
+	static var baseSamples: [User.Connected]! {
 		[User].samples
 			.map({ User.Connected(user: $0) })
 	}
 
-	static var samplesConnected: [User.Connected]! {
-		guard
-			let users = samples,
-			let posts = [Post.Connected].samples
-		else { return nil }
-
-		let (_, connected) = DataStore.connectPosts(posts, toUsers: users)
-		return connected
+	static var samples: [User.Connected]! {
+		DataStore.connectPosts(.baseSamples, toUsers: .baseSamples).users
 	}
 }
 
 extension User.Connected {
 	static var sample: User.Connected! { [User.Connected].samples.first }
-	static var sampleConnected: User.Connected! { [User.Connected].samplesConnected.first }
 }
