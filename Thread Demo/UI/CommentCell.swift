@@ -4,20 +4,18 @@ struct CommentCell: View {
 	var comment: Comment
 
     var body: some View {
-		VStack(alignment: .leading, spacing: 4) {
-			Text(verbatim: author)
-				.font(.subheadline)
-				.fontWeight(.bold)
-			Text(verbatim: commentBody)
-				.fixedSize(horizontal: false, vertical: true)
-				.lineLimit(nil)
-		}
+		BaseCell(
+			author: author,
+			username: username,
+			cellBody: commentBody
+		)
     }
 }
 
 // MARK: Presentation
 extension CommentCell {
 	var author: String { comment.authorName }
+	var username: String { comment.authorEmail }
 	var commentBody: String { comment.body }
 }
 

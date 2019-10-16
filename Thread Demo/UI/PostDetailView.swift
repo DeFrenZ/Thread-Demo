@@ -12,9 +12,7 @@ struct PostDetailView: View {
 					.fontWeight(.semibold)
 					.lineLimit(nil)
 			) {
-				Text(verbatim: postBody)
-					.lineLimit(nil)
-					.fixedSize(horizontal: false, vertical: true)
+				PostCell(post: post, showNumberOfComments: false)
 			}
 
 			Section(
