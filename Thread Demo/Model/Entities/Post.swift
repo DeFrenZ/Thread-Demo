@@ -1,10 +1,10 @@
-struct Post: Identifiable, Hashable {
+struct Post: Identifiable, Hashable, Codable {
 	var id: ID
 	var userID: User.ID
 	var title: String
 	var body: String
 
-	struct ID: Hashable {
+	struct ID: Hashable, Codable {
 		var value: Int
 	}
 }

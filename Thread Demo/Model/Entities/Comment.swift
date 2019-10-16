@@ -1,11 +1,11 @@
-struct Comment: Identifiable, Hashable {
+struct Comment: Identifiable, Hashable, Codable {
 	var id: ID
 	var postID: Post.ID
 	var authorName: String
 	var authorEmail: Email
 	var body: String
 
-	struct ID: Hashable {
+	struct ID: Hashable, Codable {
 		var value: Int
 	}
 }

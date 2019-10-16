@@ -1,6 +1,6 @@
 import Foundation
 
-struct User: Identifiable, Hashable {
+struct User: Identifiable, Hashable, Codable {
 	var id: ID
 	var name: String
 	var username: String
@@ -10,11 +10,11 @@ struct User: Identifiable, Hashable {
 	var urlAddress: URL
 	var companyDetails: CompanyDetails
 
-	struct ID: Hashable {
+	struct ID: Hashable, Codable {
 		var value: Int
 	}
 
-	struct PostalAddress: Hashable {
+	struct PostalAddress: Hashable, Codable {
 		var street: String
 		var suite: String
 		var city: String
@@ -22,7 +22,7 @@ struct User: Identifiable, Hashable {
 		var coordinates: Coordinate
 		// ???: Doesn't have `country`?
 
-		struct Coordinate: Hashable {
+		struct Coordinate: Hashable, Codable {
 			var latitude: Double
 			var longitude: Double
 
@@ -35,7 +35,7 @@ struct User: Identifiable, Hashable {
 	// TODO: Convert to a proper type that validates its contents
 	typealias PhoneNumber = String
 
-	struct CompanyDetails: Hashable {
+	struct CompanyDetails: Hashable, Codable {
 		var name: String
 		var catchPhrase: String
 		var technobabble: String
