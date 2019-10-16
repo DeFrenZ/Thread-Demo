@@ -4,11 +4,16 @@ import Foundation
 /// An object managing all the data relative to posts. It's responsible for retrieving them, storing them and vending them.
 final class UsersStore: ObservableObject {
 	@Published private(set) var users: StoreData<[User]> = .init()
+	@Stored(key: .users) private var stored: [User]?
 
 	private let getUsers: () -> AnyPublisher<[User], FetchError>
 	private var getUsersCancellable: AnyCancellable?
 
-	init(getUsers: @escaping () -> AnyPublisher<[User], FetchError>) {
+	init(
+		storage: Storage,
+		getUsers: @escaping () -> AnyPublisher<[User], FetchError>
+	) {
+		self._stored.storage = storage
 		self.getUsers = getUsers
 	}
 }

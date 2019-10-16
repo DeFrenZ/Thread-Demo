@@ -3,31 +3,41 @@ import XCTest
 import Combine
 
 final class DataStoreTests: XCTestCase {
+	var storage: MemoryStorage = [:]
 	var postsSubject: PassthroughSubject<[Post], FetchError>!
-	lazy var postsStore: PostsStore = .init(getPosts: {
-		self.postsSubject = .init()
-		return self.postsSubject
-			// Add buffer so that values sent before the subscription activates still go through
-			.buffer(size: .max, prefetch: .byRequest, whenFull: .dropNewest)
-			.eraseToAnyPublisher()
-	})
+	lazy var postsStore: PostsStore = .init(
+		storage: self.storage,
+		getPosts: {
+			self.postsSubject = .init()
+			return self.postsSubject
+				// Add buffer so that values sent before the subscription activates still go through
+				.buffer(size: .max, prefetch: .byRequest, whenFull: .dropNewest)
+				.eraseToAnyPublisher()
+		}
+	)
 	var usersSubject: PassthroughSubject<[User], FetchError>!
-	lazy var usersStore: UsersStore = .init(getUsers: {
-		self.usersSubject = .init()
-		return self.usersSubject
-			// Add buffer so that values sent before the subscription activates still go through
-			.buffer(size: .max, prefetch: .byRequest, whenFull: .dropNewest)
-			.eraseToAnyPublisher()
-	})
+	lazy var usersStore: UsersStore = .init(
+		storage: self.storage,
+		getUsers: {
+			self.usersSubject = .init()
+			return self.usersSubject
+				// Add buffer so that values sent before the subscription activates still go through
+				.buffer(size: .max, prefetch: .byRequest, whenFull: .dropNewest)
+				.eraseToAnyPublisher()
+		}
+	)
 	var commentsSubject: PassthroughSubject<[Comment], FetchError>!
 	// `lazy` to allow capture of other properties
-	lazy var commentsStore: CommentsStore = .init(getComments: {
-		self.commentsSubject = .init()
-		return self.commentsSubject
-			// Add buffer so that values sent before the subscription activates still go through
-			.buffer(size: .max, prefetch: .byRequest, whenFull: .dropNewest)
-			.eraseToAnyPublisher()
-	})
+	lazy var commentsStore: CommentsStore = .init(
+		storage: self.storage,
+		getComments: {
+			self.commentsSubject = .init()
+			return self.commentsSubject
+				// Add buffer so that values sent before the subscription activates still go through
+				.buffer(size: .max, prefetch: .byRequest, whenFull: .dropNewest)
+				.eraseToAnyPublisher()
+		}
+	)
 	lazy var store: DataStore = .init(
 		postsStore: self.postsStore,
 		usersStore: self.usersStore,

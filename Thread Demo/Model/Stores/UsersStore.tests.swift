@@ -3,15 +3,19 @@ import XCTest
 import Combine
 
 final class UsersStoreTests: XCTestCase {
+	var storage: MemoryStorage = [:]
 	var usersSubject: PassthroughSubject<[User], FetchError>!
 	// `lazy` to allow capture of other properties
-	lazy var store: UsersStore = .init(getUsers: {
-		self.usersSubject = .init()
-		return self.usersSubject
-			// Add buffer so that values sent before the subscription activates still go through
-			.buffer(size: .max, prefetch: .byRequest, whenFull: .dropNewest)
-			.eraseToAnyPublisher()
-	})
+	lazy var store: UsersStore = .init(
+		storage: self.storage,
+		getUsers: {
+			self.usersSubject = .init()
+			return self.usersSubject
+				// Add buffer so that values sent before the subscription activates still go through
+				.buffer(size: .max, prefetch: .byRequest, whenFull: .dropNewest)
+				.eraseToAnyPublisher()
+		}
+	)
 
 	override func setUp() {
 		super.setUp()

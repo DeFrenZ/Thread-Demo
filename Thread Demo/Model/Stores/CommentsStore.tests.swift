@@ -3,15 +3,19 @@ import XCTest
 import Combine
 
 final class CommentsStoreTests: XCTestCase {
+	var storage: MemoryStorage = [:]
 	var commentsSubject: PassthroughSubject<[Comment], FetchError>!
 	// `lazy` to allow capture of other properties
-	lazy var store: CommentsStore = .init(getComments: {
-		self.commentsSubject = .init()
-		return self.commentsSubject
-			// Add buffer so that values sent before the subscription activates still go through
-			.buffer(size: .max, prefetch: .byRequest, whenFull: .dropNewest)
-			.eraseToAnyPublisher()
-	})
+	lazy var store: CommentsStore = .init(
+		storage: self.storage,
+		getComments: {
+			self.commentsSubject = .init()
+			return self.commentsSubject
+				// Add buffer so that values sent before the subscription activates still go through
+				.buffer(size: .max, prefetch: .byRequest, whenFull: .dropNewest)
+				.eraseToAnyPublisher()
+		}
+	)
 
 	override func setUp() {
 		super.setUp()

@@ -1,11 +1,15 @@
+import Foundation
 import Combine
 
 extension DataStore {
-	convenience init(api: API.Client) {
+	convenience init(
+		storage: Storage = UserDefaults.standard,
+		api: API.Client
+	) {
 		self.init(
-			postsStore: .init(getPosts: api.getPostsModels),
-			usersStore: .init(getUsers: api.getUsersModels),
-			commentsStore: .init(getComments: api.getCommentsModels)
+			postsStore: .init(storage: storage, getPosts: api.getPostsModels),
+			usersStore: .init(storage: storage, getUsers: api.getUsersModels),
+			commentsStore: .init(storage: storage, getComments: api.getCommentsModels)
 		)
 	}
 }

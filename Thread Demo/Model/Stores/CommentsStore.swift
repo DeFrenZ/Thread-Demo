@@ -4,11 +4,16 @@ import Foundation
 /// An object managing all the data relative to posts. It's responsible for retrieving them, storing them and vending them.
 final class CommentsStore: ObservableObject {
 	@Published private(set) var comments: StoreData<[Comment]> = .init()
+	@Stored(key: .comments) private var stored: [Comment]?
 
 	private let getComments: () -> AnyPublisher<[Comment], FetchError>
 	private var getCommentsCancellable: AnyCancellable?
 
-	init(getComments: @escaping () -> AnyPublisher<[Comment], FetchError>) {
+	init(
+		storage: Storage,
+		getComments: @escaping () -> AnyPublisher<[Comment], FetchError>
+	) {
+		self._stored.storage = storage
 		self.getComments = getComments
 	}
 }
