@@ -7,7 +7,7 @@ struct PostCell: View {
 		VStack(alignment: .leading, spacing: 4) {
 			username.map(Text.init(verbatim:))
 				.font(.headline)
-			Text(title)
+			Text(verbatim: title)
 				.lineLimit(3)
 				// Make the `Text` reach its ideal height
 				.fixedSize(horizontal: false, vertical: true)
@@ -30,7 +30,6 @@ struct PostCell: View {
 extension PostCell {
 	var username: String? { post.user?.username }
 	var title: String { post.title }
-	// TODO: Support pluralization
 	var commentsCount: Int? { post.comments?.count }
 }
 
