@@ -46,5 +46,7 @@ struct PostDetailView_Previews: PreviewProvider {
 		NavigationView {
 			PostDetailView(post: .sample)
 		}
+			.multipleSizeCategories()
+			.multipleColorSchemes()
     }
 }

@@ -44,5 +44,7 @@ struct PostsList_Previews: PreviewProvider {
 			PostsList()
 		}
 			.environmentObject(store)
+			.multipleSizeCategories()
+			.multipleColorSchemes()
 	}
 }

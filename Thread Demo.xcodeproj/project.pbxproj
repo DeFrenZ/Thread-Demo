@@ -30,6 +30,7 @@
 		0393B54D23561C3E00FEC0E1 /* Swift.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B54C23561C3E00FEC0E1 /* Swift.extensions.swift */; };
 		0393B54F235726EB00FEC0E1 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B54E235726EB00FEC0E1 /* PostDetailView.swift */; };
 		0393B551235734D600FEC0E1 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B550235734D600FEC0E1 /* CommentCell.swift */; };
+		0393B555235770E300FEC0E1 /* PreviewProvider.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B554235770E300FEC0E1 /* PreviewProvider.extensions.swift */; };
 		03DD9AE1234DF4EE00140291 /* App.tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9ADF234DF4D200140291 /* App.tests.swift */; };
 		03DD9AE6234DF62400140291 /* API.Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9AE5234DF62400140291 /* API.Post.swift */; };
 		03DD9AE8234DF6A700140291 /* API.Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9AE7234DF6A700140291 /* API.Comment.swift */; };
@@ -113,6 +114,7 @@
 		0393B54C23561C3E00FEC0E1 /* Swift.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift.extensions.swift; sourceTree = "<group>"; };
 		0393B54E235726EB00FEC0E1 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		0393B550235734D600FEC0E1 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		0393B554235770E300FEC0E1 /* PreviewProvider.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.extensions.swift; sourceTree = "<group>"; };
 		03DD9ADF234DF4D200140291 /* App.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.tests.swift; sourceTree = "<group>"; };
 		03DD9AE5234DF62400140291 /* API.Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.Post.swift; sourceTree = "<group>"; };
 		03DD9AE7234DF6A700140291 /* API.Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.Comment.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				0393B53723538EC200FEC0E1 /* Identifiable.extensions.swift */,
 				0393B5452356183A00FEC0E1 /* CoreLocation.extensions.swift */,
 				0393B54C23561C3E00FEC0E1 /* Swift.extensions.swift */,
+				0393B554235770E300FEC0E1 /* PreviewProvider.extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -505,6 +508,7 @@
 				0393B515235214B500FEC0E1 /* ActivityIndicator.swift in Sources */,
 				0393B52623537CE700FEC0E1 /* User.preview.swift in Sources */,
 				03DD9B3D2350C94500140291 /* PostsStore.swift in Sources */,
+				0393B555235770E300FEC0E1 /* PreviewProvider.extensions.swift in Sources */,
 				03E8A7F2234DE23900259855 /* AppDelegate.swift in Sources */,
 				0393B533235389E200FEC0E1 /* CommentsStore.preview.swift in Sources */,
 				0393B54F235726EB00FEC0E1 /* PostDetailView.swift in Sources */,
