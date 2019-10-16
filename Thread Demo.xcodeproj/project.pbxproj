@@ -187,6 +187,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0393B55623577DE000FEC0E1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				0393B55223576A0000FEC0E1 /* BaseCell.swift */,
+				0393B5192353738200FEC0E1 /* PostCell.swift */,
+				0393B550235734D600FEC0E1 /* CommentCell.swift */,
+				0393B514235214B500FEC0E1 /* ActivityIndicator.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		0393B55723577DF100FEC0E1 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				03DD9B12234E28C900140291 /* RootView.swift */,
+				03E8A7F5234DE23900259855 /* PostsList.swift */,
+				0393B54E235726EB00FEC0E1 /* PostDetailView.swift */,
+			);
+			path = Pages;
+			sourceTree = "<group>";
+		};
 		03DD9AE2234DF5DA00140291 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,13 +375,8 @@
 			children = (
 				03E8A7F7234DE23A00259855 /* Assets.xcassets */,
 				03E8A823234DED8900259855 /* Preview Content */,
-				03DD9B12234E28C900140291 /* RootView.swift */,
-				03E8A7F5234DE23900259855 /* PostsList.swift */,
-				0393B5192353738200FEC0E1 /* PostCell.swift */,
-				0393B55223576A0000FEC0E1 /* BaseCell.swift */,
-				0393B54E235726EB00FEC0E1 /* PostDetailView.swift */,
-				0393B550235734D600FEC0E1 /* CommentCell.swift */,
-				0393B514235214B500FEC0E1 /* ActivityIndicator.swift */,
+				0393B55723577DF100FEC0E1 /* Pages */,
+				0393B55623577DE000FEC0E1 /* Components */,
 			);
 			path = UI;
 			sourceTree = "<group>";
