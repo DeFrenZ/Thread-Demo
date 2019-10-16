@@ -31,7 +31,9 @@
 		0393B551235734D600FEC0E1 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B550235734D600FEC0E1 /* CommentCell.swift */; };
 		0393B55323576A0000FEC0E1 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B55223576A0000FEC0E1 /* BaseCell.swift */; };
 		0393B555235770E300FEC0E1 /* PreviewProvider.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B554235770E300FEC0E1 /* PreviewProvider.extensions.swift */; };
+		0393B55C235790F300FEC0E1 /* Storage+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B55B235790F300FEC0E1 /* Storage+UserDefaults.swift */; };
 		0393B5612357B41E00FEC0E1 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B5602357B41E00FEC0E1 /* Storage.swift */; };
+		0393B5652357C09600FEC0E1 /* Storage+Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B5642357C09600FEC0E1 /* Storage+Dictionary.swift */; };
 		03DD9AE1234DF4EE00140291 /* App.tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9ADF234DF4D200140291 /* App.tests.swift */; };
 		03DD9AE6234DF62400140291 /* API.Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9AE5234DF62400140291 /* API.Post.swift */; };
 		03DD9AE8234DF6A700140291 /* API.Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03DD9AE7234DF6A700140291 /* API.Comment.swift */; };
@@ -116,7 +118,9 @@
 		0393B550235734D600FEC0E1 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		0393B55223576A0000FEC0E1 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		0393B554235770E300FEC0E1 /* PreviewProvider.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewProvider.extensions.swift; sourceTree = "<group>"; };
+		0393B55B235790F300FEC0E1 /* Storage+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storage+UserDefaults.swift"; sourceTree = "<group>"; };
 		0393B5602357B41E00FEC0E1 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		0393B5642357C09600FEC0E1 /* Storage+Dictionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Storage+Dictionary.swift"; sourceTree = "<group>"; };
 		03DD9ADF234DF4D200140291 /* App.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.tests.swift; sourceTree = "<group>"; };
 		03DD9AE5234DF62400140291 /* API.Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.Post.swift; sourceTree = "<group>"; };
 		03DD9AE7234DF6A700140291 /* API.Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.Comment.swift; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 			isa = PBXGroup;
 			children = (
 				0393B5602357B41E00FEC0E1 /* Storage.swift */,
+				0393B5642357C09600FEC0E1 /* Storage+Dictionary.swift */,
+				0393B55B235790F300FEC0E1 /* Storage+UserDefaults.swift */,
 			);
 			path = Persistence;
 			sourceTree = "<group>";
@@ -541,6 +547,7 @@
 				0393B54F235726EB00FEC0E1 /* PostDetailView.swift in Sources */,
 				03DD9AEA234DF6F800140291 /* API.User.swift in Sources */,
 				03DD9B06234E1BF300140291 /* Post.swift in Sources */,
+				0393B55C235790F300FEC0E1 /* Storage+UserDefaults.swift in Sources */,
 				03DD9B0C234E226600140291 /* Email.swift in Sources */,
 				0393B551235734D600FEC0E1 /* CommentCell.swift in Sources */,
 				0393B52223537C1E00FEC0E1 /* API.User.preview.swift in Sources */,
@@ -548,6 +555,7 @@
 				03E8A7F4234DE23900259855 /* SceneDelegate.swift in Sources */,
 				03DD9B0A234E1C0F00140291 /* Comment.swift in Sources */,
 				0393B52A235387DB00FEC0E1 /* UsersStore.swift in Sources */,
+				0393B5652357C09600FEC0E1 /* Storage+Dictionary.swift in Sources */,
 				03DD9B1E234E652100140291 /* API.Client.swift in Sources */,
 				03DD9B27234F6FF700140291 /* Result.extensions.swift in Sources */,
 				03DD9B08234E1C0200140291 /* User.swift in Sources */,
