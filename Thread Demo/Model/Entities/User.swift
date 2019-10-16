@@ -1,5 +1,4 @@
 import Foundation
-import struct CoreLocation.CLLocationCoordinate2D
 
 struct User: Identifiable, Hashable {
 	var id: ID
@@ -20,10 +19,17 @@ struct User: Identifiable, Hashable {
 		var suite: String
 		var city: String
 		var postalCode: String
-		var coordinates: CLLocationCoordinate2D
+		var coordinates: Coordinate
 		// ???: Doesn't have `country`?
 
-		// TODO: Add conversion from `User.Address` to `CNPostalAddress`
+		struct Coordinate: Hashable {
+			var latitude: Double
+			var longitude: Double
+
+			// TODO: Add conversion from `Coordinate` to `CLLocationCoordinate2D`
+		}
+
+		// TODO: Add conversion from `PostalAddress` to `CNPostalAddress`
 	}
 
 	// TODO: Convert to a proper type that validates its contents

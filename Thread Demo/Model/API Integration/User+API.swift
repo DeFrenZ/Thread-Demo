@@ -31,7 +31,7 @@ extension User.PostalAddress {
 	}
 }
 
-extension CLLocationCoordinate2D {
+extension User.PostalAddress.Coordinate {
 	init(apiModel: API.User.Address.GeoLocation) throws {
 		guard let latitude = CLLocationDegrees(apiModel.lat) else { throw ConversionError(keyPath: \Self.latitude, value: apiModel.lat) }
 		guard let longitude = CLLocationDegrees(apiModel.lng) else { throw ConversionError(keyPath: \Self.longitude, value: apiModel.lng) }
