@@ -9,8 +9,11 @@ struct RemoteData <Data, Failure: Error> {
 	var lastValidData: Data?
 	/// The current state of operations around this data
 	var state: State = .idle
+	/// The source from which the data was retrieved
+	var source: Source = .remote
 
 	typealias State = _RemoteDataState<Failure>
+	typealias Source = _RemoteDataSource
 }
 
 extension RemoteData: Equatable where Data: Equatable, Failure: Equatable {}
@@ -28,12 +31,20 @@ enum _RemoteDataState <Failure: Error> {
 
 extension _RemoteDataState: Equatable where Failure: Equatable {}
 
+enum _RemoteDataSource {
+	/// The resource was fetched from a remote in a previous session and might be stale
+	case storage
+	/// The resource was fetched from a remote in this session
+	case remote
+}
+
 extension RemoteData {
-	mutating func setValue(to newValue: Result<Data, Failure>) {
+	mutating func setValue(to newValue: Result<Data, Failure>, source newSource: Source) {
 		switch newValue {
 		case .success(let value):
 			lastValidData = value
 			state = .idle
+			source = newSource
 		case .failure(let error):
 			state = .failed(error)
 		}

@@ -33,7 +33,11 @@ extension PostsStore {
 	}
 
 	private func fetchFromStorage() throws {
-		posts = .init(lastValidData: try $stored.read(), state: .idle)
+		posts = .init(
+			lastValidData: try $stored.read(),
+			state: .idle,
+			source: .storage
+		)
 	}
 
 	private func fetchFromRemote() {
@@ -51,7 +55,7 @@ extension PostsStore {
 			// TODO: Retry for recoverable errors
 			.asResults()
 			.map({ [posts] result in
-				updated(posts, with: { $0.setValue(to: result) })
+				updated(posts, with: { $0.setValue(to: result, source: .remote) })
 			})
 			.receive(on: RunLoop.main)
 			.assign(to: \.posts, on: self)
