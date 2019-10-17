@@ -29,7 +29,6 @@ struct PostCell: View {
 			}
 				.font(.footnote)
 				.foregroundColor(.secondary)
-				.frame(minWidth: 0, maxWidth: .infinity, alignment: .trailing)
 		})
 	}
 }
