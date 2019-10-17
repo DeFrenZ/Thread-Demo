@@ -35,7 +35,7 @@ extension CommentsStoreTests {
 	}
 
 	func test_givenANewStore_whenItFetches_andNoResponseIsRetrievedYet_thenItsRetrieving_andHasNoPosts() {
-		store.fetch()
+		store.fetch(.remoteOnly)
 		store.$comments.awaitSynchronouslyForNextOutput()
 
 		if case .retrieving = store.comments.state {} else {
@@ -45,7 +45,7 @@ extension CommentsStoreTests {
 	}
 
 	func test_givenANewStore_whenItFetches_andReceivesAResponse_thenItsIdle_andHasPosts() {
-		store.fetch()
+		store.fetch(.remoteOnly)
 		commentsSubject.send(Self.comments)
 		commentsSubject.send(completion: .finished)
 		store.$comments.awaitSynchronouslyForNextOutputs(count: 2)
@@ -57,7 +57,7 @@ extension CommentsStoreTests {
 	}
 
 	func test_givenANewStore_whenItFetches_andReceivesAFailure_thenItsFailed_andHasNoPosts() {
-		store.fetch()
+		store.fetch(.remoteOnly)
 		let error = FetchError.badResource
 		commentsSubject.send(completion: .failure(error))
 		store.$comments.awaitSynchronouslyForNextOutputs(count: 2)
@@ -69,12 +69,12 @@ extension CommentsStoreTests {
 	}
 
 	func test_givenAStoreWithPosts_whenItFetches_andNoResponseIsRetrievedYet_thenItsRetrieving_andHasThePreviousPosts() {
-		store.fetch()
+		store.fetch(.remoteOnly)
 		commentsSubject.send(Self.previousComments)
 		commentsSubject.send(completion: .finished)
 		store.$comments.awaitSynchronouslyForNextOutputs(count: 2)
 
-		store.fetch()
+		store.fetch(.remoteOnly)
 		store.$comments.awaitSynchronouslyForNextOutput()
 
 		if case .retrieving = store.comments.state {} else {
@@ -84,12 +84,12 @@ extension CommentsStoreTests {
 	}
 
 	func test_givenAStoreWithPosts_whenItFetches_andReceivesAResponse_thenItsIdle_andHasTheNewPosts() {
-		store.fetch()
+		store.fetch(.remoteOnly)
 		commentsSubject.send(Self.previousComments)
 		commentsSubject.send(completion: .finished)
 		store.$comments.awaitSynchronouslyForNextOutputs(count: 2)
 
-		store.fetch()
+		store.fetch(.remoteOnly)
 		commentsSubject.send(Self.comments)
 		commentsSubject.send(completion: .finished)
 		store.$comments.awaitSynchronouslyForNextOutputs(count: 2)
@@ -101,12 +101,12 @@ extension CommentsStoreTests {
 	}
 
 	func test_givenAStoreWithPosts_whenItFetches_andReceivesAFailure_thenItsFailed_andHasThePreviousPosts() {
-		store.fetch()
+		store.fetch(.remoteOnly)
 		commentsSubject.send(Self.previousComments)
 		commentsSubject.send(completion: .finished)
 		store.$comments.awaitSynchronouslyForNextOutputs(count: 2)
 
-		store.fetch()
+		store.fetch(.remoteOnly)
 		let error = FetchError.badResource
 		commentsSubject.send(completion: .failure(error))
 		store.$comments.awaitSynchronouslyForNextOutputs(count: 2)

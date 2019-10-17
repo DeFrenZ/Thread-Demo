@@ -20,15 +20,17 @@ final class UsersStore: ObservableObject {
 }
 
 extension UsersStore {
-	func fetch(_ fetchType: FetchType = .storageFirst) {
+	func fetch(_ fetchType: FetchType) {
 		switch fetchType {
 		case .storageOnly:
 			try? fetchFromStorage()
 		case .remoteOnly:
-			fetchFromRemote()
+			fetchFromRemote(fallbackToStorage: false)
 		case .storageFirst:
 			(try? fetchFromStorage())
-				?? fetchFromRemote()
+				?? fetchFromRemote(fallbackToStorage: false)
+		case .remoteFirst:
+			fetchFromRemote(fallbackToStorage: true)
 		}
 	}
 
@@ -40,7 +42,7 @@ extension UsersStore {
 		)
 	}
 
-	private func fetchFromRemote() {
+	private func fetchFromRemote(fallbackToStorage: Bool) {
 		// TODO: Make thread-safe
 		cancellables.removeAll()
 		users.state = .retrieving
@@ -60,5 +62,14 @@ extension UsersStore {
 			.receive(on: RunLoop.main)
 			.assign(to: \.users, on: self)
 			.store(in: &cancellables)
+
+		if fallbackToStorage {
+			publisher
+				.sink(receiveCompletion: { [weak self] in
+					guard case .failure = $0 else { return }
+					try? self?.fetchFromStorage()
+				}, receiveValue: { _ in })
+				.store(in: &cancellables)
+		}
 	}
 }

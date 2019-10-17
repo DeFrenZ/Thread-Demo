@@ -35,7 +35,7 @@ extension UsersStoreTests {
 	}
 
 	func test_givenANewStore_whenItFetches_andNoResponseIsRetrievedYet_thenItsRetrieving_andHasNoPosts() {
-		store.fetch()
+		store.fetch(.remoteOnly)
 		store.$users.awaitSynchronouslyForNextOutput()
 
 		if case .retrieving = store.users.state {} else {
@@ -45,7 +45,7 @@ extension UsersStoreTests {
 	}
 
 	func test_givenANewStore_whenItFetches_andReceivesAResponse_thenItsIdle_andHasPosts() {
-		store.fetch()
+		store.fetch(.remoteOnly)
 		usersSubject.send(Self.users)
 		usersSubject.send(completion: .finished)
 		store.$users.awaitSynchronouslyForNextOutputs(count: 2)
@@ -57,7 +57,7 @@ extension UsersStoreTests {
 	}
 
 	func test_givenANewStore_whenItFetches_andReceivesAFailure_thenItsFailed_andHasNoPosts() {
-		store.fetch()
+		store.fetch(.remoteOnly)
 		let error = FetchError.badResource
 		usersSubject.send(completion: .failure(error))
 		store.$users.awaitSynchronouslyForNextOutputs(count: 2)
@@ -69,12 +69,12 @@ extension UsersStoreTests {
 	}
 
 	func test_givenAStoreWithPosts_whenItFetches_andNoResponseIsRetrievedYet_thenItsRetrieving_andHasThePreviousPosts() {
-		store.fetch()
+		store.fetch(.remoteOnly)
 		usersSubject.send(Self.previousUsers)
 		usersSubject.send(completion: .finished)
 		store.$users.awaitSynchronouslyForNextOutputs(count: 2)
 
-		store.fetch()
+		store.fetch(.remoteOnly)
 		store.$users.awaitSynchronouslyForNextOutput()
 
 		if case .retrieving = store.users.state {} else {
@@ -84,12 +84,12 @@ extension UsersStoreTests {
 	}
 
 	func test_givenAStoreWithPosts_whenItFetches_andReceivesAResponse_thenItsIdle_andHasTheNewPosts() {
-		store.fetch()
+		store.fetch(.remoteOnly)
 		usersSubject.send(Self.previousUsers)
 		usersSubject.send(completion: .finished)
 		store.$users.awaitSynchronouslyForNextOutputs(count: 2)
 
-		store.fetch()
+		store.fetch(.remoteOnly)
 		usersSubject.send(Self.users)
 		usersSubject.send(completion: .finished)
 		store.$users.awaitSynchronouslyForNextOutputs(count: 2)
@@ -101,12 +101,12 @@ extension UsersStoreTests {
 	}
 
 	func test_givenAStoreWithPosts_whenItFetches_andReceivesAFailure_thenItsFailed_andHasThePreviousPosts() {
-		store.fetch()
+		store.fetch(.remoteOnly)
 		usersSubject.send(Self.previousUsers)
 		usersSubject.send(completion: .finished)
 		store.$users.awaitSynchronouslyForNextOutputs(count: 2)
 
-		store.fetch()
+		store.fetch(.remoteOnly)
 		let error = FetchError.badResource
 		usersSubject.send(completion: .failure(error))
 		store.$users.awaitSynchronouslyForNextOutputs(count: 2)

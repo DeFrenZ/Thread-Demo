@@ -41,7 +41,7 @@ final class DataStore: ObservableObject {
 }
 
 extension DataStore {
-	func fetchAll(_ fetchType: FetchType = .storageFirst) {
+	func fetchAll(_ fetchType: FetchType = .remoteFirst) {
 		postsStore.fetch(fetchType)
 		// ???: Consider not fetching the rest until a post detail is shown, but the list looks better with the additional data
 		usersStore.fetch(fetchType)
@@ -137,6 +137,8 @@ enum FetchType {
 	case remoteOnly
 	/// Fetch a resource from a persistent storage, and if that fails fallback to remote
 	case storageFirst
+	/// Fetch a resource from remote, and if that fails fallback to storage
+	case remoteFirst
 }
 
 typealias StoreData<T> = RemoteData<T, FetchError>
