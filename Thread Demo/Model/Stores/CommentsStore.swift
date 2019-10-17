@@ -20,7 +20,23 @@ final class CommentsStore: ObservableObject {
 }
 
 extension CommentsStore {
-	func fetch() {
+	func fetch(_ fetchType: FetchType = .storageFirst) {
+		switch fetchType {
+		case .storageOnly:
+			try? fetchFromStorage()
+		case .remoteOnly:
+			fetchFromRemote()
+		case .storageFirst:
+			(try? fetchFromStorage())
+				?? fetchFromRemote()
+		}
+	}
+
+	private func fetchFromStorage() throws {
+		comments = .init(lastValidData: try $stored.read(), state: .idle)
+	}
+
+	private func fetchFromRemote() {
 		// TODO: Make thread-safe
 		cancellables.removeAll()
 		comments.state = .retrieving

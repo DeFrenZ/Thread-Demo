@@ -39,10 +39,11 @@ final class DataStore: ObservableObject {
 }
 
 extension DataStore {
-	func fetchAll() {
-		postsStore.fetch()
-		usersStore.fetch()
-		commentsStore.fetch()
+	func fetchAll(_ fetchType: FetchType = .storageFirst) {
+		postsStore.fetch(fetchType)
+		// ???: Consider not fetching the rest until a post detail is shown, but the list looks better with the additional data
+		usersStore.fetch(fetchType)
+		commentsStore.fetch(fetchType)
 	}
 
 	static func connectChildrenData(
@@ -114,10 +115,26 @@ extension DataStore {
 	}
 }
 
+/// An error occurred when performing a fetch operation
 enum FetchError: Error {
+	/// The fetch was `cacheOnly`, and the resource was not present
+	case missingResource
+	/// A remote fetch failed due to the remote not being available
 	case remoteUnavailable
+	/// A remote fetch was performed with incorrect data
 	case incorrectFetch
+	/// A remote fetch succeeded, but the fetched resource was not as expected
 	case badResource
+}
+
+/// A type specifying how to perform the fetch of a resource
+enum FetchType {
+	/// Fetch a resource only from a persistent storage, and fail if that's not present or corrupted
+	case storageOnly
+	/// Fetch a resource only from remote
+	case remoteOnly
+	/// Fetch a resource from a persistent storage, and if that fails fallback to remote
+	case storageFirst
 }
 
 typealias StoreData<T> = RemoteData<T, FetchError>
