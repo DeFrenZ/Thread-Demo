@@ -41,6 +41,12 @@ extension PostsList {
 		if case .retrieving = dataStore.comments.state { return true }
 		return false
 	}
+	private var isAnyStoreIdleWithoutData: Bool {
+		if case .idle = dataStore.posts.state, dataStore.posts.lastValidData == nil { return true }
+		if case .idle = dataStore.users.state, dataStore.users.lastValidData == nil { return true }
+		if case .idle = dataStore.comments.state, dataStore.comments.lastValidData == nil { return true }
+		return false
+	}
 	private var firstStoreError: FetchError? {
 		if case .failed(let error) = dataStore.posts.state { return error }
 		if case .failed(let error) = dataStore.users.state { return error }
@@ -49,7 +55,7 @@ extension PostsList {
 	}
 
 	var posts: [Post.Connected]? { postsData.lastValidData?.data }
-	var showLoader: Bool { isAnyStoreRetrieving }
+	var showLoader: Bool { isAnyStoreRetrieving || isAnyStoreIdleWithoutData }
 	var bannerErrorMessage: String? {
 		guard let error = self.firstStoreError else { return nil }
 
