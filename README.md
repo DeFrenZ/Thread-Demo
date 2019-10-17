@@ -12,3 +12,4 @@ To describe it quickly I'd say it's more or less a Redux/TEA code, though due to
 - Improve documentation: there is a fair amount of docs, but they could be more detailed. Especially some documentation describing the general choices of how some layers are managed in the code
 - iPadOS: add support
 - Solve actual TODOs in code
+- Animations: they should be automatically managed by SwiftUI but they don't seem to work at the moment
