@@ -10,7 +10,6 @@ extension Publisher {
 	}
 
 	/// Publishes the same events as upstream but ignores any errors
-	/// - note: This publisher will complete if upstream completes successfully, but won't if it completes with an error
 	func ignoreErrors() -> AnyPublisher<Output, Never> {
 		map(Optional.init)
 			.replaceError(with: nil)
