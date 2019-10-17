@@ -97,6 +97,7 @@
 
 /* Begin PBXFileReference section */
 		032955D12358A4F100D65472 /* Publisher.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.extensions.swift; sourceTree = "<group>"; };
+		032955D32358D9C500D65472 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		0393B514235214B500FEC0E1 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		0393B51623533F4300FEC0E1 /* PostsStore.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsStore.tests.swift; sourceTree = "<group>"; };
 		0393B5192353738200FEC0E1 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
@@ -386,6 +387,7 @@
 				03E8A7FF234DE23A00259855 /* Info.plist */,
 				03E8A80A234DE23A00259855 /* Info.tests.plist */,
 				03E8A815234DE23A00259855 /* Info.uitests.plist */,
+				032955D32358D9C500D65472 /* README.md */,
 			);
 			path = App;
 			sourceTree = "<group>";
