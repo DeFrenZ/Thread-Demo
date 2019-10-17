@@ -21,25 +21,32 @@ final class UsersStore: ObservableObject {
 
 extension UsersStore {
 	func fetch(_ fetchType: FetchType) {
-		switch fetchType {
-		case .storageOnly:
+		switch (fetchType, users.lastValidData?.source) {
+		case (.storageOnly, nil):
 			try? fetchFromStorage()
-		case .remoteOnly:
+		case (.remoteOnly(forced: false), nil),
+			 (.remoteOnly(forced: false), .storage),
+			 (.remoteOnly(forced: true), _),
+			 (.storageFirst(forced: false), .storage),
+			 (.storageFirst(forced: true), _?),
+			 (.remoteFirst, .storage),
+			 (.remoteFirst(forced: true), .remote):
 			fetchFromRemote(fallbackToStorage: false)
-		case .storageFirst:
+		case (.storageFirst, nil):
 			(try? fetchFromStorage())
 				?? fetchFromRemote(fallbackToStorage: false)
-		case .remoteFirst:
+		case (.remoteFirst, nil):
 			fetchFromRemote(fallbackToStorage: true)
+		case (.storageOnly, _?),
+			 (.remoteOnly(forced: false), .remote),
+			 (.storageFirst(forced: false), .remote),
+			 (.remoteFirst(forced: false), .remote):
+			break
 		}
 	}
 
 	private func fetchFromStorage() throws {
-		users = .init(
-			lastValidData: try $stored.read(),
-			state: .idle,
-			source: .storage
-		)
+		users.lastValidData = (try $stored.read(), .storage)
 	}
 
 	private func fetchFromRemote(fallbackToStorage: Bool) {
@@ -57,7 +64,7 @@ extension UsersStore {
 			// TODO: Retry for recoverable errors
 			.asResults()
 			.map({ [users] result in
-				updated(users, with: { $0.setValue(to: result, source: .remote) })
+				updated(users, with: { $0.setRemoteValue(to: result) })
 			})
 			.receive(on: RunLoop.main)
 			.assign(to: \.users, on: self)

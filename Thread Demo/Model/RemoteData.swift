@@ -5,18 +5,22 @@ import Combine
 ///
 /// When dealing with remote data there's often an issue with knowing what's the current state, is it currently loading, did it fail, and other similar questions. The state tracked with this wrapper helps dealing with the edge cases.
 struct RemoteData <Data, Failure: Error> {
-	/// The last data that was successfully retrieved
-	var lastValidData: Data?
+	/// The last data that was successfully retrieved, and from which source
+	var lastValidData: (data: Data, source: Source)?
 	/// The current state of operations around this data
 	var state: State = .idle
-	/// The source from which the data was retrieved
-	var source: Source = .remote
 
 	typealias State = _RemoteDataState<Failure>
 	typealias Source = _RemoteDataSource
 }
 
-extension RemoteData: Equatable where Data: Equatable, Failure: Equatable {}
+extension RemoteData: Equatable where Data: Equatable, Failure: Equatable {
+	static func == (lhs: Self, rhs: Self) -> Bool {
+		return lhs.lastValidData?.data == rhs.lastValidData?.data
+			&& lhs.lastValidData?.source == rhs.lastValidData?.source
+			&& lhs.state == rhs.state
+	}
+}
 
 /// The state of fetching for some remote data
 enum _RemoteDataState <Failure: Error> {
@@ -39,12 +43,11 @@ enum _RemoteDataSource {
 }
 
 extension RemoteData {
-	mutating func setValue(to newValue: Result<Data, Failure>, source newSource: Source) {
+	mutating func setRemoteValue(to newValue: Result<Data, Failure>) {
 		switch newValue {
 		case .success(let value):
-			lastValidData = value
+			lastValidData = (value, .remote)
 			state = .idle
-			source = newSource
 		case .failure(let error):
 			state = .failed(error)
 		}
@@ -57,7 +60,7 @@ extension RemoteData {
 			return .init(lastValidData: nil, state: state)
 		}
 
-		let transformedData = try transform(lastValidData)
-		return .init(lastValidData: transformedData, state: state)
+		let transformedData = try transform(lastValidData.data)
+		return .init(lastValidData: (transformedData, lastValidData.source), state: state)
 	}
 }

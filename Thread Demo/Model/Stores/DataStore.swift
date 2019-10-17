@@ -41,7 +41,7 @@ final class DataStore: ObservableObject {
 }
 
 extension DataStore {
-	func fetchAll(_ fetchType: FetchType = .remoteFirst) {
+	func fetchAll(_ fetchType: FetchType = .remoteFirst(forced: false)) {
 		postsStore.fetch(fetchType)
 		// ???: Consider not fetching the rest until a post detail is shown, but the list looks better with the additional data
 		usersStore.fetch(fetchType)
@@ -62,24 +62,24 @@ extension DataStore {
 		let baseComments = comments.map({ $0.map({ Comment.Connected(comment: $0) }) })
 
 		let connectedPosts: StoreData<[Post.Connected]> = basePosts.map({ base in
-			let withUsers = baseUsers.lastValidData
+			let withUsers = (baseUsers.lastValidData?.data)
 				.map({ Self.connectPosts(base, toUsers: $0).posts })
 				?? base
-			let connected = baseComments.lastValidData
+			let connected = (baseComments.lastValidData?.data)
 				.map({ Self.connectComments($0, toPosts: withUsers).posts })
 				?? withUsers
 			return connected
 		})
 
 		let connectedUsers: StoreData<[User.Connected]> = baseUsers.map({ base in
-			let connected = basePosts.lastValidData
+			let connected = (basePosts.lastValidData?.data)
 				.map({ Self.connectPosts($0, toUsers: base).users })
 				?? base
 			return connected
 		})
 
 		let connectedComments: StoreData<[Comment.Connected]> = baseComments.map({ base in
-			let connected = basePosts.lastValidData
+			let connected = (basePosts.lastValidData?.data)
 				.map({ Self.connectComments(base, toPosts: $0).comments })
 				?? base
 			return connected
@@ -134,11 +134,11 @@ enum FetchType {
 	/// Fetch a resource only from a persistent storage, and fail if that's not present or corrupted
 	case storageOnly
 	/// Fetch a resource only from remote
-	case remoteOnly
+	case remoteOnly(forced: Bool)
 	/// Fetch a resource from a persistent storage, and if that fails fallback to remote
-	case storageFirst
+	case storageFirst(forced: Bool)
 	/// Fetch a resource from remote, and if that fails fallback to storage
-	case remoteFirst
+	case remoteFirst(forced: Bool)
 }
 
 typealias StoreData<T> = RemoteData<T, FetchError>

@@ -6,31 +6,62 @@ struct PostsList: View {
 	@EnvironmentObject var dataStore: DataStore
 
     var body: some View {
-		List(posts ?? []) { post in
-			NavigationLink(destination: PostDetailView(post: post)) {
-				PostCell(post: post)
+		VStack(spacing: 0) {
+			bannerErrorMessage.map({ message in
+				Banner(action: { self.performAction(.retry) }) {
+					Text("\(message)\ntap to retry")
+				}
+					.transition(.move(edge: .top))
+			})
+			List(posts ?? []) { post in
+				NavigationLink(destination: PostDetailView(post: post)) {
+					PostCell(post: post)
+				}
 			}
+				.overlay(showLoader ? ActivityIndicator(style: .large) : nil)
+				.navigationBarTitle("Posts")
 		}
-			.overlay(isLoading ? ActivityIndicator(style: .large) : nil)
-			.navigationBarTitle("Posts")
     }
 }
 
 // MARK: Presentation
 extension PostsList {
 	private var postsData: StoreData<[Post.Connected]> { dataStore.posts }
-
-	var posts: [Post.Connected]? { postsData.lastValidData }
-	var isLoading: Bool {
-		guard case .retrieving = postsData.state else { return false }
-		return true
+	private var isAnyStoreRetrieving: Bool {
+		if case .retrieving = dataStore.posts.state { return true }
+		if case .retrieving = dataStore.users.state { return true }
+		if case .retrieving = dataStore.comments.state { return true }
+		return false
 	}
-	var errorMessage: String? {
-		guard case .failed(let error) = postsData.state else { return nil }
+	private var firstStoreError: FetchError? {
+		if case .failed(let error) = dataStore.posts.state { return error }
+		if case .failed(let error) = dataStore.users.state { return error }
+		if case .failed(let error) = dataStore.comments.state { return error }
+		return nil
+	}
+
+	var posts: [Post.Connected]? { postsData.lastValidData?.data }
+	var showLoader: Bool { isAnyStoreRetrieving }
+	var bannerErrorMessage: String? {
+		guard let error = self.firstStoreError else { return nil }
 
 		// TODO: Give more detailed error messages
 		switch error {
 		default: return "Could not retrieve data"
+		}
+	}
+}
+
+// MARK: Effects
+extension PostsList {
+	enum Action {
+		case retry
+	}
+
+	func performAction(_ action: Action) {
+		switch action {
+		case .retry:
+			dataStore.fetchAll(.remoteOnly(forced: false))
 		}
 	}
 }
