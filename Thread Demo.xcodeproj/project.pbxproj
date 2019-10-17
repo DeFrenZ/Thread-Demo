@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		032955D22358A4F100D65472 /* Publisher.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032955D12358A4F100D65472 /* Publisher.extensions.swift */; };
 		0393B515235214B500FEC0E1 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B514235214B500FEC0E1 /* ActivityIndicator.swift */; };
 		0393B51823533F4600FEC0E1 /* PostsStore.tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B51623533F4300FEC0E1 /* PostsStore.tests.swift */; };
 		0393B51A2353738200FEC0E1 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B5192353738200FEC0E1 /* PostCell.swift */; };
@@ -95,6 +96,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		032955D12358A4F100D65472 /* Publisher.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.extensions.swift; sourceTree = "<group>"; };
 		0393B514235214B500FEC0E1 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		0393B51623533F4300FEC0E1 /* PostsStore.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsStore.tests.swift; sourceTree = "<group>"; };
 		0393B5192353738200FEC0E1 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
@@ -267,9 +269,10 @@
 			isa = PBXGroup;
 			children = (
 				03DD9AF1234E06CB00140291 /* Test */,
+				0393B54C23561C3E00FEC0E1 /* Swift.extensions.swift */,
 				03DD9B26234F6FF700140291 /* Result.extensions.swift */,
 				0393B53723538EC200FEC0E1 /* Identifiable.extensions.swift */,
-				0393B54C23561C3E00FEC0E1 /* Swift.extensions.swift */,
+				032955D12358A4F100D65472 /* Publisher.extensions.swift */,
 				0393B554235770E300FEC0E1 /* PreviewProvider.extensions.swift */,
 			);
 			path = Utilities;
@@ -561,6 +564,7 @@
 				0393B52A235387DB00FEC0E1 /* UsersStore.swift in Sources */,
 				0393B5652357C09600FEC0E1 /* Storage+Dictionary.swift in Sources */,
 				03DD9B1E234E652100140291 /* API.Client.swift in Sources */,
+				032955D22358A4F100D65472 /* Publisher.extensions.swift in Sources */,
 				03DD9B27234F6FF700140291 /* Result.extensions.swift in Sources */,
 				03DD9B08234E1C0200140291 /* User.swift in Sources */,
 				03DD9B382350ACD900140291 /* DataStore+API.swift in Sources */,

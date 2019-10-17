@@ -7,6 +7,7 @@ final class PostsStore: ObservableObject {
 	@Stored(key: .posts) private var stored: [Post]?
 
 	private let getPosts: () -> AnyPublisher<[Post], FetchError>
+	/// The cancellable of the last remote request. Might hold a value that represents an already completed fetch
 	private var getPostsCancellable: AnyCancellable?
 
 	init(
@@ -21,28 +22,14 @@ final class PostsStore: ObservableObject {
 extension PostsStore {
 	func fetch() {
 		// TODO: Make thread-safe
-		// ???: Might be better to not fetch at all if a fetch is already in progress, or give the option to choose
-		getPostsCancellable?.cancel()
-
 		posts.state = .retrieving
-		var value: [Post]?
 		getPostsCancellable = getPosts()
 			// TODO: Retry for recoverable errors
+			.asResults()
+			.map({ [posts] result in
+				updated(posts, with: { $0.setValue(to: result) })
+			})
 			.receive(on: RunLoop.main)
-			.sink(
-				// !!!: `self` is strongly retained, but once the pipeline finishes this gets released so there's no permanent retain cycle
-				receiveCompletion: {
-					switch $0 {
-					case .finished:
-						// ???: Check that a value was actually received before finishing
-						self.posts.lastValidData = value
-						self.posts.state = .idle
-					case .failure(let error):
-						self.posts.state = .failed(error)
-					}
-					self.getPostsCancellable = nil
-				},
-				receiveValue: { value = $0 }
-			)
+			.assign(to: \.posts, on: self)
 	}
 }

@@ -29,6 +29,18 @@ enum _RemoteDataState <Failure: Error> {
 extension _RemoteDataState: Equatable where Failure: Equatable {}
 
 extension RemoteData {
+	mutating func setValue(to newValue: Result<Data, Failure>) {
+		switch newValue {
+		case .success(let value):
+			lastValidData = value
+			state = .idle
+		case .failure(let error):
+			state = .failed(error)
+		}
+	}
+}
+
+extension RemoteData {
 	func map <T> (_ transform: (Data) throws -> T) rethrows -> RemoteData<T, Failure> {
 		guard let lastValidData = self.lastValidData else {
 			return .init(lastValidData: nil, state: state)
