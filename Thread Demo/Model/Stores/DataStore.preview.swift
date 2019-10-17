@@ -6,4 +6,12 @@ extension DataStore {
 			commentsStore: .sample
 		)
 	}
+
+	static var sampleLoading: DataStore {
+		.init(
+			postsStore: .sampleLoading,
+			usersStore: .sampleLoading,
+			commentsStore: .sampleLoading
+		)
+	}
 }

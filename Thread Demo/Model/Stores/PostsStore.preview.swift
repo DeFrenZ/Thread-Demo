@@ -11,4 +11,11 @@ extension PostsStore {
 			}
 		)
 	}
+
+	static var sampleLoading: PostsStore {
+		.init(
+			storage: [:] as MemoryStorage,
+			getPosts: { Empty(completeImmediately: false).eraseToAnyPublisher() }
+		)
+	}
 }

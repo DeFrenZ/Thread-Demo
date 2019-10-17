@@ -11,4 +11,11 @@ extension UsersStore {
 			}
 		)
 	}
+
+	static var sampleLoading: UsersStore {
+		.init(
+			storage: [:] as MemoryStorage,
+			getUsers: { Empty(completeImmediately: false).eraseToAnyPublisher() }
+		)
+	}
 }

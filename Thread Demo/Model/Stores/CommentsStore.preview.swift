@@ -11,4 +11,11 @@ extension CommentsStore {
 			}
 		)
 	}
+
+	static var sampleLoading: CommentsStore {
+		.init(
+			storage: [:] as MemoryStorage,
+			getComments: { Empty(completeImmediately: false).eraseToAnyPublisher() }
+		)
+	}
 }
