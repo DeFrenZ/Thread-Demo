@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		032955D22358A4F100D65472 /* Publisher.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032955D12358A4F100D65472 /* Publisher.extensions.swift */; };
+		032955D72358E54200D65472 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032955D62358E54200D65472 /* Banner.swift */; };
 		0393B515235214B500FEC0E1 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B514235214B500FEC0E1 /* ActivityIndicator.swift */; };
 		0393B51823533F4600FEC0E1 /* PostsStore.tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B51623533F4300FEC0E1 /* PostsStore.tests.swift */; };
 		0393B51A2353738200FEC0E1 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B5192353738200FEC0E1 /* PostCell.swift */; };
@@ -98,6 +99,7 @@
 /* Begin PBXFileReference section */
 		032955D12358A4F100D65472 /* Publisher.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.extensions.swift; sourceTree = "<group>"; };
 		032955D32358D9C500D65472 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		032955D62358E54200D65472 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		0393B514235214B500FEC0E1 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		0393B51623533F4300FEC0E1 /* PostsStore.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsStore.tests.swift; sourceTree = "<group>"; };
 		0393B5192353738200FEC0E1 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				0393B55223576A0000FEC0E1 /* BaseCell.swift */,
 				0393B5192353738200FEC0E1 /* PostCell.swift */,
 				0393B550235734D600FEC0E1 /* CommentCell.swift */,
+				032955D62358E54200D65472 /* Banner.swift */,
 				0393B514235214B500FEC0E1 /* ActivityIndicator.swift */,
 			);
 			path = Components;
@@ -544,6 +547,7 @@
 				0393B5412354B76F00FEC0E1 /* DataStore.preview.swift in Sources */,
 				03DD9B34235084B600140291 /* DataStore.swift in Sources */,
 				0393B55323576A0000FEC0E1 /* BaseCell.swift in Sources */,
+				032955D72358E54200D65472 /* Banner.swift in Sources */,
 				03DD9B11234E26F300140291 /* Post+API.swift in Sources */,
 				03DD9AE8234DF6A700140291 /* API.Comment.swift in Sources */,
 				0393B515235214B500FEC0E1 /* ActivityIndicator.swift in Sources */,
