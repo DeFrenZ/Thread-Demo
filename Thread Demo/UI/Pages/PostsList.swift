@@ -18,10 +18,18 @@ struct PostsList: View {
 					PostCell(post: post)
 				}
 			}
-				.overlay(showLoader ? ActivityIndicator(style: .large) : nil)
+				.overlay(showLoader ? loader : nil)
 				.navigationBarTitle("Posts")
 		}
     }
+
+	private var loader: some View {
+		ZStack {
+			BlurEffect(style: .regular)
+				.edgesIgnoringSafeArea([.bottom, .leading, .trailing])
+			ActivityIndicator(style: .large)
+		}
+	}
 }
 
 // MARK: Presentation
