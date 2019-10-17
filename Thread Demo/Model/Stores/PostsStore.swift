@@ -7,8 +7,8 @@ final class PostsStore: ObservableObject {
 	@Stored(key: .posts) private var stored: [Post]?
 
 	private let getPosts: () -> AnyPublisher<[Post], FetchError>
-	/// The cancellable of the last remote request. Might hold a value that represents an already completed fetch
-	private var getPostsCancellable: AnyCancellable?
+	/// The cancellables of the last remote request. Might hold values relative to an already completed fetch
+	private var cancellables: Set<AnyCancellable> = []
 
 	init(
 		storage: Storage,
@@ -22,8 +22,16 @@ final class PostsStore: ObservableObject {
 extension PostsStore {
 	func fetch() {
 		// TODO: Make thread-safe
+		cancellables.removeAll()
 		posts.state = .retrieving
-		getPostsCancellable = getPosts()
+		let publisher = getPosts()
+
+		publisher
+			.ignoreErrors()
+			.assign(to: \.stored, on: self)
+			.store(in: &cancellables)
+
+		publisher
 			// TODO: Retry for recoverable errors
 			.asResults()
 			.map({ [posts] result in
@@ -31,5 +39,6 @@ extension PostsStore {
 			})
 			.receive(on: RunLoop.main)
 			.assign(to: \.posts, on: self)
+			.store(in: &cancellables)
 	}
 }

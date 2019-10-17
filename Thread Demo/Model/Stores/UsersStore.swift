@@ -7,8 +7,8 @@ final class UsersStore: ObservableObject {
 	@Stored(key: .users) private var stored: [User]?
 
 	private let getUsers: () -> AnyPublisher<[User], FetchError>
-	/// The cancellable of the last remote request. Might hold a value that represents an already completed fetch
-	private var getUsersCancellable: AnyCancellable?
+	/// The cancellables of the last remote request. Might hold values relative to an already completed fetch
+	private var cancellables: Set<AnyCancellable> = []
 
 	init(
 		storage: Storage,
@@ -22,8 +22,16 @@ final class UsersStore: ObservableObject {
 extension UsersStore {
 	func fetch() {
 		// TODO: Make thread-safe
+		cancellables.removeAll()
 		users.state = .retrieving
-		getUsersCancellable = getUsers()
+		let publisher = getUsers()
+
+		publisher
+			.ignoreErrors()
+			.assign(to: \.stored, on: self)
+			.store(in: &cancellables)
+
+		publisher
 			// TODO: Retry for recoverable errors
 			.asResults()
 			.map({ [users] result in
@@ -31,5 +39,6 @@ extension UsersStore {
 			})
 			.receive(on: RunLoop.main)
 			.assign(to: \.users, on: self)
+			.store(in: &cancellables)
 	}
 }
