@@ -1,51 +1,94 @@
-// Part of https://github.com/apple/swift-log/blob/1.1.1/Sources/Logging/Logging.swift
-
-//===----------------------------------------------------------------------===//
-//
-// This source file is part of the Swift Logging API open source project
-//
-// Copyright (c) 2018-2019 Apple Inc. and the Swift Logging API project authors
-// Licensed under Apache License v2.0
-//
-// See LICENSE.txt for license information
-// See CONTRIBUTORS.txt for the list of Swift Logging API project authors
-//
-// SPDX-License-Identifier: Apache-2.0
-//
-//===----------------------------------------------------------------------===//
-
-#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
-import Darwin
-#else
-import Glibc
-#endif
-
 extension Logger {
-    /// `Logger.Message` represents a log message's text. It is usually created using string literals.
-    ///
-    /// Example creating a `Logger.Message`:
-    ///
-    ///     let world: String = "world"
-    ///     let myLogMessage: Logger.Message = "Hello \(world)"
-    ///
-    /// Most commonly, `Logger.Message`s appear simply as the parameter to a logging method such as:
-    ///
-    ///     logger.info("Hello \(world)")
-    ///
-    public struct Message: ExpressibleByStringLiteral,
-        Equatable,
-        CustomStringConvertible,
-        ExpressibleByStringInterpolation {
-        public typealias StringLiteralType = String
+	public struct Message {
+		private var segments: [Segment]
 
-        private var value: String
+		fileprivate enum Segment {
+			case `static`(StaticString)
+			case dynamic(content: String, privacy: Privacy)
 
-        public init(stringLiteral value: String) {
-            self.value = value
-        }
+			enum Privacy {
+				case `public`
+				case `private`
+				case `default`
+			}
+		}
+	}
+}
 
-        public var description: String {
-            return self.value
-        }
-    }
+// MARK: `*StringConvertible`
+extension Logger.Message: CustomStringConvertible {
+	public var description: String {
+		segments.map({ $0.description }).joined()
+	}
+}
+
+extension Logger.Message.Segment: CustomStringConvertible {
+	var description: String {
+		switch self {
+		case .static(let string): return string.description
+		case .dynamic(let content, _): return content
+		}
+	}
+}
+
+extension Logger.Message: CustomDebugStringConvertible {
+	public var debugDescription: String {
+		segments.map({ $0.debugDescription }).joined()
+	}
+}
+
+extension Logger.Message.Segment: CustomDebugStringConvertible {
+	var debugDescription: String {
+		switch self {
+		case .static(let string): return string.debugDescription
+		case .dynamic(let content, let privacy): return "{\(privacy.debugDescriptionPrefix)\(content)}"
+		}
+	}
+}
+
+private extension Logger.Message.Segment.Privacy {
+	var debugDescriptionPrefix: String {
+		switch self {
+		case .public: return "public: "
+		case .private: return "private: "
+		case .default: return ""
+		}
+	}
+}
+
+// MARK: `ExpressibleBy*Literal`
+extension Logger.Message: ExpressibleByStringLiteral {
+	public init(stringLiteral value: StaticString) {
+		self.init(segments: [.static(value)])
+	}
+}
+
+extension Logger.Message: ExpressibleByStringInterpolation {
+	public init(stringInterpolation: StringInterpolation) {
+		self.init(segments: stringInterpolation.segments)
+	}
+
+	public struct StringInterpolation: StringInterpolationProtocol {
+		fileprivate var segments: [Segment] = []
+
+		public init(literalCapacity: Int, interpolationCount: Int) {
+			self.segments.reserveCapacity(2 * interpolationCount + 1)
+		}
+
+		public mutating func appendLiteral(_ literal: StaticString) {
+			segments.append(.static(literal))
+		}
+
+		public mutating func appendInterpolation <InterpolatedValue: CustomStringConvertible> (_ value: InterpolatedValue) {
+			segments.append(.dynamic(content: value.description, privacy: .default))
+		}
+
+		public mutating func appendInterpolation <InterpolatedValue: CustomStringConvertible> (public value: InterpolatedValue) {
+			segments.append(.dynamic(content: value.description, privacy: .public))
+		}
+
+		public mutating func appendInterpolation <InterpolatedValue: CustomStringConvertible> (private value: InterpolatedValue) {
+			segments.append(.dynamic(content: value.description, privacy: .private))
+		}
+	}
 }
