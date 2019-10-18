@@ -10,6 +10,7 @@
 		032955D22358A4F100D65472 /* Publisher.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032955D12358A4F100D65472 /* Publisher.extensions.swift */; };
 		032955D72358E54200D65472 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032955D62358E54200D65472 /* Banner.swift */; };
 		032955D92359206700D65472 /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032955D82359206700D65472 /* BlurEffect.swift */; };
+		036766EA235A3608000E9C8D /* LogHandler+OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766E9235A3608000E9C8D /* LogHandler+OSLog.swift */; };
 		036766EC235A36F4000E9C8D /* LogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766EB235A36F4000E9C8D /* LogHandler.swift */; };
 		036766EE235A37EC000E9C8D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766ED235A37EC000E9C8D /* Logger.swift */; };
 		036766F0235A3833000E9C8D /* Logger.Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766EF235A3833000E9C8D /* Logger.Message.swift */; };
@@ -109,6 +110,7 @@
 		032955D32358D9C500D65472 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		032955D62358E54200D65472 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		032955D82359206700D65472 /* BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurEffect.swift; sourceTree = "<group>"; };
+		036766E9235A3608000E9C8D /* LogHandler+OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LogHandler+OSLog.swift"; sourceTree = "<group>"; };
 		036766EB235A36F4000E9C8D /* LogHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHandler.swift; sourceTree = "<group>"; };
 		036766ED235A37EC000E9C8D /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		036766EF235A3833000E9C8D /* Logger.Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.Message.swift; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				036766EB235A36F4000E9C8D /* LogHandler.swift */,
 				036766F5235A3906000E9C8D /* LogHandler+Multiplex.swift */,
 				036766F7235A3941000E9C8D /* LogHandler+Stdio.swift */,
+				036766E9235A3608000E9C8D /* LogHandler+OSLog.swift */,
 				036766F1235A3849000E9C8D /* LoggingSystem.swift */,
 			);
 			path = Log;
@@ -591,6 +594,7 @@
 				0393B52623537CE700FEC0E1 /* User.preview.swift in Sources */,
 				03DD9B3D2350C94500140291 /* PostsStore.swift in Sources */,
 				0393B555235770E300FEC0E1 /* PreviewProvider.extensions.swift in Sources */,
+				036766EA235A3608000E9C8D /* LogHandler+OSLog.swift in Sources */,
 				03E8A7F2234DE23900259855 /* AppDelegate.swift in Sources */,
 				0393B533235389E200FEC0E1 /* CommentsStore.preview.swift in Sources */,
 				0393B54F235726EB00FEC0E1 /* PostDetailView.swift in Sources */,

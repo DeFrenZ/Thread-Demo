@@ -255,8 +255,6 @@ extension Logger {
     }
 }
 
-
-
 extension Logger {
     /// The log level.
     ///

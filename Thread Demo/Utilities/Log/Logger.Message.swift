@@ -1,8 +1,8 @@
 extension Logger {
 	public struct Message {
-		private var segments: [Segment]
+		var segments: [Segment]
 
-		fileprivate enum Segment {
+		enum Segment {
 			case `static`(StaticString)
 			case dynamic(content: String, privacy: Privacy)
 
@@ -90,5 +90,13 @@ extension Logger.Message: ExpressibleByStringInterpolation {
 		public mutating func appendInterpolation <InterpolatedValue: CustomStringConvertible> (private value: InterpolatedValue) {
 			segments.append(.dynamic(content: value.description, privacy: .private))
 		}
+	}
+}
+
+// MARK: Operators
+public extension Logger.Message {
+	static func + (lhs: Self, rhs: Self) -> Self {
+		// TODO: Unify the ends in a single segment if both are `static`
+		.init(segments: lhs.segments + rhs.segments)
 	}
 }
