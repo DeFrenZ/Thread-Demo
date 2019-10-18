@@ -11,6 +11,8 @@ extension SceneDelegate: UISceneDelegate {
 		willConnectTo session: UISceneSession,
 		options connectionOptions: UIScene.ConnectionOptions
 	) {
+		LoggingSystem.bootstrap()
+
 		#if DEBUG
 		guard NSClassFromString("XCTest") == nil else { return }
 		#endif

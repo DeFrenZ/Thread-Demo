@@ -18,6 +18,7 @@
 		036766F4235A3879000E9C8D /* Logger.Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766F3235A3879000E9C8D /* Logger.Metadata.swift */; };
 		036766F6235A3906000E9C8D /* LogHandler+Multiplex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766F5235A3906000E9C8D /* LogHandler+Multiplex.swift */; };
 		036766F8235A3941000E9C8D /* LogHandler+Stdio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766F7235A3941000E9C8D /* LogHandler+Stdio.swift */; };
+		036766FA235A4FBC000E9C8D /* LoggingSystem+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766F9235A4FBC000E9C8D /* LoggingSystem+App.swift */; };
 		0393B515235214B500FEC0E1 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B514235214B500FEC0E1 /* ActivityIndicator.swift */; };
 		0393B51823533F4600FEC0E1 /* PostsStore.tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B51623533F4300FEC0E1 /* PostsStore.tests.swift */; };
 		0393B51A2353738200FEC0E1 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B5192353738200FEC0E1 /* PostCell.swift */; };
@@ -118,6 +119,7 @@
 		036766F3235A3879000E9C8D /* Logger.Metadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.Metadata.swift; sourceTree = "<group>"; };
 		036766F5235A3906000E9C8D /* LogHandler+Multiplex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LogHandler+Multiplex.swift"; sourceTree = "<group>"; };
 		036766F7235A3941000E9C8D /* LogHandler+Stdio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LogHandler+Stdio.swift"; sourceTree = "<group>"; };
+		036766F9235A4FBC000E9C8D /* LoggingSystem+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoggingSystem+App.swift"; sourceTree = "<group>"; };
 		0393B514235214B500FEC0E1 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		0393B51623533F4300FEC0E1 /* PostsStore.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsStore.tests.swift; sourceTree = "<group>"; };
 		0393B5192353738200FEC0E1 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				03DD9B322350841D00140291 /* API Integration */,
 				03DD9B3B2350C8EA00140291 /* Stores */,
 				03DD9B352350863B00140291 /* RemoteData.swift */,
+				036766F9235A4FBC000E9C8D /* LoggingSystem+App.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -594,6 +597,7 @@
 				0393B52623537CE700FEC0E1 /* User.preview.swift in Sources */,
 				03DD9B3D2350C94500140291 /* PostsStore.swift in Sources */,
 				0393B555235770E300FEC0E1 /* PreviewProvider.extensions.swift in Sources */,
+				036766FA235A4FBC000E9C8D /* LoggingSystem+App.swift in Sources */,
 				036766EA235A3608000E9C8D /* LogHandler+OSLog.swift in Sources */,
 				03E8A7F2234DE23900259855 /* AppDelegate.swift in Sources */,
 				0393B533235389E200FEC0E1 /* CommentsStore.preview.swift in Sources */,
