@@ -30,5 +30,6 @@ struct ActivityIndicator: UIViewRepresentable {
 struct ActivityIndicator_Preview: PreviewProvider {
 	static var previews: some View {
 		ActivityIndicator(style: .large, isAnimating: .constant(true))
+			.previewLayout(.sizeThatFits)
 	}
 }

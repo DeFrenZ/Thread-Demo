@@ -31,7 +31,6 @@ struct Banner_Previews: PreviewProvider {
 			Text("Error message")
 		}
 			.previewLayout(.sizeThatFits)
-			.multipleSizeCategories()
-			.multipleColorSchemes()
+			.multiplePreviewEnvironments()
     }
 }

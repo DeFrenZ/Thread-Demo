@@ -46,6 +46,7 @@ struct PostCell_Preview: PreviewProvider {
 	static var previews: some View {
 		PostCell(post: .sample)
 			.previewLayout(.sizeThatFits)
-			.multipleSizeCategories()
+			.background(Color(.systemBackground))
+			.multiplePreviewEnvironments()
 	}
 }

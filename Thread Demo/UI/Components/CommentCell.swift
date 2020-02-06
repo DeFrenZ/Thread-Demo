@@ -24,6 +24,7 @@ struct CommentCell_Previews: PreviewProvider {
     static var previews: some View {
 		CommentCell(comment: .sample)
 			.previewLayout(.sizeThatFits)
-			.multipleSizeCategories()
+			.background(Color(.systemBackground))
+			.multiplePreviewEnvironments()
     }
 }

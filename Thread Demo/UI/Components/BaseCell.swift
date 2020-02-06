@@ -73,6 +73,7 @@ struct BaseCell_Preview: PreviewProvider {
 				"""
 		)
 			.previewLayout(.sizeThatFits)
-			.multipleSizeCategories()
+			.background(Color(.systemBackground))
+			.multiplePreviewEnvironments()
 	}
 }
