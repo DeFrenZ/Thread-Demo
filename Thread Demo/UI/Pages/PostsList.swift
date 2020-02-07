@@ -13,23 +13,16 @@ struct PostsList: View {
 				}
 					.transition(.move(edge: .top))
 			})
-			List(posts ?? []) { post in
-				NavigationLink(destination: PostDetailView(post: post)) {
-					PostCell(post: post)
+			LoadingView(showLoader: .constant(showLoader)) {
+				List(posts ?? []) { post in
+					NavigationLink(destination: PostDetailView(post: post)) {
+						PostCell(post: post)
+					}
 				}
 			}
-				.overlay(showLoader ? loader : nil)
 				.navigationBarTitle("Posts")
 		}
     }
-
-	private var loader: some View {
-		ZStack {
-			BlurEffect(style: .regular)
-				.edgesIgnoringSafeArea([.bottom, .leading, .trailing])
-			ActivityIndicator(style: .large)
-		}
-	}
 }
 
 // MARK: Presentation
