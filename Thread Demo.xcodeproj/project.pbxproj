@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0312DE8E23EC6CD30066C14B /* Collection.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312DE8D23EC6CD30066C14B /* Collection.extensions.swift */; };
 		0312DE9023EDB6150066C14B /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312DE8F23EDB6150066C14B /* LoadingView.swift */; };
+		0312DE9323EDBC2A0066C14B /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312DE9223EDBC2A0066C14B /* BannerView.swift */; };
+		0312DE9523EDBD840066C14B /* SwiftUI.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0312DE9423EDBD840066C14B /* SwiftUI.extensions.swift */; };
 		032955D22358A4F100D65472 /* Publisher.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032955D12358A4F100D65472 /* Publisher.extensions.swift */; };
 		032955D72358E54200D65472 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032955D62358E54200D65472 /* Banner.swift */; };
 		032955D92359206700D65472 /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032955D82359206700D65472 /* BlurEffect.swift */; };
@@ -111,6 +113,8 @@
 /* Begin PBXFileReference section */
 		0312DE8D23EC6CD30066C14B /* Collection.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.extensions.swift; sourceTree = "<group>"; };
 		0312DE8F23EDB6150066C14B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		0312DE9223EDBC2A0066C14B /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		0312DE9423EDBD840066C14B /* SwiftUI.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI.extensions.swift; sourceTree = "<group>"; };
 		032955D12358A4F100D65472 /* Publisher.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.extensions.swift; sourceTree = "<group>"; };
 		032955D32358D9C500D65472 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		032955D62358E54200D65472 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
@@ -222,6 +226,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0312DE9123EDBB8A0066C14B /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				0312DE8F23EDB6150066C14B /* LoadingView.swift */,
+				0312DE9223EDBC2A0066C14B /* BannerView.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
 		036766E8235A35A4000E9C8D /* Log */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,7 +269,6 @@
 				03DD9B12234E28C900140291 /* RootView.swift */,
 				03E8A7F5234DE23900259855 /* PostsList.swift */,
 				0393B54E235726EB00FEC0E1 /* PostDetailView.swift */,
-				0312DE8F23EDB6150066C14B /* LoadingView.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -321,6 +333,7 @@
 				03DD9B26234F6FF700140291 /* Result.extensions.swift */,
 				0393B53723538EC200FEC0E1 /* Identifiable.extensions.swift */,
 				032955D12358A4F100D65472 /* Publisher.extensions.swift */,
+				0312DE9423EDBD840066C14B /* SwiftUI.extensions.swift */,
 				0393B554235770E300FEC0E1 /* PreviewProvider.extensions.swift */,
 			);
 			path = Utilities;
@@ -445,6 +458,7 @@
 				03E8A7F7234DE23A00259855 /* Assets.xcassets */,
 				03E8A823234DED8900259855 /* Preview Content */,
 				0393B55723577DF100FEC0E1 /* Pages */,
+				0312DE9123EDBB8A0066C14B /* Modifiers */,
 				0393B55623577DE000FEC0E1 /* Components */,
 			);
 			path = UI;
@@ -601,6 +615,7 @@
 				0393B515235214B500FEC0E1 /* ActivityIndicator.swift in Sources */,
 				0393B55A23578C2E00FEC0E1 /* Stored.swift in Sources */,
 				0393B52623537CE700FEC0E1 /* User.preview.swift in Sources */,
+				0312DE9523EDBD840066C14B /* SwiftUI.extensions.swift in Sources */,
 				03DD9B3D2350C94500140291 /* PostsStore.swift in Sources */,
 				0393B555235770E300FEC0E1 /* PreviewProvider.extensions.swift in Sources */,
 				036766FA235A4FBC000E9C8D /* LoggingSystem+App.swift in Sources */,
@@ -610,6 +625,7 @@
 				0393B533235389E200FEC0E1 /* CommentsStore.preview.swift in Sources */,
 				0393B54F235726EB00FEC0E1 /* PostDetailView.swift in Sources */,
 				03DD9AEA234DF6F800140291 /* API.User.swift in Sources */,
+				0312DE9323EDBC2A0066C14B /* BannerView.swift in Sources */,
 				03DD9B06234E1BF300140291 /* Post.swift in Sources */,
 				0393B55C235790F300FEC0E1 /* Storage+UserDefaults.swift in Sources */,
 				03DD9B0C234E226600140291 /* Email.swift in Sources */,

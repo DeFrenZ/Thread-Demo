@@ -6,13 +6,10 @@ struct PostsList: View {
 	@EnvironmentObject var dataStore: DataStore
 
     var body: some View {
-		VStack(spacing: 0) {
-			bannerErrorMessage.map({ message in
-				Banner(action: { self.performAction(.retry) }) {
-					Text("\(message)\ntap to retry")
-				}
-					.transition(.move(edge: .top))
-			})
+		BannerView(
+			message: bannerMessage,
+			action: { self.performAction(.retry) }
+		) {
 			LoadingView(showLoader: .constant(showLoader)) {
 				List(posts ?? []) { post in
 					NavigationLink(destination: PostDetailView(post: post)) {
@@ -20,8 +17,8 @@ struct PostsList: View {
 					}
 				}
 			}
-				.navigationBarTitle("Posts")
 		}
+			.navigationBarTitle("Posts")
     }
 }
 
@@ -46,16 +43,19 @@ extension PostsList {
 		if case .failed(let error) = dataStore.comments.state { return error }
 		return nil
 	}
-
-	var posts: [Post.Connected]? { postsData.lastValidData?.data }
-	var showLoader: Bool { isAnyStoreRetrieving || isAnyStoreIdleWithoutData }
-	var bannerErrorMessage: String? {
+	private var errorMessage: String? {
 		guard let error = self.firstStoreError else { return nil }
 
 		// TODO: Give more detailed error messages
 		switch error {
 		default: return "Could not retrieve data"
 		}
+	}
+
+	var posts: [Post.Connected]? { postsData.lastValidData?.data }
+	var showLoader: Bool { isAnyStoreRetrieving || isAnyStoreIdleWithoutData }
+	var bannerMessage: String? {
+		errorMessage.map({ "\($0)\ntap to retry" })
 	}
 }
 

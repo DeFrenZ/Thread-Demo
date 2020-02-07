@@ -1,5 +1,4 @@
 import SwiftUI
-import Combine
 
 /// A view that can be used to cover some content with a loader when the content isn't present or complete yet
 struct LoadingView<Content: View>: View {
@@ -39,7 +38,7 @@ struct LoadingView_Previews: PreviewProvider {
 				"""
 			)
 				.fontWeight(.black)
-				.frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity)
+				.expand()
 		}
     }
 }
