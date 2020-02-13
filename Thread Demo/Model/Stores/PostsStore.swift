@@ -16,6 +16,8 @@ final class PostsStore: ObservableObject {
 	) {
 		self._stored.storage = storage
 		self.getPosts = getPosts
+
+		try? fetchFromStorage()
 	}
 }
 

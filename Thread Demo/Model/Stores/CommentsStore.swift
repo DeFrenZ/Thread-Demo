@@ -16,6 +16,8 @@ final class CommentsStore: ObservableObject {
 	) {
 		self._stored.storage = storage
 		self.getComments = getComments
+
+		try? fetchFromStorage()
 	}
 }
 

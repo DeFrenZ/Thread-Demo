@@ -16,6 +16,8 @@ final class UsersStore: ObservableObject {
 	) {
 		self._stored.storage = storage
 		self.getUsers = getUsers
+
+		try? fetchFromStorage()
 	}
 }
 
