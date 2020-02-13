@@ -25,11 +25,15 @@ final class DataStore: ObservableObject {
 	}
 
 	private func bindToChildrenStores() {
+		(self.posts, self.users, self.comments) = Self.connectChildrenData(
+			posts: postsStore.posts,
+			users: usersStore.users,
+			comments: commentsStore.comments
+		)
+
 		self.cancellable = postsStore.$posts
 			.combineLatest(usersStore.$users, commentsStore.$comments)
 			.removeDuplicates(by: ==)
-			// !!!: Avoid jarring UI updates. Also avoids a `SwiftUI.List` bug (iOS 13.0) that makes it layout incorrectly with quick updates
-			.debounce(for: .seconds(0.3), scheduler: RunLoop.main)
 			.map(Self.connectChildrenData(posts:users:comments:))
 			.sink(receiveValue: { [weak self] posts, users, comments in
 				guard let self = self else { return }

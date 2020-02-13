@@ -7,6 +7,14 @@ extension DataStore {
 		)
 	}
 
+	static var sampleLoaded: DataStore {
+		.init(
+			postsStore: .sampleLoaded,
+			usersStore: .sampleLoaded,
+			commentsStore: .sampleLoaded
+		)
+	}
+
 	static var sampleLoading: DataStore {
 		.init(
 			postsStore: .sampleLoading,

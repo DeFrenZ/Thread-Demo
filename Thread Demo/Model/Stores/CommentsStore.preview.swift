@@ -12,6 +12,17 @@ extension CommentsStore {
 		)
 	}
 
+	static var sampleLoaded: CommentsStore {
+		.init(
+			storage: [.comments: [Comment].samples!] as MemoryStorage,
+			getComments: {
+				Just(.samples)
+					.setFailureType(to: FetchError.self)
+					.eraseToAnyPublisher()
+			}
+		)
+	}
+
 	static var sampleLoading: CommentsStore {
 		.init(
 			storage: [:] as MemoryStorage,

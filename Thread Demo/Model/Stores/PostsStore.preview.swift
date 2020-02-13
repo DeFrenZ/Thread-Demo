@@ -12,6 +12,17 @@ extension PostsStore {
 		)
 	}
 
+	static var sampleLoaded: PostsStore {
+		.init(
+			storage: [.posts: [Post].samples!] as MemoryStorage,
+			getPosts: {
+				Just(.samples)
+					.setFailureType(to: FetchError.self)
+					.eraseToAnyPublisher()
+			}
+		)
+	}
+
 	static var sampleLoading: PostsStore {
 		.init(
 			storage: [:] as MemoryStorage,

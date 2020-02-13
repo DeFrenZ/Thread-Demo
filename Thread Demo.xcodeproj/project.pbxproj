@@ -14,6 +14,9 @@
 		032955D22358A4F100D65472 /* Publisher.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032955D12358A4F100D65472 /* Publisher.extensions.swift */; };
 		032955D72358E54200D65472 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032955D62358E54200D65472 /* Banner.swift */; };
 		032955D92359206700D65472 /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032955D82359206700D65472 /* BlurEffect.swift */; };
+		0355999F23F580860054DF17 /* DataUIStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0355999E23F580860054DF17 /* DataUIStore.swift */; };
+		035599A123F59BF70054DF17 /* DataUIStore+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035599A023F59BF70054DF17 /* DataUIStore+Model.swift */; };
+		035599A323F59DC90054DF17 /* DataUIStore.preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035599A223F59DC90054DF17 /* DataUIStore.preview.swift */; };
 		036766EA235A3608000E9C8D /* LogHandler+OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766E9235A3608000E9C8D /* LogHandler+OSLog.swift */; };
 		036766EC235A36F4000E9C8D /* LogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766EB235A36F4000E9C8D /* LogHandler.swift */; };
 		036766EE235A37EC000E9C8D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766ED235A37EC000E9C8D /* Logger.swift */; };
@@ -119,6 +122,9 @@
 		032955D32358D9C500D65472 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		032955D62358E54200D65472 /* Banner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		032955D82359206700D65472 /* BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurEffect.swift; sourceTree = "<group>"; };
+		0355999E23F580860054DF17 /* DataUIStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUIStore.swift; sourceTree = "<group>"; };
+		035599A023F59BF70054DF17 /* DataUIStore+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataUIStore+Model.swift"; sourceTree = "<group>"; };
+		035599A223F59DC90054DF17 /* DataUIStore.preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUIStore.preview.swift; sourceTree = "<group>"; };
 		036766E9235A3608000E9C8D /* LogHandler+OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LogHandler+OSLog.swift"; sourceTree = "<group>"; };
 		036766EB235A36F4000E9C8D /* LogHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHandler.swift; sourceTree = "<group>"; };
 		036766ED235A37EC000E9C8D /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -233,6 +239,16 @@
 				0312DE9223EDBC2A0066C14B /* BannerView.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		0355999D23F580760054DF17 /* UI Stores */ = {
+			isa = PBXGroup;
+			children = (
+				0355999E23F580860054DF17 /* DataUIStore.swift */,
+				035599A023F59BF70054DF17 /* DataUIStore+Model.swift */,
+				035599A223F59DC90054DF17 /* DataUIStore.preview.swift */,
+			);
+			path = "UI Stores";
 			sourceTree = "<group>";
 		};
 		036766E8235A35A4000E9C8D /* Log */ = {
@@ -460,6 +476,7 @@
 				0393B55723577DF100FEC0E1 /* Pages */,
 				0312DE9123EDBB8A0066C14B /* Modifiers */,
 				0393B55623577DE000FEC0E1 /* Components */,
+				0355999D23F580760054DF17 /* UI Stores */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -616,6 +633,7 @@
 				0393B55A23578C2E00FEC0E1 /* Stored.swift in Sources */,
 				0393B52623537CE700FEC0E1 /* User.preview.swift in Sources */,
 				0312DE9523EDBD840066C14B /* SwiftUI.extensions.swift in Sources */,
+				035599A323F59DC90054DF17 /* DataUIStore.preview.swift in Sources */,
 				03DD9B3D2350C94500140291 /* PostsStore.swift in Sources */,
 				0393B555235770E300FEC0E1 /* PreviewProvider.extensions.swift in Sources */,
 				036766FA235A4FBC000E9C8D /* LoggingSystem+App.swift in Sources */,
@@ -629,6 +647,7 @@
 				03DD9B06234E1BF300140291 /* Post.swift in Sources */,
 				0393B55C235790F300FEC0E1 /* Storage+UserDefaults.swift in Sources */,
 				03DD9B0C234E226600140291 /* Email.swift in Sources */,
+				0355999F23F580860054DF17 /* DataUIStore.swift in Sources */,
 				0393B551235734D600FEC0E1 /* CommentCell.swift in Sources */,
 				0393B52223537C1E00FEC0E1 /* API.User.preview.swift in Sources */,
 				03DD9B2D234F97B600140291 /* Comment+API.swift in Sources */,
@@ -651,6 +670,7 @@
 				0393B52423537C7500FEC0E1 /* API.Comment.preview.swift in Sources */,
 				0393B51A2353738200FEC0E1 /* PostCell.swift in Sources */,
 				03E8A7F6234DE23900259855 /* PostsList.swift in Sources */,
+				035599A123F59BF70054DF17 /* DataUIStore+Model.swift in Sources */,
 				0393B51C2353798100FEC0E1 /* Post.preview.swift in Sources */,
 				03DD9B29234F93B500140291 /* User+API.swift in Sources */,
 				036766F0235A3833000E9C8D /* Logger.Message.swift in Sources */,

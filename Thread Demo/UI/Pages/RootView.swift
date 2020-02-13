@@ -2,7 +2,7 @@ import SwiftUI
 
 /// The view used as root of the app.
 struct RootView: View {
-	@EnvironmentObject var dataStore: DataStore
+	@EnvironmentObject var dataStore: DataUIStore
 
     var body: some View {
 		NavigationView {
@@ -30,6 +30,6 @@ extension RootView {
 struct RootView_Previews: PreviewProvider {
     static var previews: some View {
         return RootView()
-			.environmentObject(DataStore.sample)
+			.environmentObject(DataUIStore.sampleLoaded)
     }
 }

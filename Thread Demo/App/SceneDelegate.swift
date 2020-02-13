@@ -24,7 +24,7 @@ extension SceneDelegate: UISceneDelegate {
 
 		let window = UIWindow(windowScene: windowScene)
 		let rootView = RootView()
-			.environmentObject(dataStore)
+			.environmentObject(DataUIStore(dataStore))
 		let rootViewController = UIHostingController(rootView: rootView)
 		window.rootViewController = rootViewController
 		self.window = window

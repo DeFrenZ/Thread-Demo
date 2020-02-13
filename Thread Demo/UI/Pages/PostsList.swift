@@ -3,7 +3,7 @@ import Combine
 
 /// A view that displays a list of posts.
 struct PostsList: View {
-	@EnvironmentObject var dataStore: DataStore
+	@EnvironmentObject var dataStore: DataUIStore
 
     var body: some View {
 		BannerView(
@@ -76,13 +76,12 @@ extension PostsList {
 // MARK: - Preview
 struct PostsList_Previews: PreviewProvider {
 	static var previews: some View {
-		let store = DataStore.sample
-		store.fetchAll()
+		let store = DataUIStore.sampleLoaded
+		store.fetchAll(.storageOnly)
 		return NavigationView {
 			PostsList()
 		}
 			.environmentObject(store)
-			.multipleSizeCategories()
-			.multipleColorSchemes()
+			.multiplePreviewEnvironments()
 	}
 }

@@ -12,6 +12,17 @@ extension UsersStore {
 		)
 	}
 
+	static var sampleLoaded: UsersStore {
+		.init(
+			storage: [.users: [User].samples!] as MemoryStorage,
+			getUsers: {
+				Just(.samples)
+					.setFailureType(to: FetchError.self)
+					.eraseToAnyPublisher()
+			}
+		)
+	}
+
 	static var sampleLoading: UsersStore {
 		.init(
 			storage: [:] as MemoryStorage,
