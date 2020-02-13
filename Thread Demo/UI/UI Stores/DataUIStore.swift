@@ -35,6 +35,7 @@ final class DataUIStore: ObservableObject {
 			.removeDuplicates(by: ==)
 			// !!!: Avoid jarring UI updates. Also avoids a `SwiftUI.List` bug (iOS 13.0) that makes it layout incorrectly with quick updates
 			.throttle(for: .seconds(0.3), scheduler: RunLoop.main, latest: true)
+			.log(.info, on: Self.logger)
 			.sink(receiveValue: { [weak self] posts, users, comments in
 				guard let self = self else { return }
 				setIfUnequal(&self.posts, to: posts)
@@ -44,6 +45,12 @@ final class DataUIStore: ObservableObject {
 	}
 
 	func fetchAll(_ fetchType: FetchType = .remoteFirst(forced: false)) {
+		Self.logger.info("Fetching: \(public: String(describing: fetchType))")
 		self.fetchAll(fetchType)
 	}
+}
+
+// MARK: - Logger
+private extension DataUIStore {
+	static let logger: Logger = .init(label: "DataUIStore")
 }

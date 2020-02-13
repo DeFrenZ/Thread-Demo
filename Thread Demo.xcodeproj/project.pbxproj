@@ -17,6 +17,7 @@
 		0355999F23F580860054DF17 /* DataUIStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0355999E23F580860054DF17 /* DataUIStore.swift */; };
 		035599A123F59BF70054DF17 /* DataUIStore+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035599A023F59BF70054DF17 /* DataUIStore+Model.swift */; };
 		035599A323F59DC90054DF17 /* DataUIStore.preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035599A223F59DC90054DF17 /* DataUIStore.preview.swift */; };
+		035599A523F5B2D50054DF17 /* Publisher+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035599A423F5B2D50054DF17 /* Publisher+Log.swift */; };
 		036766EA235A3608000E9C8D /* LogHandler+OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766E9235A3608000E9C8D /* LogHandler+OSLog.swift */; };
 		036766EC235A36F4000E9C8D /* LogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766EB235A36F4000E9C8D /* LogHandler.swift */; };
 		036766EE235A37EC000E9C8D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766ED235A37EC000E9C8D /* Logger.swift */; };
@@ -125,6 +126,7 @@
 		0355999E23F580860054DF17 /* DataUIStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUIStore.swift; sourceTree = "<group>"; };
 		035599A023F59BF70054DF17 /* DataUIStore+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataUIStore+Model.swift"; sourceTree = "<group>"; };
 		035599A223F59DC90054DF17 /* DataUIStore.preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUIStore.preview.swift; sourceTree = "<group>"; };
+		035599A423F5B2D50054DF17 /* Publisher+Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Log.swift"; sourceTree = "<group>"; };
 		036766E9235A3608000E9C8D /* LogHandler+OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LogHandler+OSLog.swift"; sourceTree = "<group>"; };
 		036766EB235A36F4000E9C8D /* LogHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHandler.swift; sourceTree = "<group>"; };
 		036766ED235A37EC000E9C8D /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
@@ -262,6 +264,7 @@
 				036766F7235A3941000E9C8D /* LogHandler+Stdio.swift */,
 				036766E9235A3608000E9C8D /* LogHandler+OSLog.swift */,
 				036766F1235A3849000E9C8D /* LoggingSystem.swift */,
+				035599A423F5B2D50054DF17 /* Publisher+Log.swift */,
 			);
 			path = Log;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				036766FA235A4FBC000E9C8D /* LoggingSystem+App.swift in Sources */,
 				0312DE8E23EC6CD30066C14B /* Collection.extensions.swift in Sources */,
 				036766EA235A3608000E9C8D /* LogHandler+OSLog.swift in Sources */,
+				035599A523F5B2D50054DF17 /* Publisher+Log.swift in Sources */,
 				03E8A7F2234DE23900259855 /* AppDelegate.swift in Sources */,
 				0393B533235389E200FEC0E1 /* CommentsStore.preview.swift in Sources */,
 				0393B54F235726EB00FEC0E1 /* PostDetailView.swift in Sources */,
