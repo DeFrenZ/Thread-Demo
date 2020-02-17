@@ -6,19 +6,21 @@ final class CommentsStore: ObservableObject {
 	@Published private(set) var comments: StoreData<[Comment]> = .init()
 	@Stored(key: .comments) private var stored: [Comment]?
 
-	private let getComments: () -> AnyPublisher<[Comment], FetchError>
+	private let getComments: GetComments
 	/// The cancellables of the last remote request. Might hold values relative to an already completed fetch
 	private var cancellables: Set<AnyCancellable> = []
 
 	init(
 		storage: Storage,
-		getComments: @escaping () -> AnyPublisher<[Comment], FetchError>
+		getComments: @escaping GetComments
 	) {
 		self._stored.storage = storage
 		self.getComments = getComments
 
 		try? fetchFromStorage()
 	}
+
+	typealias GetComments = () -> AnyPublisher<[Comment], FetchError>
 }
 
 extension CommentsStore {

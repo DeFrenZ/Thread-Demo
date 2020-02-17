@@ -6,19 +6,21 @@ final class UsersStore: ObservableObject {
 	@Published private(set) var users: StoreData<[User]> = .init()
 	@Stored(key: .users) private var stored: [User]?
 
-	private let getUsers: () -> AnyPublisher<[User], FetchError>
+	private let getUsers: GetUsers
 	/// The cancellables of the last remote request. Might hold values relative to an already completed fetch
 	private var cancellables: Set<AnyCancellable> = []
 
 	init(
 		storage: Storage,
-		getUsers: @escaping () -> AnyPublisher<[User], FetchError>
+		getUsers: @escaping GetUsers
 	) {
 		self._stored.storage = storage
 		self.getUsers = getUsers
 
 		try? fetchFromStorage()
 	}
+
+	typealias GetUsers = () -> AnyPublisher<[User], FetchError>
 }
 
 extension UsersStore {
