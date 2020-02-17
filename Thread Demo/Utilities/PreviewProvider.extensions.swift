@@ -38,8 +38,8 @@ struct MultiplePreviewEnvironments: ViewModifier {
 	}
 
 	fileprivate static var defaultSizeCategories: [ContentSizeCategory] = [
-		.extraSmall,
 		.medium,
+		.extraSmall,
 		.extraExtraLarge,
 	]
 	fileprivate static var defaultColorSchemes: [ColorScheme] = [.light, .dark]
