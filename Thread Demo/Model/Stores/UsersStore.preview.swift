@@ -1,6 +1,6 @@
 import Combine
 
-extension UsersStore {
+extension UsersStore where S == ImmediateScheduler {
 	static var sample: UsersStore {
 		.init(
 			storage: [:] as MemoryStorage,
@@ -8,7 +8,8 @@ extension UsersStore {
 				Just(.samples)
 					.setFailureType(to: FetchError.self)
 					.eraseToAnyPublisher()
-			}
+			},
+			scheduler: .shared
 		)
 	}
 
@@ -19,14 +20,16 @@ extension UsersStore {
 				Just(.samples)
 					.setFailureType(to: FetchError.self)
 					.eraseToAnyPublisher()
-			}
+			},
+			scheduler: .shared
 		)
 	}
 
 	static var sampleLoading: UsersStore {
 		.init(
 			storage: [:] as MemoryStorage,
-			getUsers: { Empty(completeImmediately: false).eraseToAnyPublisher() }
+			getUsers: { Empty(completeImmediately: false).eraseToAnyPublisher() },
+			scheduler: .shared
 		)
 	}
 }

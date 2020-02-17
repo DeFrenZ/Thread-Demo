@@ -1,6 +1,6 @@
 import Combine
 
-extension CommentsStore {
+extension CommentsStore where S == ImmediateScheduler {
 	static var sample: CommentsStore {
 		.init(
 			storage: [:] as MemoryStorage,
@@ -8,7 +8,8 @@ extension CommentsStore {
 				Just(.samples)
 					.setFailureType(to: FetchError.self)
 					.eraseToAnyPublisher()
-			}
+			},
+			scheduler: .shared
 		)
 	}
 
@@ -19,14 +20,16 @@ extension CommentsStore {
 				Just(.samples)
 					.setFailureType(to: FetchError.self)
 					.eraseToAnyPublisher()
-			}
+			},
+			scheduler: .shared
 		)
 	}
 
 	static var sampleLoading: CommentsStore {
 		.init(
 			storage: [:] as MemoryStorage,
-			getComments: { Empty(completeImmediately: false).eraseToAnyPublisher() }
+			getComments: { Empty(completeImmediately: false).eraseToAnyPublisher() },
+			scheduler: .shared
 		)
 	}
 }

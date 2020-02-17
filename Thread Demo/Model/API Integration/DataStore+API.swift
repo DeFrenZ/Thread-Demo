@@ -1,7 +1,7 @@
 import Foundation
 import Combine
 
-extension DataStore {
+extension DataStore where S == RunLoop {
 	convenience init(
 		storage: Storage = UserDefaults.standard,
 		api: API.Client

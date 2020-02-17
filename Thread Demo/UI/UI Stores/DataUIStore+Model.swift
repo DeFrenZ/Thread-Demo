@@ -1,5 +1,7 @@
+import Combine
+
 extension DataUIStore {
-	convenience init(_ dataStore: DataStore) {
+	convenience init <S: Scheduler> (_ dataStore: DataStore<S>) {
 		self.init(
 			initialPosts: dataStore.posts,
 			posts: dataStore.$posts.eraseToAnyPublisher(),

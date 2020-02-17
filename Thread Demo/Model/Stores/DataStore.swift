@@ -2,20 +2,20 @@ import Combine
 import Foundation
 
 /// An object managing the data of multiple stores. It provides access to higher level operations, and keeps the data in sync.
-final class DataStore: ObservableObject {
+final class DataStore<S: Scheduler>: ObservableObject {
 	@Published private(set) var posts: StoreData<[Post.Connected]> = .init()
 	@Published private(set) var users: StoreData<[User.Connected]> = .init()
 	@Published private(set) var comments: StoreData<[Comment.Connected]> = .init()
 
-	private let postsStore: PostsStore
-	private let usersStore: UsersStore
-	private let commentsStore: CommentsStore
+	private let postsStore: PostsStore<S>
+	private let usersStore: UsersStore<S>
+	private let commentsStore: CommentsStore<S>
 	private var cancellable: AnyCancellable?
 
 	init(
-		postsStore: PostsStore,
-		usersStore: UsersStore,
-		commentsStore: CommentsStore
+		postsStore: PostsStore<S>,
+		usersStore: UsersStore<S>,
+		commentsStore: CommentsStore<S>
 	) {
 		self.postsStore = postsStore
 		self.usersStore = usersStore

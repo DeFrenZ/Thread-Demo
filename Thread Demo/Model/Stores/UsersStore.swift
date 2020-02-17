@@ -2,25 +2,41 @@ import Combine
 import Foundation
 
 /// An object managing all the data relative to users. It's responsible for retrieving them, storing them and vending them.
-final class UsersStore: ObservableObject {
+final class UsersStore<S: Scheduler>: ObservableObject {
 	@Published private(set) var users: StoreData<[User]> = .init()
 	@Stored(key: .users) private var stored: [User]?
 
 	private let getUsers: GetUsers
 	/// The cancellables of the last remote request. Might hold values relative to an already completed fetch
+	private let scheduler: S
 	private var cancellables: Set<AnyCancellable> = []
 
 	init(
 		storage: Storage,
-		getUsers: @escaping GetUsers
+		getUsers: @escaping GetUsers,
+		scheduler: S
 	) {
 		self._stored.storage = storage
 		self.getUsers = getUsers
+		self.scheduler = scheduler
 
 		try? fetchFromStorage()
 	}
 
 	typealias GetUsers = () -> AnyPublisher<[User], FetchError>
+}
+
+extension UsersStore where S == RunLoop {
+	convenience init(
+		storage: Storage,
+		getUsers: @escaping GetUsers
+	) {
+		self.init(
+			storage: storage,
+			getUsers: getUsers,
+			scheduler: .main
+		)
+	}
 }
 
 extension UsersStore {
@@ -58,6 +74,7 @@ extension UsersStore {
 		cancellables.removeAll()
 		users.state = .retrieving
 		let publisher = getUsers()
+			.receive(on: scheduler)
 
 		publisher
 			.ignoreErrors()
@@ -70,7 +87,6 @@ extension UsersStore {
 			.map({ [users] result in
 				updated(users, with: { $0.setRemoteValue(to: result) })
 			})
-			.receive(on: RunLoop.main)
 			.assign(to: \.users, on: self)
 			.store(in: &cancellables)
 

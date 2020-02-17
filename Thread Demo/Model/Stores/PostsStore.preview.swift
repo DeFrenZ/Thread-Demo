@@ -1,6 +1,6 @@
 import Combine
 
-extension PostsStore {
+extension PostsStore where S == ImmediateScheduler {
 	static var sample: PostsStore {
 		.init(
 			storage: [:] as MemoryStorage,
@@ -8,7 +8,8 @@ extension PostsStore {
 				Just(.samples)
 					.setFailureType(to: FetchError.self)
 					.eraseToAnyPublisher()
-			}
+			},
+			scheduler: .shared
 		)
 	}
 
@@ -19,14 +20,16 @@ extension PostsStore {
 				Just(.samples)
 					.setFailureType(to: FetchError.self)
 					.eraseToAnyPublisher()
-			}
+			},
+			scheduler: .shared
 		)
 	}
 
 	static var sampleLoading: PostsStore {
 		.init(
 			storage: [:] as MemoryStorage,
-			getPosts: { Empty(completeImmediately: false).eraseToAnyPublisher() }
+			getPosts: { Empty(completeImmediately: false).eraseToAnyPublisher() },
+			scheduler: .shared
 		)
 	}
 }

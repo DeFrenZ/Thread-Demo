@@ -2,25 +2,41 @@ import Combine
 import Foundation
 
 /// An object managing all the data relative to posts. It's responsible for retrieving them, storing them and vending them.
-final class PostsStore: ObservableObject {
+final class PostsStore<S: Scheduler>: ObservableObject {
 	@Published private(set) var posts: StoreData<[Post]> = .init()
 	@Stored(key: .posts) private var stored: [Post]?
 
 	private let getPosts: GetPosts
 	/// The cancellables of the last remote request. Might hold values relative to an already completed fetch
+	private let scheduler: S
 	private var cancellables: Set<AnyCancellable> = []
 
 	init(
 		storage: Storage,
-		getPosts: @escaping GetPosts
+		getPosts: @escaping GetPosts,
+		scheduler: S
 	) {
 		self._stored.storage = storage
 		self.getPosts = getPosts
+		self.scheduler = scheduler
 
 		try? fetchFromStorage()
 	}
 
 	typealias GetPosts = () -> AnyPublisher<[Post], FetchError>
+}
+
+extension PostsStore where S == RunLoop {
+	convenience init(
+		storage: Storage,
+		getPosts: @escaping GetPosts
+	) {
+		self.init(
+			storage: storage,
+			getPosts: getPosts,
+			scheduler: .main
+		)
+	}
 }
 
 extension PostsStore {
@@ -58,6 +74,7 @@ extension PostsStore {
 		cancellables.removeAll()
 		posts.state = .retrieving
 		let publisher = getPosts()
+			.receive(on: scheduler)
 
 		publisher
 			.ignoreErrors()
@@ -70,7 +87,6 @@ extension PostsStore {
 			.map({ [posts] result in
 				updated(posts, with: { $0.setRemoteValue(to: result) })
 			})
-			.receive(on: RunLoop.main)
 			.assign(to: \.posts, on: self)
 			.store(in: &cancellables)
 

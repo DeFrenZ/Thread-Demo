@@ -1,4 +1,6 @@
-extension DataStore {
+import Combine
+
+extension DataStore where S == ImmediateScheduler {
 	static var sample: DataStore {
 		.init(
 			postsStore: .sample,
