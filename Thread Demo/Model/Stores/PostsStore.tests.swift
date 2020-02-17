@@ -3,118 +3,121 @@ import XCTest
 import Combine
 
 final class PostsStoreTests: XCTestCase {
-	var storage: MemoryStorage = [:]
-	var postsSubject: PassthroughSubject<[Post], FetchError>!
+	private var storage: MemoryStorage = [:]
+	private var lastPostsSubject: PassthroughSubject<[Post], FetchError>!
+	private var postsHistory: [StoreData<[Post]>] = []
+	private var postsHistoryCancellable: Cancellable!
 	// `lazy` to allow capture of other properties
-	lazy var store: PostsStore = .init(
+	private lazy var store: PostsStore = .init(
 		storage: self.storage,
 		getPosts: {
-			self.postsSubject = .init()
-			return self.postsSubject
+			let subject = PassthroughSubject<[Post], FetchError>()
+			self.lastPostsSubject = subject
+			return subject
 				// Add buffer so that values sent before the subscription activates still go through
 				.buffer(size: .max, prefetch: .byRequest, whenFull: .dropNewest)
 				.eraseToAnyPublisher()
-		}
+		},
+		scheduler: ImmediateScheduler.shared
 	)
 
 	override func setUp() {
 		super.setUp()
 
-		// Trigger the instantiation of the `lazy` property
-		_ = store
+		postsHistoryCancellable = store.$posts
+			.scan([], { $0 + [$1] })
+			.assign(to: \.postsHistory, on: self)
 	}
 }
 
 // MARK: Tests
 extension PostsStoreTests {
 	func test_givenANewStore_thenItsIdle_andHasNoPosts() {
-		if case .idle = store.posts.state {} else {
-			XCTFail("The store should be \(type(of: store.posts.state).idle), but its state is \(store.posts.state)")
-		}
-		XCTAssertNil(store.posts.lastValidData, "Should not have posts yet")
+		XCTAssertEqual(postsHistory, [
+			.init(lastValidData: nil, state: .idle),
+		])
 	}
 
 	func test_givenANewStore_whenItFetches_andNoResponseIsRetrievedYet_thenItsRetrieving_andHasNoPosts() {
 		store.fetch(.remoteOnly(forced: false))
-		store.$posts.awaitSynchronouslyForNextOutput()
 
-		if case .retrieving = store.posts.state {} else {
-			XCTFail("The store should be \(type(of: store.posts.state).retrieving), but its state is \(store.posts.state)")
-		}
-		XCTAssertNil(store.posts.lastValidData, "Should not have posts yet")
+		XCTAssertEqual(postsHistory, [
+			.init(lastValidData: nil, state: .idle),
+			.init(lastValidData: nil, state: .retrieving),
+		])
 	}
 
 	func test_givenANewStore_whenItFetches_andReceivesAResponse_thenItsIdle_andHasPosts() {
 		store.fetch(.remoteOnly(forced: false))
-		postsSubject.send(Self.posts)
-		postsSubject.send(completion: .finished)
-		store.$posts.awaitSynchronouslyForNextOutputs(count: 2)
+		lastPostsSubject.send(Self.posts)
+		lastPostsSubject.send(completion: .finished)
 
-		if case .idle = store.posts.state {} else {
-			XCTFail("The store should be \(type(of: store.posts.state).idle), but its state is \(store.posts.state)")
-		}
-		XCTAssertEqual(store.posts.lastValidData?.data.count, Self.posts.count, "Should have the same number of posts that were sent")
+		XCTAssertEqual(postsHistory, [
+			.init(lastValidData: nil, state: .idle),
+			.init(lastValidData: nil, state: .retrieving),
+			.init(lastValidData: (data: Self.posts, source: .remote), state: .idle),
+		])
 	}
 
 	func test_givenANewStore_whenItFetches_andReceivesAFailure_thenItsFailed_andHasNoPosts() {
 		store.fetch(.remoteOnly(forced: false))
-		let error = FetchError.badResource
-		postsSubject.send(completion: .failure(error))
-		store.$posts.awaitSynchronouslyForNextOutputs(count: 2)
+		lastPostsSubject.send(completion: .failure(Self.error))
 
-		if case .failed = store.posts.state {} else {
-			XCTFail("The store should be \(type(of: store.posts.state).failed(error)), but its state is \(store.posts.state)")
-		}
-		XCTAssertNil(store.posts.lastValidData, "Should not have posts yet")
+		XCTAssertEqual(postsHistory, [
+			.init(lastValidData: nil, state: .idle),
+			.init(lastValidData: nil, state: .retrieving),
+			.init(lastValidData: nil, state: .failed(Self.error)),
+		])
 	}
 
 	func test_givenAStoreWithPosts_whenItFetches_andNoResponseIsRetrievedYet_thenItsRetrieving_andHasThePreviousPosts() {
 		store.fetch(.remoteOnly(forced: false))
-		postsSubject.send(Self.previousPosts)
-		postsSubject.send(completion: .finished)
-		store.$posts.awaitSynchronouslyForNextOutputs(count: 2)
+		lastPostsSubject.send(Self.previousPosts)
+		lastPostsSubject.send(completion: .finished)
 
 		store.fetch(.remoteOnly(forced: true))
-		store.$posts.awaitSynchronouslyForNextOutput()
 
-		if case .retrieving = store.posts.state {} else {
-			XCTFail("The store should be \(type(of: store.posts.state).retrieving), but its state is \(store.posts.state)")
-		}
-		XCTAssertEqual(store.posts.lastValidData?.data.count, Self.previousPosts.count, "Should have the same number of posts that were sent previously")
+		XCTAssertEqual(postsHistory, [
+			.init(lastValidData: nil, state: .idle),
+			.init(lastValidData: nil, state: .retrieving),
+			.init(lastValidData: (data: Self.previousPosts, source: .remote), state: .idle),
+			.init(lastValidData: (data: Self.previousPosts, source: .remote), state: .retrieving),
+		])
 	}
 
 	func test_givenAStoreWithPosts_whenItFetches_andReceivesAResponse_thenItsIdle_andHasTheNewPosts() {
 		store.fetch(.remoteOnly(forced: false))
-		postsSubject.send(Self.previousPosts)
-		postsSubject.send(completion: .finished)
-		store.$posts.awaitSynchronouslyForNextOutputs(count: 2)
+		lastPostsSubject.send(Self.previousPosts)
+		lastPostsSubject.send(completion: .finished)
 
 		store.fetch(.remoteOnly(forced: true))
-		postsSubject.send(Self.posts)
-		postsSubject.send(completion: .finished)
-		store.$posts.awaitSynchronouslyForNextOutputs(count: 2)
+		lastPostsSubject.send(Self.posts)
+		lastPostsSubject.send(completion: .finished)
 
-		if case .idle = store.posts.state {} else {
-			XCTFail("The store should be \(type(of: store.posts.state).idle), but its state is \(store.posts.state)")
-		}
-		XCTAssertEqual(store.posts.lastValidData?.data.count, Self.posts.count, "Should have the same number of posts that were sent afterwards")
+		XCTAssertEqual(postsHistory, [
+			.init(lastValidData: nil, state: .idle),
+			.init(lastValidData: nil, state: .retrieving),
+			.init(lastValidData: (data: Self.previousPosts, source: .remote), state: .idle),
+			.init(lastValidData: (data: Self.previousPosts, source: .remote), state: .retrieving),
+			.init(lastValidData: (data: Self.posts, source: .remote), state: .idle),
+		])
 	}
 
 	func test_givenAStoreWithPosts_whenItFetches_andReceivesAFailure_thenItsFailed_andHasThePreviousPosts() {
 		store.fetch(.remoteOnly(forced: false))
-		postsSubject.send(Self.previousPosts)
-		postsSubject.send(completion: .finished)
-		store.$posts.awaitSynchronouslyForNextOutputs(count: 2)
+		lastPostsSubject.send(Self.previousPosts)
+		lastPostsSubject.send(completion: .finished)
 
 		store.fetch(.remoteOnly(forced: true))
-		let error = FetchError.badResource
-		postsSubject.send(completion: .failure(error))
-		store.$posts.awaitSynchronouslyForNextOutputs(count: 2)
+		lastPostsSubject.send(completion: .failure(Self.error))
 
-		if case .failed = store.posts.state {} else {
-			XCTFail("The store should be \(type(of: store.posts.state).failed(error)), but its state is \(store.posts.state)")
-		}
-		XCTAssertEqual(store.posts.lastValidData?.data.count, Self.previousPosts.count, "Should have the same number of posts that were sent previously")
+		XCTAssertEqual(postsHistory, [
+			.init(lastValidData: nil, state: .idle),
+			.init(lastValidData: nil, state: .retrieving),
+			.init(lastValidData: (data: Self.previousPosts, source: .remote), state: .idle),
+			.init(lastValidData: (data: Self.previousPosts, source: .remote), state: .retrieving),
+			.init(lastValidData: (data: Self.previousPosts, source: .remote), state: .failed(Self.error)),
+		])
 	}
 }
 
@@ -122,4 +125,5 @@ extension PostsStoreTests {
 private extension PostsStoreTests {
 	static let previousPosts: [Post] = Array([Post].samples.prefix(5))
 	static let posts: [Post] = Array([Post].samples.dropFirst(5))
+	static let error: FetchError = .badResource
 }

@@ -3,118 +3,121 @@ import XCTest
 import Combine
 
 final class CommentsStoreTests: XCTestCase {
-	var storage: MemoryStorage = [:]
-	var commentsSubject: PassthroughSubject<[Comment], FetchError>!
+	private var storage: MemoryStorage = [:]
+	private var lastCommentsSubject: PassthroughSubject<[Comment], FetchError>!
+	private var commentsHistory: [StoreData<[Comment]>] = []
+	private var commentsHistoryCancellable: Cancellable!
 	// `lazy` to allow capture of other properties
-	lazy var store: CommentsStore = .init(
+	private lazy var store: CommentsStore = .init(
 		storage: self.storage,
 		getComments: {
-			self.commentsSubject = .init()
-			return self.commentsSubject
+			let subject = PassthroughSubject<[Comment], FetchError>()
+			self.lastCommentsSubject = subject
+			return subject
 				// Add buffer so that values sent before the subscription activates still go through
 				.buffer(size: .max, prefetch: .byRequest, whenFull: .dropNewest)
 				.eraseToAnyPublisher()
-		}
+		},
+		scheduler: ImmediateScheduler.shared
 	)
 
 	override func setUp() {
 		super.setUp()
 
-		// Trigger the instantiation of the `lazy` property
-		_ = store
+		commentsHistoryCancellable = store.$comments
+			.scan([], { $0 + [$1] })
+			.assign(to: \.commentsHistory, on: self)
 	}
 }
 
 // MARK: Tests
 extension CommentsStoreTests {
-	func test_givenANewStore_thenItsIdle_andHasNoPosts() {
-		if case .idle = store.comments.state {} else {
-			XCTFail("The store should be \(type(of: store.comments.state).idle), but its state is \(store.comments.state)")
-		}
-		XCTAssertNil(store.comments.lastValidData, "Should not have posts yet")
+	func test_givenANewStore_thenItsIdle_andHasNoComments() {
+		XCTAssertEqual(commentsHistory, [
+			.init(lastValidData: nil, state: .idle),
+		])
 	}
 
-	func test_givenANewStore_whenItFetches_andNoResponseIsRetrievedYet_thenItsRetrieving_andHasNoPosts() {
+	func test_givenANewStore_whenItFetches_andNoResponseIsRetrievedYet_thenItsRetrieving_andHasNoComments() {
 		store.fetch(.remoteOnly(forced: false))
-		store.$comments.awaitSynchronouslyForNextOutput()
 
-		if case .retrieving = store.comments.state {} else {
-			XCTFail("The store should be \(type(of: store.comments.state).retrieving), but its state is \(store.comments.state)")
-		}
-		XCTAssertNil(store.comments.lastValidData, "Should not have posts yet")
+		XCTAssertEqual(commentsHistory, [
+			.init(lastValidData: nil, state: .idle),
+			.init(lastValidData: nil, state: .retrieving),
+		])
 	}
 
-	func test_givenANewStore_whenItFetches_andReceivesAResponse_thenItsIdle_andHasPosts() {
+	func test_givenANewStore_whenItFetches_andReceivesAResponse_thenItsIdle_andHasComments() {
 		store.fetch(.remoteOnly(forced: false))
-		commentsSubject.send(Self.comments)
-		commentsSubject.send(completion: .finished)
-		store.$comments.awaitSynchronouslyForNextOutputs(count: 2)
+		lastCommentsSubject.send(Self.comments)
+		lastCommentsSubject.send(completion: .finished)
 
-		if case .idle = store.comments.state {} else {
-			XCTFail("The store should be \(type(of: store.comments.state).idle), but its state is \(store.comments.state)")
-		}
-		XCTAssertEqual(store.comments.lastValidData?.data.count, Self.comments.count, "Should have the same number of posts that were sent")
+		XCTAssertEqual(commentsHistory, [
+			.init(lastValidData: nil, state: .idle),
+			.init(lastValidData: nil, state: .retrieving),
+			.init(lastValidData: (data: Self.comments, source: .remote), state: .idle),
+		])
 	}
 
-	func test_givenANewStore_whenItFetches_andReceivesAFailure_thenItsFailed_andHasNoPosts() {
+	func test_givenANewStore_whenItFetches_andReceivesAFailure_thenItsFailed_andHasNoComments() {
 		store.fetch(.remoteOnly(forced: false))
-		let error = FetchError.badResource
-		commentsSubject.send(completion: .failure(error))
-		store.$comments.awaitSynchronouslyForNextOutputs(count: 2)
+		lastCommentsSubject.send(completion: .failure(Self.error))
 
-		if case .failed = store.comments.state {} else {
-			XCTFail("The store should be \(type(of: store.comments.state).failed(error)), but its state is \(store.comments.state)")
-		}
-		XCTAssertNil(store.comments.lastValidData, "Should not have posts yet")
+		XCTAssertEqual(commentsHistory, [
+			.init(lastValidData: nil, state: .idle),
+			.init(lastValidData: nil, state: .retrieving),
+			.init(lastValidData: nil, state: .failed(Self.error)),
+		])
 	}
 
-	func test_givenAStoreWithPosts_whenItFetches_andNoResponseIsRetrievedYet_thenItsRetrieving_andHasThePreviousPosts() {
+	func test_givenAStoreWithComments_whenItFetches_andNoResponseIsRetrievedYet_thenItsRetrieving_andHasThePreviousComments() {
 		store.fetch(.remoteOnly(forced: false))
-		commentsSubject.send(Self.previousComments)
-		commentsSubject.send(completion: .finished)
-		store.$comments.awaitSynchronouslyForNextOutputs(count: 2)
+		lastCommentsSubject.send(Self.previousComments)
+		lastCommentsSubject.send(completion: .finished)
 
 		store.fetch(.remoteOnly(forced: true))
-		store.$comments.awaitSynchronouslyForNextOutput()
 
-		if case .retrieving = store.comments.state {} else {
-			XCTFail("The store should be \(type(of: store.comments.state).retrieving), but its state is \(store.comments.state)")
-		}
-		XCTAssertEqual(store.comments.lastValidData?.data.count, Self.previousComments.count, "Should have the same number of posts that were sent previously")
+		XCTAssertEqual(commentsHistory, [
+			.init(lastValidData: nil, state: .idle),
+			.init(lastValidData: nil, state: .retrieving),
+			.init(lastValidData: (data: Self.previousComments, source: .remote), state: .idle),
+			.init(lastValidData: (data: Self.previousComments, source: .remote), state: .retrieving),
+		])
 	}
 
-	func test_givenAStoreWithPosts_whenItFetches_andReceivesAResponse_thenItsIdle_andHasTheNewPosts() {
+	func test_givenAStoreWithComments_whenItFetches_andReceivesAResponse_thenItsIdle_andHasTheNewComments() {
 		store.fetch(.remoteOnly(forced: false))
-		commentsSubject.send(Self.previousComments)
-		commentsSubject.send(completion: .finished)
-		store.$comments.awaitSynchronouslyForNextOutputs(count: 2)
+		lastCommentsSubject.send(Self.previousComments)
+		lastCommentsSubject.send(completion: .finished)
 
 		store.fetch(.remoteOnly(forced: true))
-		commentsSubject.send(Self.comments)
-		commentsSubject.send(completion: .finished)
-		store.$comments.awaitSynchronouslyForNextOutputs(count: 2)
+		lastCommentsSubject.send(Self.comments)
+		lastCommentsSubject.send(completion: .finished)
 
-		if case .idle = store.comments.state {} else {
-			XCTFail("The store should be \(type(of: store.comments.state).idle), but its state is \(store.comments.state)")
-		}
-		XCTAssertEqual(store.comments.lastValidData?.data.count, Self.comments.count, "Should have the same number of posts that were sent afterwards")
+		XCTAssertEqual(commentsHistory, [
+			.init(lastValidData: nil, state: .idle),
+			.init(lastValidData: nil, state: .retrieving),
+			.init(lastValidData: (data: Self.previousComments, source: .remote), state: .idle),
+			.init(lastValidData: (data: Self.previousComments, source: .remote), state: .retrieving),
+			.init(lastValidData: (data: Self.comments, source: .remote), state: .idle),
+		])
 	}
 
-	func test_givenAStoreWithPosts_whenItFetches_andReceivesAFailure_thenItsFailed_andHasThePreviousPosts() {
+	func test_givenAStoreWithComments_whenItFetches_andReceivesAFailure_thenItsFailed_andHasThePreviousComments() {
 		store.fetch(.remoteOnly(forced: false))
-		commentsSubject.send(Self.previousComments)
-		commentsSubject.send(completion: .finished)
-		store.$comments.awaitSynchronouslyForNextOutputs(count: 2)
+		lastCommentsSubject.send(Self.previousComments)
+		lastCommentsSubject.send(completion: .finished)
 
 		store.fetch(.remoteOnly(forced: true))
-		let error = FetchError.badResource
-		commentsSubject.send(completion: .failure(error))
-		store.$comments.awaitSynchronouslyForNextOutputs(count: 2)
+		lastCommentsSubject.send(completion: .failure(Self.error))
 
-		if case .failed = store.comments.state {} else {
-			XCTFail("The store should be \(type(of: store.comments.state).failed(error)), but its state is \(store.comments.state)")
-		}
-		XCTAssertEqual(store.comments.lastValidData?.data.count, Self.previousComments.count, "Should have the same number of posts that were sent previously")
+		XCTAssertEqual(commentsHistory, [
+			.init(lastValidData: nil, state: .idle),
+			.init(lastValidData: nil, state: .retrieving),
+			.init(lastValidData: (data: Self.previousComments, source: .remote), state: .idle),
+			.init(lastValidData: (data: Self.previousComments, source: .remote), state: .retrieving),
+			.init(lastValidData: (data: Self.previousComments, source: .remote), state: .failed(Self.error)),
+		])
 	}
 }
 
@@ -122,4 +125,5 @@ extension CommentsStoreTests {
 private extension CommentsStoreTests {
 	static let previousComments: [Comment] = Array([Comment].samples.prefix(5))
 	static let comments: [Comment] = Array([Comment].samples.dropFirst(5))
+	static let error: FetchError = .badResource
 }

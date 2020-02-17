@@ -13,7 +13,8 @@ final class DataStoreTests: XCTestCase {
 				// Add buffer so that values sent before the subscription activates still go through
 				.buffer(size: .max, prefetch: .byRequest, whenFull: .dropNewest)
 				.eraseToAnyPublisher()
-		}
+		},
+		scheduler: ImmediateScheduler.shared
 	)
 	var usersSubject: PassthroughSubject<[User], FetchError>!
 	lazy var usersStore: UsersStore = .init(
@@ -24,7 +25,8 @@ final class DataStoreTests: XCTestCase {
 				// Add buffer so that values sent before the subscription activates still go through
 				.buffer(size: .max, prefetch: .byRequest, whenFull: .dropNewest)
 				.eraseToAnyPublisher()
-		}
+		},
+		scheduler: ImmediateScheduler.shared
 	)
 	var commentsSubject: PassthroughSubject<[Comment], FetchError>!
 	// `lazy` to allow capture of other properties
@@ -36,7 +38,8 @@ final class DataStoreTests: XCTestCase {
 				// Add buffer so that values sent before the subscription activates still go through
 				.buffer(size: .max, prefetch: .byRequest, whenFull: .dropNewest)
 				.eraseToAnyPublisher()
-		}
+		},
+		scheduler: ImmediateScheduler.shared
 	)
 	lazy var store: DataStore = .init(
 		postsStore: self.postsStore,
@@ -75,8 +78,6 @@ extension DataStoreTests {
 		usersSubject.send(completion: .finished)
 		commentsSubject.send(.samples)
 		commentsSubject.send(completion: .finished)
-		// TODO: Should wait aynchronously for all three publishers, but not synchronously on each
-		postsStore.$posts.awaitSynchronouslyForNextOutputs(count: 2)
 
 		assertPostsAreConnectedToUsers()
 		assertCommentsAreConnectedToPosts()
