@@ -18,7 +18,7 @@ extension Array where Element == User.Connected {
 	}
 
 	static var samples: Self! {
-		DataStore.connectPosts(.baseSamples, toUsers: .baseSamples).users
+		[Post.Connected].baseSamples.connectedTo(users: .baseSamples).users
 	}
 }
 

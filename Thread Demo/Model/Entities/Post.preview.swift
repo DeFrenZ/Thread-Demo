@@ -18,8 +18,8 @@ extension Array where Element == Post.Connected {
 	}
 
 	static var samples: Self! {
-		let (withUsers, _) = DataStore.connectPosts(.baseSamples, toUsers: .baseSamples)
-		let (_, connected) = DataStore.connectComments(.baseSamples, toPosts: withUsers)
+		let (withUsers, _) = baseSamples.connectedTo(users: .baseSamples)
+		let (_, connected) = [Comment.Connected].baseSamples.connectedTo(posts: withUsers)
 		return connected
 	}
 }

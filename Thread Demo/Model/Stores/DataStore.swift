@@ -25,8 +25,7 @@ final class DataStore: ObservableObject {
 	}
 
 	private func bindToChildrenStores() {
-		(self.posts, self.users, self.comments) = Self.connectChildrenData(
-			posts: postsStore.posts,
+		(self.posts, self.users, self.comments) = postsStore.posts.connectedTo(
 			users: usersStore.users,
 			comments: commentsStore.comments
 		)
@@ -34,7 +33,7 @@ final class DataStore: ObservableObject {
 		self.cancellable = postsStore.$posts
 			.combineLatest(usersStore.$users, commentsStore.$comments)
 			.removeDuplicates(by: ==)
-			.map(Self.connectChildrenData(posts:users:comments:))
+			.map({ $0.connectedTo(users: $1, comments: $2) })
 			.logOutputs(.info, on: logger)
 			.sink(receiveValue: { [weak self] posts, users, comments in
 				guard let self = self else { return }
@@ -53,68 +52,73 @@ extension DataStore {
 		usersStore.fetch(fetchType)
 		commentsStore.fetch(fetchType)
 	}
+}
 
-	static func connectChildrenData(
-		posts: StoreData<[Post]>,
-		users: StoreData<[User]>,
-		comments: StoreData<[Comment]>
+extension RemoteData where Data == [Post] {
+	func connectedTo(
+		users: RemoteData<[User], Failure>,
+		comments: RemoteData<[Comment], Failure>
 	) -> (
-		posts: StoreData<[Post.Connected]>,
-		users: StoreData<[User.Connected]>,
-		comments: StoreData<[Comment.Connected]>
+		posts: RemoteData<[Post.Connected], Failure>,
+		users: RemoteData<[User.Connected], Failure>,
+		comments: RemoteData<[Comment.Connected], Failure>
 	) {
-		let basePosts = posts.map({ $0.map({ Post.Connected(post: $0) }) })
+		let basePosts = map({ $0.map({ Post.Connected(post: $0) }) })
 		let baseUsers = users.map({ $0.map({ User.Connected(user: $0) }) })
 		let baseComments = comments.map({ $0.map({ Comment.Connected(comment: $0) }) })
 
-		let connectedPosts: StoreData<[Post.Connected]> = basePosts.map({ base in
+		let connectedPosts: RemoteData<[Post.Connected], Failure> = basePosts.map({ base in
 			let withUsers = (baseUsers.lastValidData?.data)
-				.map({ Self.connectPosts(base, toUsers: $0).posts })
+				.map({ base.connectedTo(users: $0).posts })
 				?? base
 			let connected = (baseComments.lastValidData?.data)
-				.map({ Self.connectComments($0, toPosts: withUsers).posts })
+				.map({ $0.connectedTo(posts: withUsers).posts })
 				?? withUsers
 			return connected
 		})
 
-		let connectedUsers: StoreData<[User.Connected]> = baseUsers.map({ base in
+		let connectedUsers: RemoteData<[User.Connected], Failure> = baseUsers.map({ base in
 			let connected = (basePosts.lastValidData?.data)
-				.map({ Self.connectPosts($0, toUsers: base).users })
+				.map({ $0.connectedTo(users: base).users })
 				?? base
 			return connected
 		})
 
-		let connectedComments: StoreData<[Comment.Connected]> = baseComments.map({ base in
+		let connectedComments: RemoteData<[Comment.Connected], Failure> = baseComments.map({ base in
 			let connected = (basePosts.lastValidData?.data)
-				.map({ Self.connectComments(base, toPosts: $0).comments })
+				.map({ base.connectedTo(posts: $0).comments })
 				?? base
 			return connected
 		})
 
 		return (connectedPosts, connectedUsers, connectedComments)
 	}
+}
 
-	static func connectPosts(_ posts: [Post.Connected], toUsers users: [User.Connected]) -> (posts: [Post.Connected], users: [User.Connected]) {
+extension Array where Element == Post.Connected {
+	func connectedTo(users: [User.Connected]) -> (posts: [Post.Connected], users: [User.Connected]) {
 		let usersByID = Dictionary(groupingByID: users)
-		let connectedPosts = posts.map({ post in
+		let connectedPosts = map({ post in
 			updated(post, with: { $0.user = usersByID[post.userID]?.user })
 		})
 
-		let postsByUserID = Dictionary(grouping: posts, by: { $0.userID })
+		let postsByUserID = Dictionary(grouping: self, by: { $0.userID })
 		let connectedUsers = users.map({ user in
 			updated(user, with: { $0.posts = postsByUserID[user.id]?.map({ $0.post }) })
 		})
 
 		return (posts: connectedPosts, users: connectedUsers)
 	}
+}
 
-	static func connectComments(_ comments: [Comment.Connected], toPosts posts: [Post.Connected]) -> (comments: [Comment.Connected], posts: [Post.Connected]) {
+extension Array where Element == Comment.Connected {
+	func connectedTo(posts: [Post.Connected]) -> (comments: [Comment.Connected], posts: [Post.Connected]) {
 		let postsByID = Dictionary(groupingByID: posts)
-		let connectedComments = comments.map({ comment in
+		let connectedComments = map({ comment in
 			updated(comment, with: { $0.post = postsByID[comment.postID]?.post })
 		})
 
-		let commentsByPostID = Dictionary(grouping: comments, by: { $0.postID })
+		let commentsByPostID = Dictionary(grouping: self, by: { $0.postID })
 		let connectedPosts = posts.map({ post in
 			updated(post, with: { $0.comments = commentsByPostID[post.id]?.map({ $0.comment }) })
 		})
