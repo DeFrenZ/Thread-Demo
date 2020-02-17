@@ -35,9 +35,9 @@ public extension API.Client {
 	init(urlSession: URLSession = .shared) {
 		self.init(performNetworkRequest: {
 			// TODO: Make non-sensible parts of the request public logs
-			Self.networkLogger.info("Request: \(String(describing: $0))")
+			networkLogger.info("Request: \(String(describing: $0))")
 			return urlSession.dataTaskPublisher(for: $0)
-				.log(.info, on: Self.networkLogger)
+				.log(.info, on: networkLogger)
 				.eraseToAnyPublisher()
 		})
 	}
@@ -96,11 +96,11 @@ extension API.Client {
 						return .unrecognized(error)
 					}
 				})
-				.log(.info, on: Self.logger)
+				.log(.info, on: logger)
 				.eraseToAnyPublisher()
 		case .failure(let error):
 			return Fail(error: error)
-				.logFailure(.error, on: Self.logger)
+				.logFailure(.error, on: logger)
 				.eraseToAnyPublisher()
 		}
 	}
@@ -134,28 +134,26 @@ extension API.Client {
 public extension API.Client {
 	/// Perform an API call to retrieve all the posts
 	func getPosts() -> AnyPublisher<[API.Post], APIError> {
-		Self.logger.info("GET posts")
+		logger.info("GET posts")
 		let request = getRequest(forPath: "posts")
 		return performGET(request: request, decodingTo: [API.Post].self)
 	}
 
 	/// Perform an API call to retrieve all the users
 	func getUsers() -> AnyPublisher<[API.User], APIError> {
-		Self.logger.info("GET users")
+		logger.info("GET users")
 		let request = getRequest(forPath: "users")
 		return performGET(request: request, decodingTo: [API.User].self)
 	}
 
 	/// Perform an API call to retrieve all the comments
 	func getComments() -> AnyPublisher<[API.Comment], APIError> {
-		Self.logger.info("GET comments")
+		logger.info("GET comments")
 		let request = getRequest(forPath: "comments")
 		return performGET(request: request, decodingTo: [API.Comment].self)
 	}
 }
 
 // MARK: - Logger
-private extension API.Client {
-	static let logger: Logger = .init(label: "API")
-	static let networkLogger = Logger(label: "Network")
-}
+private let logger: Logger = .init(label: "API")
+private let networkLogger = Logger(label: "Network")

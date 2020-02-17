@@ -35,7 +35,7 @@ final class DataStore: ObservableObject {
 			.combineLatest(usersStore.$users, commentsStore.$comments)
 			.removeDuplicates(by: ==)
 			.map(Self.connectChildrenData(posts:users:comments:))
-			.logOutputs(.info, on: Self.logger)
+			.logOutputs(.info, on: logger)
 			.sink(receiveValue: { [weak self] posts, users, comments in
 				guard let self = self else { return }
 				setIfUnequal(&self.posts, to: posts)
@@ -47,7 +47,7 @@ final class DataStore: ObservableObject {
 
 extension DataStore {
 	func fetchAll(_ fetchType: FetchType = .remoteFirst(forced: false)) {
-		Self.logger.info("Fetching: \(public: String(describing: fetchType))")
+		logger.info("Fetching: \(public: String(describing: fetchType))")
 		postsStore.fetch(fetchType)
 		// ???: Consider not fetching the rest until a post detail is shown, but the list looks better with the additional data
 		usersStore.fetch(fetchType)
@@ -150,6 +150,4 @@ enum FetchType {
 typealias StoreData<T> = RemoteData<T, FetchError>
 
 // MARK: - Logger
-private extension DataStore {
-	static let logger: Logger = .init(label: "DataStore")
-}
+private let logger: Logger = .init(label: "DataStore")
