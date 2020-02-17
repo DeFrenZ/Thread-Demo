@@ -51,4 +51,4 @@ final class DataUIStore: ObservableObject {
 }
 
 // MARK: - Logger
-private let logger: Logger = .init(label: "DataUIStore")
+private let logger: Logger = .init(label: "􀈞 DataUIStore")

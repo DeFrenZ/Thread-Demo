@@ -155,5 +155,5 @@ public extension API.Client {
 }
 
 // MARK: - Logger
-private let logger: Logger = .init(label: "API")
-private let networkLogger = Logger(label: "Network")
+private let logger: Logger = .init(label: "􀁿 API")
+private let networkLogger: Logger = .init(label: "􀖀 Network")

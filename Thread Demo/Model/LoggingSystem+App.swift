@@ -17,5 +17,5 @@ private extension OSLogHandler {
 
 // MARK: - Logger
 extension Logger {
-	static let generic: Logger = .init(label: "generic")
+	static let generic: Logger = .init(label: "􀌵 Generic")
 }

@@ -42,4 +42,4 @@ extension UserDefaults: Storage {
 }
 
 // MARK: - Logger
-private let logger: Logger = .init(label: "User Defaults")
+private let logger: Logger = .init(label: "􀈨 UserDefaults")

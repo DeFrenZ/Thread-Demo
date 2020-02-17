@@ -154,4 +154,4 @@ enum FetchType {
 typealias StoreData<T> = RemoteData<T, FetchError>
 
 // MARK: - Logger
-private let logger: Logger = .init(label: "DataStore")
+private let logger: Logger = .init(label: "􀈖 DataStore")
