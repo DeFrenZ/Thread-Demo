@@ -11,6 +11,6 @@ extension PostTests {
 		let exampleResponse = try Data(contentsOf: url)
 		let decoder = JSONDecoder()
 
-		_ = try XCTUnwrap(try decoder.decode([API.Post].self, from: exampleResponse), "The sample data didn't decode successfully")
+		XCTAssertNoThrow(try decoder.decode([API.Post].self, from: exampleResponse), "The sample data didn't decode successfully")
 	}
 }

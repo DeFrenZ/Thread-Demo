@@ -11,6 +11,6 @@ extension CommentTests {
 		let exampleResponse = try Data(contentsOf: url)
 		let decoder = JSONDecoder()
 
-		_ = try XCTUnwrap(try decoder.decode([API.Comment].self, from: exampleResponse), "The sample data didn't decode successfully")
+		XCTAssertNoThrow(try decoder.decode([API.Comment].self, from: exampleResponse), "The sample data didn't decode successfully")
 	}
 }
