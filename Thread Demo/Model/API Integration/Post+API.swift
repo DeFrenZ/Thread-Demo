@@ -1,3 +1,5 @@
+import API
+
 extension Post {
 	init(apiModel: API.Post) {
 		self.init(

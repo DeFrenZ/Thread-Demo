@@ -1,4 +1,5 @@
 import Foundation
+import API
 import struct CoreLocation.CLLocationCoordinate2D
 import struct CoreLocation.CLLocationDegrees
 

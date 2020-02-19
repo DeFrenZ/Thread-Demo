@@ -2,24 +2,22 @@ import Foundation
 import Combine
 import Log
 
-public extension API {
-	/// An object that can perform API calls
-	struct Client {
-		// TODO: Increase flexibility over `baseURL`
-		/// The base URL used for the URL in the API requests
-		let baseURL: URL
-		/// The injected behaviour for performing a pure HTTP request
-		let performNetworkRequest: PerformNetworkRequest
+/// An object that can perform API calls
+public struct Client {
+	// TODO: Increase flexibility over `baseURL`
+	/// The base URL used for the URL in the API requests
+	let baseURL: URL
+	/// The injected behaviour for performing a pure HTTP request
+	let performNetworkRequest: PerformNetworkRequest
 
-		init(baseURL: URL = .baseAPIClientURL, performNetworkRequest: @escaping PerformNetworkRequest) {
-			self.baseURL = baseURL
-			self.performNetworkRequest = performNetworkRequest
-		}
-
-		// ???: The response type might be a better match with a `Future` instead of `AnyPublisher`, but it would need some sort of verification that exactly one value comes back from it
-		/// The type of functions representing performing an HTTP request
-		typealias PerformNetworkRequest = (URLRequest) -> AnyPublisher<(data: Data, response: URLResponse), URLError>
+	init(baseURL: URL = .baseAPIClientURL, performNetworkRequest: @escaping PerformNetworkRequest) {
+		self.baseURL = baseURL
+		self.performNetworkRequest = performNetworkRequest
 	}
+
+	// ???: The response type might be a better match with a `Future` instead of `AnyPublisher`, but it would need some sort of verification that exactly one value comes back from it
+	/// The type of functions representing performing an HTTP request
+	typealias PerformNetworkRequest = (URLRequest) -> AnyPublisher<(data: Data, response: URLResponse), URLError>
 }
 
 private extension URL {
@@ -27,7 +25,7 @@ private extension URL {
 }
 
 // MARK: Convenience `init`
-public extension API.Client {
+public extension Client {
 	/// Instantiate a new `Client` with the default `baseURL` and using the given `URLSession` for performing HTTP requests
 	///
 	/// This is the preferred `init` to use in production contexts. In other cases you might want to use the memberwise `init` and inject a specific `performNetworkRequest`.
@@ -45,7 +43,7 @@ public extension API.Client {
 }
 
 // MARK: Utilities
-extension API.Client {
+extension Client {
 	// TODO: Increase flexibility over `decoder`
 	private static var decoder: JSONDecoder { JSONDecoder() }
 
@@ -132,23 +130,23 @@ extension API.Client {
 
 // MARK: Endpoints
 // Ideally these shouldn't be function calls, but a more declarative interface where you define a type for each endpoint and use those from the call-site, which scales much better than this approach. For this restricted case it's not worth setting that up, though
-public extension API.Client {
+public extension Client {
 	/// Perform an API call to retrieve all the posts
-	func getPosts() -> AnyPublisher<[API.Post], APIError> {
+	func getPosts() -> AnyPublisher<[Post], APIError> {
 		logger.info("GET posts")
 		let request = getRequest(forPath: "posts")
 		return performGET(request: request, decodingTo: [API.Post].self)
 	}
 
 	/// Perform an API call to retrieve all the users
-	func getUsers() -> AnyPublisher<[API.User], APIError> {
+	func getUsers() -> AnyPublisher<[User], APIError> {
 		logger.info("GET users")
 		let request = getRequest(forPath: "users")
 		return performGET(request: request, decodingTo: [API.User].self)
 	}
 
 	/// Perform an API call to retrieve all the comments
-	func getComments() -> AnyPublisher<[API.Comment], APIError> {
+	func getComments() -> AnyPublisher<[Comment], APIError> {
 		logger.info("GET comments")
 		let request = getRequest(forPath: "comments")
 		return performGET(request: request, decodingTo: [API.Comment].self)

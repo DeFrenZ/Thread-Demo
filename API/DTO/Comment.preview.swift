@@ -1,7 +1,7 @@
 import Foundation
 
-extension Array where Element == API.Comment {
-	static var samples: [API.Comment]! {
+extension Array where Element == Comment {
+	static var samples: Self! {
 		guard
 			let url = Bundle.main.url(forResource: "comments.response", withExtension: "json"),
 			let exampleResponse = try? Data(contentsOf: url)
@@ -10,6 +10,6 @@ extension Array where Element == API.Comment {
 		let decoder = JSONDecoder()
 
 		return try? decoder
-			.decode([API.Comment].self, from: exampleResponse)
+			.decode(Self.self, from: exampleResponse)
 	}
 }

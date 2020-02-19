@@ -1,3 +1,5 @@
+import API
+
 extension Comment {
 	init(apiModel: API.Comment) {
 		self.init(

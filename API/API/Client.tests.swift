@@ -1,11 +1,11 @@
 import XCTest
-@testable import Thread_Demo
+@testable import API
 import Combine
 
 final class APIClientTests: XCTestCase {
 	var stubs: [String: Result<(data: Data, response: URLResponse), URLError>] = [:]
 	// `lazy` to allow capture of other properties
-	lazy var client: API.Client = .init(
+	lazy var client: Client = .init(
 		baseURL: .testBaseURL,
 		performNetworkRequest: { [stubs] request in
 			guard
@@ -22,7 +22,7 @@ final class APIClientTests: XCTestCase {
 // MARK: Tests
 extension APIClientTests {
 	func test_givenAClient_whenFetchingPosts_andTheResponseIsValid_thenTheDecodedModelIsReturned() {
-		let responseBody = [API.Post].samples
+		let responseBody = [Post].samples
 		stubAPICall(atPath: "/posts", responseBody: responseBody)
 
 		let response = client.getPosts()
@@ -51,7 +51,7 @@ extension APIClientTests {
 	}
 
 	func test_givenAClient_whenFetchingUsers_andTheResponseIsValid_thenTheDecodedModelIsReturned() {
-		let responseBody = [API.User].samples
+		let responseBody = [User].samples
 		stubAPICall(atPath: "/users", responseBody: responseBody)
 
 		let response = client.getUsers()
@@ -80,7 +80,7 @@ extension APIClientTests {
 	}
 
 	func test_givenAClient_whenFetchingComments_andTheResponseIsValid_thenTheDecodedModelIsReturned() {
-		let responseBody = [API.Comment].samples
+		let responseBody = [Comment].samples
 		stubAPICall(atPath: "/comments", responseBody: responseBody)
 
 		let response = client.getComments()
@@ -151,7 +151,7 @@ private struct TestCodable: Hashable, Codable {
 }
 
 extension Array where Element == TestCodable {
-	static let samples: [TestCodable] = [
+	static let samples: Self = [
 		.init(a: 1, b: "a"),
 		.init(a: 2, b: "b"),
 		.init(a: 3, b: "c"),

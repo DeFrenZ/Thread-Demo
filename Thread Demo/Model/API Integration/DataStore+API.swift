@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import API
 
 extension DataStore where S == RunLoop {
 	convenience init(
