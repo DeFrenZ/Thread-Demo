@@ -1,4 +1,5 @@
 import Foundation
+import Log
 
 extension UserDefaults: Storage {
 	// ???: Add flexibility on the encoding/decoding format

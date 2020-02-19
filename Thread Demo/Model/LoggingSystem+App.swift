@@ -1,4 +1,5 @@
 import Foundation
+import Log
 
 extension LoggingSystem {
 	static func bootstrap() {

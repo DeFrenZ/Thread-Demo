@@ -1,5 +1,6 @@
 import UIKit
 import SwiftUI
+import Log
 
 final class SceneDelegate: UIResponder {
 	var window: UIWindow?

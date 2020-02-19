@@ -17,15 +17,8 @@
 		0355999F23F580860054DF17 /* DataUIStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0355999E23F580860054DF17 /* DataUIStore.swift */; };
 		035599A123F59BF70054DF17 /* DataUIStore+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035599A023F59BF70054DF17 /* DataUIStore+Model.swift */; };
 		035599A323F59DC90054DF17 /* DataUIStore.preview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035599A223F59DC90054DF17 /* DataUIStore.preview.swift */; };
-		035599A523F5B2D50054DF17 /* Publisher+Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 035599A423F5B2D50054DF17 /* Publisher+Log.swift */; };
-		036766EA235A3608000E9C8D /* LogHandler+OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766E9235A3608000E9C8D /* LogHandler+OSLog.swift */; };
-		036766EC235A36F4000E9C8D /* LogHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766EB235A36F4000E9C8D /* LogHandler.swift */; };
-		036766EE235A37EC000E9C8D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766ED235A37EC000E9C8D /* Logger.swift */; };
-		036766F0235A3833000E9C8D /* Logger.Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766EF235A3833000E9C8D /* Logger.Message.swift */; };
-		036766F2235A3849000E9C8D /* LoggingSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766F1235A3849000E9C8D /* LoggingSystem.swift */; };
-		036766F4235A3879000E9C8D /* Logger.Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766F3235A3879000E9C8D /* Logger.Metadata.swift */; };
-		036766F6235A3906000E9C8D /* LogHandler+Multiplex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766F5235A3906000E9C8D /* LogHandler+Multiplex.swift */; };
-		036766F8235A3941000E9C8D /* LogHandler+Stdio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766F7235A3941000E9C8D /* LogHandler+Stdio.swift */; };
+		03559A4B23FD93A60054DF17 /* Log.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03559A2E23FD8D4C0054DF17 /* Log.framework */; };
+		03559A4C23FD93A60054DF17 /* Log.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03559A2E23FD8D4C0054DF17 /* Log.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		036766FA235A4FBC000E9C8D /* LoggingSystem+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766F9235A4FBC000E9C8D /* LoggingSystem+App.swift */; };
 		0393B515235214B500FEC0E1 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B514235214B500FEC0E1 /* ActivityIndicator.swift */; };
 		0393B51823533F4600FEC0E1 /* PostsStore.tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0393B51623533F4300FEC0E1 /* PostsStore.tests.swift */; };
@@ -98,6 +91,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		03559A2D23FD8D4C0054DF17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03559A2823FD8D4B0054DF17 /* Log.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03559A0E23FD8D4B0054DF17;
+			remoteInfo = Log;
+		};
+		03559A2F23FD8D4C0054DF17 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 03559A2823FD8D4B0054DF17 /* Log.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 03559A1723FD8D4B0054DF17;
+			remoteInfo = LogTests;
+		};
 		03E8A805234DE23A00259855 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 03E8A7E6234DE23900259855 /* Project object */;
@@ -114,6 +121,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		03559A4D23FD93A60054DF17 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				03559A4C23FD93A60054DF17 /* Log.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0312DE8D23EC6CD30066C14B /* Collection.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.extensions.swift; sourceTree = "<group>"; };
 		0312DE8F23EDB6150066C14B /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -126,15 +147,7 @@
 		0355999E23F580860054DF17 /* DataUIStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUIStore.swift; sourceTree = "<group>"; };
 		035599A023F59BF70054DF17 /* DataUIStore+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataUIStore+Model.swift"; sourceTree = "<group>"; };
 		035599A223F59DC90054DF17 /* DataUIStore.preview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataUIStore.preview.swift; sourceTree = "<group>"; };
-		035599A423F5B2D50054DF17 /* Publisher+Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Log.swift"; sourceTree = "<group>"; };
-		036766E9235A3608000E9C8D /* LogHandler+OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LogHandler+OSLog.swift"; sourceTree = "<group>"; };
-		036766EB235A36F4000E9C8D /* LogHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogHandler.swift; sourceTree = "<group>"; };
-		036766ED235A37EC000E9C8D /* Logger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		036766EF235A3833000E9C8D /* Logger.Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.Message.swift; sourceTree = "<group>"; };
-		036766F1235A3849000E9C8D /* LoggingSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingSystem.swift; sourceTree = "<group>"; };
-		036766F3235A3879000E9C8D /* Logger.Metadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logger.Metadata.swift; sourceTree = "<group>"; };
-		036766F5235A3906000E9C8D /* LogHandler+Multiplex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LogHandler+Multiplex.swift"; sourceTree = "<group>"; };
-		036766F7235A3941000E9C8D /* LogHandler+Stdio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LogHandler+Stdio.swift"; sourceTree = "<group>"; };
+		03559A2823FD8D4B0054DF17 /* Log.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Log.xcodeproj; path = Log/Log.xcodeproj; sourceTree = "<group>"; };
 		036766F9235A4FBC000E9C8D /* LoggingSystem+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoggingSystem+App.swift"; sourceTree = "<group>"; };
 		0393B514235214B500FEC0E1 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		0393B51623533F4300FEC0E1 /* PostsStore.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsStore.tests.swift; sourceTree = "<group>"; };
@@ -214,6 +227,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03559A4B23FD93A60054DF17 /* Log.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,20 +267,20 @@
 			path = "UI Stores";
 			sourceTree = "<group>";
 		};
-		036766E8235A35A4000E9C8D /* Log */ = {
+		03559A2923FD8D4B0054DF17 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				036766ED235A37EC000E9C8D /* Logger.swift */,
-				036766EF235A3833000E9C8D /* Logger.Message.swift */,
-				036766F3235A3879000E9C8D /* Logger.Metadata.swift */,
-				036766EB235A36F4000E9C8D /* LogHandler.swift */,
-				036766F5235A3906000E9C8D /* LogHandler+Multiplex.swift */,
-				036766F7235A3941000E9C8D /* LogHandler+Stdio.swift */,
-				036766E9235A3608000E9C8D /* LogHandler+OSLog.swift */,
-				036766F1235A3849000E9C8D /* LoggingSystem.swift */,
-				035599A423F5B2D50054DF17 /* Publisher+Log.swift */,
+				03559A2E23FD8D4C0054DF17 /* Log.framework */,
+				03559A3023FD8D4C0054DF17 /* LogTests.xctest */,
 			);
-			path = Log;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		03559A4823FD93A60054DF17 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		0393B55623577DE000FEC0E1 /* Components */ = {
@@ -346,7 +360,6 @@
 			isa = PBXGroup;
 			children = (
 				03DD9AF1234E06CB00140291 /* Test */,
-				036766E8235A35A4000E9C8D /* Log */,
 				0393B54C23561C3E00FEC0E1 /* Swift.extensions.swift */,
 				0312DE8D23EC6CD30066C14B /* Collection.extensions.swift */,
 				03DD9B26234F6FF700140291 /* Result.extensions.swift */,
@@ -418,6 +431,8 @@
 			children = (
 				03E8A7F0234DE23900259855 /* Thread Demo */,
 				03E8A7EF234DE23900259855 /* Products */,
+				03559A4823FD93A60054DF17 /* Frameworks */,
+				03559A2823FD8D4B0054DF17 /* Log.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -494,12 +509,15 @@
 				03E8A7EA234DE23900259855 /* Sources */,
 				03E8A7EB234DE23900259855 /* Frameworks */,
 				03E8A7EC234DE23900259855 /* Resources */,
+				03559A4D23FD93A60054DF17 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "Thread Demo";
+			packageProductDependencies = (
+			);
 			productName = "Thread Demo";
 			productReference = 03E8A7EE234DE23900259855 /* Thread Demo.app */;
 			productType = "com.apple.product-type.application";
@@ -572,8 +590,16 @@
 				Base,
 			);
 			mainGroup = 03E8A7E5234DE23900259855;
+			packageReferences = (
+			);
 			productRefGroup = 03E8A7EF234DE23900259855 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 03559A2923FD8D4B0054DF17 /* Products */;
+					ProjectRef = 03559A2823FD8D4B0054DF17 /* Log.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				03E8A7ED234DE23900259855 /* Thread Demo */,
@@ -582,6 +608,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		03559A2E23FD8D4C0054DF17 /* Log.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Log.framework;
+			remoteRef = 03559A2D23FD8D4C0054DF17 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		03559A3023FD8D4C0054DF17 /* LogTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = LogTests.xctest;
+			remoteRef = 03559A2F23FD8D4C0054DF17 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		03E8A7EC234DE23900259855 /* Resources */ = {
@@ -621,17 +664,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				036766F4235A3879000E9C8D /* Logger.Metadata.swift in Sources */,
 				0393B52C2353889100FEC0E1 /* UsersStore.preview.swift in Sources */,
 				0393B5412354B76F00FEC0E1 /* DataStore.preview.swift in Sources */,
 				03DD9B34235084B600140291 /* DataStore.swift in Sources */,
-				036766F6235A3906000E9C8D /* LogHandler+Multiplex.swift in Sources */,
-				036766EC235A36F4000E9C8D /* LogHandler.swift in Sources */,
 				0393B55323576A0000FEC0E1 /* BaseCell.swift in Sources */,
 				032955D72358E54200D65472 /* Banner.swift in Sources */,
 				03DD9B11234E26F300140291 /* Post+API.swift in Sources */,
 				03DD9AE8234DF6A700140291 /* API.Comment.swift in Sources */,
-				036766F8235A3941000E9C8D /* LogHandler+Stdio.swift in Sources */,
 				0393B515235214B500FEC0E1 /* ActivityIndicator.swift in Sources */,
 				0393B55A23578C2E00FEC0E1 /* Stored.swift in Sources */,
 				0393B52623537CE700FEC0E1 /* User.preview.swift in Sources */,
@@ -641,8 +680,6 @@
 				0393B555235770E300FEC0E1 /* PreviewProvider.extensions.swift in Sources */,
 				036766FA235A4FBC000E9C8D /* LoggingSystem+App.swift in Sources */,
 				0312DE8E23EC6CD30066C14B /* Collection.extensions.swift in Sources */,
-				036766EA235A3608000E9C8D /* LogHandler+OSLog.swift in Sources */,
-				035599A523F5B2D50054DF17 /* Publisher+Log.swift in Sources */,
 				03E8A7F2234DE23900259855 /* AppDelegate.swift in Sources */,
 				0393B533235389E200FEC0E1 /* CommentsStore.preview.swift in Sources */,
 				0393B54F235726EB00FEC0E1 /* PostDetailView.swift in Sources */,
@@ -661,13 +698,11 @@
 				0393B52A235387DB00FEC0E1 /* UsersStore.swift in Sources */,
 				0393B5652357C09600FEC0E1 /* Storage+Dictionary.swift in Sources */,
 				03DD9B1E234E652100140291 /* API.Client.swift in Sources */,
-				036766F2235A3849000E9C8D /* LoggingSystem.swift in Sources */,
 				032955D22358A4F100D65472 /* Publisher.extensions.swift in Sources */,
 				03DD9B27234F6FF700140291 /* Result.extensions.swift in Sources */,
 				03DD9B08234E1C0200140291 /* User.swift in Sources */,
 				03DD9B382350ACD900140291 /* DataStore+API.swift in Sources */,
 				0393B52823537D0A00FEC0E1 /* Comment.preview.swift in Sources */,
-				036766EE235A37EC000E9C8D /* Logger.swift in Sources */,
 				03DD9B362350863B00140291 /* RemoteData.swift in Sources */,
 				03DD9B13234E28C900140291 /* RootView.swift in Sources */,
 				0393B52023537A8800FEC0E1 /* API.Post.preview.swift in Sources */,
@@ -677,7 +712,6 @@
 				035599A123F59BF70054DF17 /* DataUIStore+Model.swift in Sources */,
 				0393B51C2353798100FEC0E1 /* Post.preview.swift in Sources */,
 				03DD9B29234F93B500140291 /* User+API.swift in Sources */,
-				036766F0235A3833000E9C8D /* Logger.Message.swift in Sources */,
 				0393B54D23561C3E00FEC0E1 /* Swift.extensions.swift in Sources */,
 				0393B53823538EC200FEC0E1 /* Identifiable.extensions.swift in Sources */,
 				0312DE9023EDB6150066C14B /* LoadingView.swift in Sources */,
@@ -866,6 +900,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Thread Demo/UI/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Thread Demo/App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -885,6 +920,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Thread Demo/UI/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Thread Demo/App/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -1,5 +1,6 @@
 import Combine
 import Foundation
+import Log
 
 final class DataUIStore: ObservableObject {
 	@Published private(set) var posts: StoreData<[Post.Connected]>

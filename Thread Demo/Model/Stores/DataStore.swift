@@ -1,5 +1,6 @@
 import Combine
 import Foundation
+import Log
 
 /// An object managing the data of multiple stores. It provides access to higher level operations, and keeps the data in sync.
 final class DataStore<S: Scheduler>: ObservableObject {

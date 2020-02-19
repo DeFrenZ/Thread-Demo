@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import Log
 
 public extension API {
 	/// An object that can perform API calls
