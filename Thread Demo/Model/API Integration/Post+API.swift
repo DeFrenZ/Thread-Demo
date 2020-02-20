@@ -1,6 +1,7 @@
+import Core
 import API
 
-extension Post {
+extension Core.Post {
 	init(apiModel: API.Post) {
 		self.init(
 			id: .init(value: apiModel.id),

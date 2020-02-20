@@ -1,4 +1,5 @@
 import SwiftUI
+import Core
 
 struct PostDetailView: View {
 	var post: Post.Connected

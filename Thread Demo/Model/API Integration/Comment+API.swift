@@ -1,6 +1,7 @@
+import Core
 import API
 
-extension Comment {
+extension Core.Comment {
 	init(apiModel: API.Comment) {
 		self.init(
 			id: .init(value: apiModel.id),

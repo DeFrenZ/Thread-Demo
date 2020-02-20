@@ -1,5 +1,6 @@
 import SwiftUI
 import Combine
+import Core
 
 /// A view that displays a list of posts.
 struct PostsList: View {

@@ -1,9 +1,10 @@
 import Foundation
+import Core
 import API
 import struct CoreLocation.CLLocationCoordinate2D
 import struct CoreLocation.CLLocationDegrees
 
-extension User {
+extension Core.User {
 	init(apiModel: API.User) throws {
 		guard let urlAddress = URL(string: apiModel.website) else { throw ConversionError(keyPath: \Self.urlAddress, value: apiModel.website) }
 
@@ -20,7 +21,7 @@ extension User {
 	}
 }
 
-extension User.PostalAddress {
+extension Core.User.PostalAddress {
 	init(apiModel: API.User.Address) throws {
 		self.init(
 			street: apiModel.street,
@@ -32,7 +33,7 @@ extension User.PostalAddress {
 	}
 }
 
-extension User.PostalAddress.Coordinate {
+extension Core.User.PostalAddress.Coordinate {
 	init(apiModel: API.User.Address.GeoLocation) throws {
 		guard let latitude = CLLocationDegrees(apiModel.lat) else { throw ConversionError(keyPath: \Self.latitude, value: apiModel.lat) }
 		guard let longitude = CLLocationDegrees(apiModel.lng) else { throw ConversionError(keyPath: \Self.longitude, value: apiModel.lng) }
@@ -44,7 +45,7 @@ extension User.PostalAddress.Coordinate {
 	}
 }
 
-extension User.CompanyDetails {
+extension Core.User.CompanyDetails {
 	init(apiModel: API.User.Company) {
 		self.init(
 			name: apiModel.name,

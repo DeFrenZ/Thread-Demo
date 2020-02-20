@@ -1,4 +1,5 @@
 import SwiftUI
+import Core
 
 struct CommentCell: View {
 	var comment: Comment

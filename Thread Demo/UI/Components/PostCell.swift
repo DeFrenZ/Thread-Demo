@@ -1,4 +1,5 @@
 import SwiftUI
+import Core
 
 struct PostCell: View {
 	var post: Post.Connected

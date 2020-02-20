@@ -1,5 +1,6 @@
 import Foundation
 import Combine
+import Core
 import API
 
 extension DataStore where S == RunLoop {
@@ -16,21 +17,21 @@ extension DataStore where S == RunLoop {
 }
 
 private extension API.Client {
-	func getPostsModels() -> AnyPublisher<[Post], FetchError> {
+	func getPostsModels() -> AnyPublisher<[Core.Post], FetchError> {
 		getPosts()
 			.map({ $0.map(Post.init(apiModel:)) })
 			.mapError(FetchError.init(apiError:))
 			.eraseToAnyPublisher()
 	}
 
-	func getUsersModels() -> AnyPublisher<[User], FetchError> {
+	func getUsersModels() -> AnyPublisher<[Core.User], FetchError> {
 		getUsers()
 			.tryMap({ try $0.map(User.init(apiModel:)) })
 			.mapError(FetchError.init(anyError:))
 			.eraseToAnyPublisher()
 	}
 
-	func getCommentsModels() -> AnyPublisher<[Comment], FetchError> {
+	func getCommentsModels() -> AnyPublisher<[Core.Comment], FetchError> {
 		getComments()
 			.map({ $0.map(Comment.init(apiModel:)) })
 			.mapError(FetchError.init(apiError:))
