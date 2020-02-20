@@ -37,16 +37,16 @@
 		03559A1223FD8D4B0054DF17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03559A1723FD8D4B0054DF17 /* LogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		03559A1E23FD8D4B0054DF17 /* Tests.Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Tests.Info.plist; sourceTree = "<group>"; };
-		03559A3223FD8D820054DF17 /* LogHandler+OSLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LogHandler+OSLog.swift"; path = "../../Log/LogHandler+OSLog.swift"; sourceTree = "<group>"; };
-		03559A3323FD8D820054DF17 /* Logger.Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logger.Message.swift; path = ../../Log/Logger.Message.swift; sourceTree = "<group>"; };
-		03559A3423FD8D820054DF17 /* LogHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LogHandler.swift; path = ../../Log/LogHandler.swift; sourceTree = "<group>"; };
-		03559A3523FD8D820054DF17 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logger.swift; path = ../../Log/Logger.swift; sourceTree = "<group>"; };
-		03559A3623FD8D820054DF17 /* LogHandler+Stdio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LogHandler+Stdio.swift"; path = "../../Log/LogHandler+Stdio.swift"; sourceTree = "<group>"; };
-		03559A3723FD8D820054DF17 /* LogHandler+Multiplex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LogHandler+Multiplex.swift"; path = "../../Log/LogHandler+Multiplex.swift"; sourceTree = "<group>"; };
-		03559A3823FD8D820054DF17 /* LoggingSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoggingSystem.swift; path = ../../Log/LoggingSystem.swift; sourceTree = "<group>"; };
-		03559A3923FD8D820054DF17 /* Publisher+Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Publisher+Log.swift"; path = "../../Log/Publisher+Log.swift"; sourceTree = "<group>"; };
-		03559A3A23FD8D820054DF17 /* Logger.Metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Logger.Metadata.swift; path = ../../Log/Logger.Metadata.swift; sourceTree = "<group>"; };
-		03559A4523FD93750054DF17 /* LogHandler+OSLog.tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "LogHandler+OSLog.tests.swift"; path = "Log/LogHandler+OSLog.tests.swift"; sourceTree = SOURCE_ROOT; };
+		03559A3223FD8D820054DF17 /* LogHandler+OSLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LogHandler+OSLog.swift"; sourceTree = "<group>"; };
+		03559A3323FD8D820054DF17 /* Logger.Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.Message.swift; sourceTree = "<group>"; };
+		03559A3423FD8D820054DF17 /* LogHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogHandler.swift; sourceTree = "<group>"; };
+		03559A3523FD8D820054DF17 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		03559A3623FD8D820054DF17 /* LogHandler+Stdio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LogHandler+Stdio.swift"; sourceTree = "<group>"; };
+		03559A3723FD8D820054DF17 /* LogHandler+Multiplex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LogHandler+Multiplex.swift"; sourceTree = "<group>"; };
+		03559A3823FD8D820054DF17 /* LoggingSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoggingSystem.swift; sourceTree = "<group>"; };
+		03559A3923FD8D820054DF17 /* Publisher+Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Publisher+Log.swift"; sourceTree = "<group>"; };
+		03559A3A23FD8D820054DF17 /* Logger.Metadata.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.Metadata.swift; sourceTree = "<group>"; };
+		03559A4523FD93750054DF17 /* LogHandler+OSLog.tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LogHandler+OSLog.tests.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +102,7 @@
 				03559A3823FD8D820054DF17 /* LoggingSystem.swift */,
 				03559A3923FD8D820054DF17 /* Publisher+Log.swift */,
 			);
-			name = Log;
-			path = Sources/Log;
+			path = Log;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
