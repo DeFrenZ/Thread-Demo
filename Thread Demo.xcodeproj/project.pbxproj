@@ -13,6 +13,7 @@
 		0316CA9823FE925B00607E23 /* Core.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0316CA5123FE8B5400607E23 /* Core.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0316CAFA23FE9B4800607E23 /* Frontend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0316CAF223FE9B2700607E23 /* Frontend.framework */; };
 		0316CAFB23FE9B4800607E23 /* Frontend.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0316CAF223FE9B2700607E23 /* Frontend.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0316CB2C23FEA29800607E23 /* FetchError+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0316CB2B23FEA29800607E23 /* FetchError+API.swift */; };
 		03559A4B23FD93A60054DF17 /* Log.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03559A2E23FD8D4C0054DF17 /* Log.framework */; };
 		03559A4C23FD93A60054DF17 /* Log.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03559A2E23FD8D4C0054DF17 /* Log.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		036766FA235A4FBC000E9C8D /* LoggingSystem+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766F9235A4FBC000E9C8D /* LoggingSystem+App.swift */; };
@@ -137,6 +138,7 @@
 		0316CA4B23FE8B5300607E23 /* Core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Core.xcodeproj; path = Core/Core.xcodeproj; sourceTree = "<group>"; };
 		0316CABF23FE9B0700607E23 /* DesignSystem.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = DesignSystem.xcodeproj; path = DesignSystem/DesignSystem.xcodeproj; sourceTree = "<group>"; };
 		0316CAEC23FE9B2700607E23 /* Frontend.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Frontend.xcodeproj; path = Frontend/Frontend.xcodeproj; sourceTree = "<group>"; };
+		0316CB2B23FEA29800607E23 /* FetchError+API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FetchError+API.swift"; sourceTree = "<group>"; };
 		032955D32358D9C500D65472 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		03559A2823FD8D4B0054DF17 /* Log.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Log.xcodeproj; path = Log/Log.xcodeproj; sourceTree = "<group>"; };
 		03559A7223FD96DD0054DF17 /* API.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = API.xcodeproj; path = API/API.xcodeproj; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				03DD9B2C234F97B600140291 /* Comment+API.swift */,
 				03DD9B2A234F951C00140291 /* ConversionError.swift */,
 				03DD9B372350ACD900140291 /* DataStore+API.swift */,
+				0316CB2B23FEA29800607E23 /* FetchError+API.swift */,
 			);
 			path = "API to Core";
 			sourceTree = "<group>";
@@ -540,6 +543,7 @@
 				03DD9B2D234F97B600140291 /* Comment+API.swift in Sources */,
 				03E8A7F4234DE23900259855 /* SceneDelegate.swift in Sources */,
 				03DD9B382350ACD900140291 /* DataStore+API.swift in Sources */,
+				0316CB2C23FEA29800607E23 /* FetchError+API.swift in Sources */,
 				03DD9B29234F93B500140291 /* User+API.swift in Sources */,
 				03DD9B2B234F951C00140291 /* ConversionError.swift in Sources */,
 			);
