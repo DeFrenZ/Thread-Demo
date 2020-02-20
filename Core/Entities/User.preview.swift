@@ -1,6 +1,6 @@
 import Foundation
 
-#if DEBUG
+#if ENABLE_SAMPLES
 public extension Array where Element == User {
 	static var samples: Self! {
 		[

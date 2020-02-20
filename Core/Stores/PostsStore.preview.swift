@@ -1,6 +1,6 @@
 import Combine
 
-#if DEBUG
+#if ENABLE_SAMPLES
 public extension PostsStore where S == ImmediateScheduler {
 	static var sample: PostsStore {
 		.init(

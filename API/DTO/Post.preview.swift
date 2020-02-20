@@ -1,6 +1,7 @@
 import Foundation
 
-extension Array where Element == Post {
+#if ENABLE_SAMPLES
+public extension Array where Element == Post {
 	static var samples: Self! {
 		guard
 			let url = Bundle.main.url(forResource: "posts.response", withExtension: "json"),
@@ -13,3 +14,4 @@ extension Array where Element == Post {
 			.decode(Self.self, from: exampleResponse)
 	}
 }
+#endif

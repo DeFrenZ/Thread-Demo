@@ -1,3 +1,4 @@
+#if ENABLE_SAMPLES
 extension DataUIStore {
 	static var sample: DataUIStore {
 		.init(.sample)
@@ -11,3 +12,4 @@ extension DataUIStore {
 		.init(.sampleLoading)
 	}
 }
+#endif

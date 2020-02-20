@@ -1,6 +1,7 @@
 import Foundation
 
-extension Array where Element == Comment {
+#if ENABLE_SAMPLES
+public extension Array where Element == Comment {
 	static var samples: Self! {
 		guard
 			let url = Bundle.main.url(forResource: "comments.response", withExtension: "json"),
@@ -13,3 +14,4 @@ extension Array where Element == Comment {
 			.decode(Self.self, from: exampleResponse)
 	}
 }
+#endif

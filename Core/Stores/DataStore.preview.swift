@@ -1,6 +1,6 @@
 import Combine
 
-#if DEBUG
+#if ENABLE_SAMPLES
 public extension DataStore where S == ImmediateScheduler {
 	static var sample: DataStore {
 		.init(
