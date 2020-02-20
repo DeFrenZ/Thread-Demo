@@ -154,10 +154,10 @@
 		03E8A7FD234DE23A00259855 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		03E8A7FF234DE23A00259855 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		03E8A804234DE23A00259855 /* Thread Demo Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Thread Demo Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		03E8A80A234DE23A00259855 /* Info.tests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.tests.plist; sourceTree = "<group>"; };
+		03E8A80A234DE23A00259855 /* Tests.Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Tests.Info.plist; sourceTree = "<group>"; };
 		03E8A80F234DE23A00259855 /* Thread Demo UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Thread Demo UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		03E8A813234DE23A00259855 /* App.uitests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.uitests.swift; sourceTree = "<group>"; };
-		03E8A815234DE23A00259855 /* Info.uitests.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.uitests.plist; sourceTree = "<group>"; };
+		03E8A815234DE23A00259855 /* UITests.Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = UITests.Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,8 +296,8 @@
 				036766F9235A4FBC000E9C8D /* LoggingSystem+App.swift */,
 				03E8A7FC234DE23A00259855 /* LaunchScreen.storyboard */,
 				03E8A7FF234DE23A00259855 /* Info.plist */,
-				03E8A80A234DE23A00259855 /* Info.tests.plist */,
-				03E8A815234DE23A00259855 /* Info.uitests.plist */,
+				03E8A80A234DE23A00259855 /* Tests.Info.plist */,
+				03E8A815234DE23A00259855 /* UITests.Info.plist */,
 				032955D32358D9C500D65472 /* README.md */,
 				03E8A7F7234DE23A00259855 /* Assets.xcassets */,
 			);
@@ -748,7 +748,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Thread Demo/App/Info.tests.plist";
+				INFOPLIST_FILE = "Thread Demo/App/Tests.Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -769,7 +769,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Thread Demo/App/Info.tests.plist";
+				INFOPLIST_FILE = "Thread Demo/App/Tests.Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -789,7 +789,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Thread Demo/App/Info.uitests.plist";
+				INFOPLIST_FILE = "Thread Demo/App/UITests.Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -808,7 +808,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "Thread Demo/App/Info.uitests.plist";
+				INFOPLIST_FILE = "Thread Demo/App/UITests.Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
