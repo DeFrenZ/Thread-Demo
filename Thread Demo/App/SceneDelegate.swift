@@ -1,5 +1,6 @@
 import UIKit
 import SwiftUI
+import Frontend
 import Core
 import Log
 
