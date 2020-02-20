@@ -1,5 +1,5 @@
-import Core
 import API
+import Core
 
 extension Core.Comment {
 	init(apiModel: API.Comment) {

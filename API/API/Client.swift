@@ -1,5 +1,5 @@
-import Foundation
 import Combine
+import Foundation
 import Log
 
 /// An object that can perform API calls

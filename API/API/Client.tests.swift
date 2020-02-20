@@ -1,6 +1,6 @@
+import Combine
 import XCTest
 @testable import API
-import Combine
 
 final class APIClientTests: XCTestCase {
 	var stubs: [String: Result<(data: Data, response: URLResponse), URLError>] = [:]

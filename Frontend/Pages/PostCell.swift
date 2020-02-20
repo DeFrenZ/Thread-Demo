@@ -1,6 +1,6 @@
-import SwiftUI
 import Core
 import DesignSystem
+import SwiftUI
 
 public struct PostCell: View {
 	private var post: Post.Connected

@@ -1,8 +1,7 @@
-import Foundation
-import Core
 import API
-import struct CoreLocation.CLLocationCoordinate2D
-import struct CoreLocation.CLLocationDegrees
+import Core
+import CoreLocation
+import Foundation
 
 extension Core.User {
 	init(apiModel: API.User) throws {

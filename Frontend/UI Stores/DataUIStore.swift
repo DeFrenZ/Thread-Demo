@@ -1,6 +1,6 @@
 import Combine
-import Foundation
 import Core
+import Foundation
 import Log
 
 public final class DataUIStore: ObservableObject {

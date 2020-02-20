@@ -1,8 +1,8 @@
-import UIKit
-import SwiftUI
-import Frontend
 import Core
+import Frontend
 import Log
+import SwiftUI
+import UIKit
 
 final class SceneDelegate: UIResponder {
 	var window: UIWindow?

@@ -1,7 +1,7 @@
-import Foundation
+import API
 import Combine
 import Core
-import API
+import Foundation
 
 extension DataStore where S == RunLoop {
 	convenience init(

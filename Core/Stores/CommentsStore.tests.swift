@@ -1,6 +1,6 @@
+import Combine
 import XCTest
 @testable import Core
-import Combine
 
 final class CommentsStoreTests: XCTestCase {
 	private var storage: MemoryStorage = [:]

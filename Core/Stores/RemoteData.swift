@@ -1,5 +1,5 @@
-import Foundation
 import Combine
+import Foundation
 
 /// A wrapper for data that is retrieved remotely.
 ///

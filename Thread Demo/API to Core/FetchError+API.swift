@@ -1,5 +1,5 @@
-import Core
 import API
+import Core
 
 extension FetchError {
 	init(anyError error: Error) {
