@@ -122,8 +122,8 @@ extension UsersStoreTests {
 }
 
 // MARK: Utilities
-private extension UsersStoreTests {
-	static let previousUsers: [User] = Array([User].samples.prefix(5))
-	static let users: [User] = Array([User].samples.dropFirst(5))
-	static let error: FetchError = .badResource
+extension UsersStoreTests {
+	fileprivate static let previousUsers: [User] = Array([User].samples.prefix(5))
+	fileprivate static let users: [User] = Array([User].samples.dropFirst(5))
+	fileprivate static let error: FetchError = .badResource
 }

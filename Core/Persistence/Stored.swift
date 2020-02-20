@@ -19,28 +19,28 @@ public struct Stored <Value: Codable> {
 	public var projectedValue: Self { self }
 }
 
-public extension Stored {
-	func isPresent() throws -> Bool {
+extension Stored {
+	public func isPresent() throws -> Bool {
 		try storage.isPresent(for: key)
 	}
 
-	func read() throws -> Value {
+	public func read() throws -> Value {
 		try storage.read(Value.self, for: key)
 	}
 
-	func write(_ value: Value) throws {
+	public func write(_ value: Value) throws {
 		try storage.write(value, for: key)
 	}
 
-	func remove() throws {
+	public func remove() throws {
 		try storage.remove(for: key)
 	}
 
-	func readIfPresent() throws -> Value? {
+	public func readIfPresent() throws -> Value? {
 		try storage.readIfPresent(Value.self, for: key)
 	}
 
-	func writeOrRemove(_ value: Value?) throws {
+	public func writeOrRemove(_ value: Value?) throws {
 		try storage.writeOrRemove(value, for: key)
 	}
 }

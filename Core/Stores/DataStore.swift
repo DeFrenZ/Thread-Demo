@@ -45,8 +45,8 @@ public final class DataStore<S: Scheduler>: ObservableObject {
 	}
 }
 
-public extension DataStore {
-	func fetchAll(_ fetchType: FetchType = .remoteFirst(forced: false)) {
+extension DataStore {
+	public func fetchAll(_ fetchType: FetchType = .remoteFirst(forced: false)) {
 		logger.info("Fetching: \(public: String(describing: fetchType))")
 		postsStore.fetch(fetchType)
 		// ???: Consider not fetching the rest until a post detail is shown, but the list looks better with the additional data
@@ -55,8 +55,8 @@ public extension DataStore {
 	}
 }
 
-public extension RemoteData where Data == [Post] {
-	func connectedTo(
+extension RemoteData where Data == [Post] {
+	public func connectedTo(
 		users: RemoteData<[User], Failure>,
 		comments: RemoteData<[Comment], Failure>
 	) -> (
@@ -96,8 +96,8 @@ public extension RemoteData where Data == [Post] {
 	}
 }
 
-public extension Array where Element == Post.Connected {
-	func connectedTo(users: [User.Connected]) -> (posts: [Post.Connected], users: [User.Connected]) {
+extension Array where Element == Post.Connected {
+	public func connectedTo(users: [User.Connected]) -> (posts: [Post.Connected], users: [User.Connected]) {
 		let usersByID = Dictionary(groupingByID: users)
 		let connectedPosts = map({ post in
 			updated(post, with: { $0.user = usersByID[post.userID]?.user })
@@ -112,8 +112,8 @@ public extension Array where Element == Post.Connected {
 	}
 }
 
-public extension Array where Element == Comment.Connected {
-	func connectedTo(posts: [Post.Connected]) -> (comments: [Comment.Connected], posts: [Post.Connected]) {
+extension Array where Element == Comment.Connected {
+	public func connectedTo(posts: [Post.Connected]) -> (comments: [Comment.Connected], posts: [Post.Connected]) {
 		let postsByID = Dictionary(groupingByID: posts)
 		let connectedComments = map({ comment in
 			updated(comment, with: { $0.post = postsByID[comment.postID]?.post })

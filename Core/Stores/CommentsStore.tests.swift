@@ -122,8 +122,8 @@ extension CommentsStoreTests {
 }
 
 // MARK: Utilities
-private extension CommentsStoreTests {
-	static let previousComments: [Comment] = Array([Comment].samples.prefix(5))
-	static let comments: [Comment] = Array([Comment].samples.dropFirst(5))
-	static let error: FetchError = .badResource
+extension CommentsStoreTests {
+	fileprivate static let previousComments: [Comment] = Array([Comment].samples.prefix(5))
+	fileprivate static let comments: [Comment] = Array([Comment].samples.dropFirst(5))
+	fileprivate static let error: FetchError = .badResource
 }

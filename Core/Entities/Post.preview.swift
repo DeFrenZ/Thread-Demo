@@ -1,8 +1,8 @@
 import Foundation
 
 #if ENABLE_SAMPLES
-public extension Array where Element == Post {
-	static var samples: Self! {
+extension Array where Element == Post {
+	public static var samples: Self! {
 		[
 			.init(
 				id: .init(value: 1),
@@ -1108,24 +1108,24 @@ public extension Array where Element == Post {
 	}
 }
 
-public extension Post {
-	static var sample: Self! { [Self].samples.first }
+extension Post {
+	public static var sample: Self! { [Self].samples.first }
 }
 
-public extension Array where Element == Post.Connected {
-	static var baseSamples: Self! {
+extension Array where Element == Post.Connected {
+	public static var baseSamples: Self! {
 		[Post].samples
 			.map({ Element(post: $0) })
 	}
 
-	static var samples: Self! {
+	public static var samples: Self! {
 		let (withUsers, _) = baseSamples.connectedTo(users: .baseSamples)
 		let (_, connected) = [Comment.Connected].baseSamples.connectedTo(posts: withUsers)
 		return connected
 	}
 }
 
-public extension Post.Connected {
-	static var sample: Self! { [Self].samples.first }
+extension Post.Connected {
+	public static var sample: Self! { [Self].samples.first }
 }
 #endif

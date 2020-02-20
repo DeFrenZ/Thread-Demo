@@ -1,14 +1,14 @@
 #if ENABLE_SAMPLES
-public extension DataUIStore {
-	static var sample: DataUIStore {
+extension DataUIStore {
+	public static var sample: DataUIStore {
 		.init(.sample)
 	}
 
-	static var sampleLoaded: DataUIStore {
+	public static var sampleLoaded: DataUIStore {
 		.init(.sampleLoaded)
 	}
 
-	static var sampleLoading: DataUIStore {
+	public static var sampleLoading: DataUIStore {
 		.init(.sampleLoading)
 	}
 }

@@ -85,8 +85,8 @@ extension DataStoreTests {
 }
 
 // MARK: Utilities
-private extension DataStoreTests {
-	func assertPostsAreConnectedToUsers(file: StaticString = #file, line: UInt = #line) {
+extension DataStoreTests {
+	fileprivate func assertPostsAreConnectedToUsers(file: StaticString = #file, line: UInt = #line) {
 		for post in store.posts.lastValidData?.data ?? [] {
 			if let connectedUser = store.users.lastValidData?.data.first(where: { $0.id == post.userID }) {
 				XCTAssertEqual(post.user, connectedUser.user, "There should be a connected user", file: file, line: line)
@@ -109,7 +109,7 @@ private extension DataStoreTests {
 		}
 	}
 
-	func assertCommentsAreConnectedToPosts(file: StaticString = #file, line: UInt = #line) {
+	fileprivate func assertCommentsAreConnectedToPosts(file: StaticString = #file, line: UInt = #line) {
 		for post in store.posts.lastValidData?.data ?? [] {
 			if let comments = post.comments {
 				for comment in comments {

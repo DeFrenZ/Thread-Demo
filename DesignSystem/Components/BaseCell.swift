@@ -43,8 +43,8 @@ public struct BaseCell<Item: View>: View {
 	}
 }
 
-public extension BaseCell where Item == EmptyView {
-	init(
+extension BaseCell where Item == EmptyView {
+	public init(
 		author: String?,
 		username: String?,
 		cellBody: String,

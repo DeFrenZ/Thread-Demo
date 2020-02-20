@@ -110,8 +110,8 @@ extension APIClientTests {
 }
 
 // MARK: Utilities
-private extension APIClientTests {
-	func stubAPICall <T: Encodable> (
+extension APIClientTests {
+	fileprivate func stubAPICall <T: Encodable> (
 		atPath path: String,
 		responseBody body: T,
 		file: StaticString = #file,
@@ -141,8 +141,8 @@ private extension APIClientTests {
 	}
 }
 
-private extension URL {
-	static let testBaseURL = URL(string: "http://unit.test.com")!
+extension URL {
+	fileprivate static let testBaseURL = URL(string: "http://unit.test.com")!
 }
 
 private struct TestCodable: Hashable, Codable {

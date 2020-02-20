@@ -1,7 +1,7 @@
 import SwiftUI
 
-public extension View {
-	func multiplePreviewEnvironments(
+extension View {
+	public func multiplePreviewEnvironments(
 		sizeCategories: [ContentSizeCategory] = MultiplePreviewEnvironments.defaultSizeCategories,
 		colorSchemes: [ColorScheme] = MultiplePreviewEnvironments.defaultColorSchemes
 		// TODO: `multipleSizeClasses`

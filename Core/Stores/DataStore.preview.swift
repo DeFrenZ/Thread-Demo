@@ -1,8 +1,8 @@
 import Combine
 
 #if ENABLE_SAMPLES
-public extension DataStore where S == ImmediateScheduler {
-	static var sample: DataStore {
+extension DataStore where S == ImmediateScheduler {
+	public static var sample: DataStore {
 		.init(
 			postsStore: .sample,
 			usersStore: .sample,
@@ -10,7 +10,7 @@ public extension DataStore where S == ImmediateScheduler {
 		)
 	}
 
-	static var sampleLoaded: DataStore {
+	public static var sampleLoaded: DataStore {
 		.init(
 			postsStore: .sampleLoaded,
 			usersStore: .sampleLoaded,
@@ -18,7 +18,7 @@ public extension DataStore where S == ImmediateScheduler {
 		)
 	}
 
-	static var sampleLoading: DataStore {
+	public static var sampleLoading: DataStore {
 		.init(
 			postsStore: .sampleLoading,
 			usersStore: .sampleLoading,

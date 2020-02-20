@@ -1,8 +1,8 @@
 import Combine
 
 #if ENABLE_SAMPLES
-public extension CommentsStore where S == ImmediateScheduler {
-	static var sample: CommentsStore {
+extension CommentsStore where S == ImmediateScheduler {
+	public static var sample: CommentsStore {
 		.init(
 			storage: [:] as MemoryStorage,
 			getComments: {
@@ -14,7 +14,7 @@ public extension CommentsStore where S == ImmediateScheduler {
 		)
 	}
 
-	static var sampleLoaded: CommentsStore {
+	public static var sampleLoaded: CommentsStore {
 		.init(
 			storage: [.comments: [Comment].samples!] as MemoryStorage,
 			getComments: {
@@ -26,7 +26,7 @@ public extension CommentsStore where S == ImmediateScheduler {
 		)
 	}
 
-	static var sampleLoading: CommentsStore {
+	public static var sampleLoading: CommentsStore {
 		.init(
 			storage: [:] as MemoryStorage,
 			getComments: { Empty(completeImmediately: false).eraseToAnyPublisher() },

@@ -26,8 +26,8 @@ public final class CommentsStore<S: Scheduler>: ObservableObject {
 	public typealias GetComments = () -> AnyPublisher<[Comment], FetchError>
 }
 
-public extension CommentsStore where S == RunLoop {
-	convenience init(
+extension CommentsStore where S == RunLoop {
+	public convenience init(
 		storage: Storage,
 		getComments: @escaping GetComments
 	) {
@@ -39,8 +39,8 @@ public extension CommentsStore where S == RunLoop {
 	}
 }
 
-public extension CommentsStore {
-	func fetch(_ fetchType: FetchType) {
+extension CommentsStore {
+	public func fetch(_ fetchType: FetchType) {
 		switch (fetchType, comments.lastValidData?.source) {
 		case (.storageOnly, nil):
 			try? fetchFromStorage()

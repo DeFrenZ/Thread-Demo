@@ -1,8 +1,8 @@
 import Combine
 
 #if ENABLE_SAMPLES
-public extension UsersStore where S == ImmediateScheduler {
-	static var sample: UsersStore {
+extension UsersStore where S == ImmediateScheduler {
+	public static var sample: UsersStore {
 		.init(
 			storage: [:] as MemoryStorage,
 			getUsers: {
@@ -14,7 +14,7 @@ public extension UsersStore where S == ImmediateScheduler {
 		)
 	}
 
-	static var sampleLoaded: UsersStore {
+	public static var sampleLoaded: UsersStore {
 		.init(
 			storage: [.users: [User].samples!] as MemoryStorage,
 			getUsers: {
@@ -26,7 +26,7 @@ public extension UsersStore where S == ImmediateScheduler {
 		)
 	}
 
-	static var sampleLoading: UsersStore {
+	public static var sampleLoading: UsersStore {
 		.init(
 			storage: [:] as MemoryStorage,
 			getUsers: { Empty(completeImmediately: false).eraseToAnyPublisher() },

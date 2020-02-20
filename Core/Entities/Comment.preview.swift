@@ -1,8 +1,8 @@
 import Foundation
 
 #if ENABLE_SAMPLES
-public extension Array where Element == Comment {
-	static var samples: Self! {
+extension Array where Element == Comment {
+	public static var samples: Self! {
 		[
 			.init(
 				id: .init(value: 1),
@@ -6008,22 +6008,22 @@ public extension Array where Element == Comment {
 	}
 }
 
-public extension Comment {
-	static var sample: Self! { [Self].samples.first }
+extension Comment {
+	public static var sample: Self! { [Self].samples.first }
 }
 
-public extension Array where Element == Comment.Connected {
-	static var baseSamples: Self! {
+extension Array where Element == Comment.Connected {
+	public static var baseSamples: Self! {
 		[Comment].samples
 			.map({ Element(comment: $0) })
 	}
 
-	static var samples: Self! {
+	public static var samples: Self! {
 		baseSamples.connectedTo(posts: .baseSamples).comments
 	}
 }
 
-public extension Comment.Connected {
-	static var sample: Self! { [Self].samples.first }
+extension Comment.Connected {
+	public static var sample: Self! { [Self].samples.first }
 }
 #endif

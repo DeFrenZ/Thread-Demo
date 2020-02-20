@@ -7,8 +7,8 @@ extension LoggingSystem {
 	}
 }
 
-private extension OSLogHandler {
-	static func factory(label: String) -> OSLogHandler {
+extension OSLogHandler {
+	fileprivate static func factory(label: String) -> OSLogHandler {
 		.init(
 			category: label,
 			subsystem: Bundle.main.bundleIdentifier ?? "???"

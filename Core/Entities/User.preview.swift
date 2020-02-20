@@ -1,8 +1,8 @@
 import Foundation
 
 #if ENABLE_SAMPLES
-public extension Array where Element == User {
-	static var samples: Self! {
+extension Array where Element == User {
+	public static var samples: Self! {
 		[
 			.init(
 				id: .init(value: 1),
@@ -238,22 +238,22 @@ public extension Array where Element == User {
 	}
 }
 
-public extension User {
-	static var sample: Self! { [Self].samples.first }
+extension User {
+	public static var sample: Self! { [Self].samples.first }
 }
 
-public extension Array where Element == User.Connected {
-	static var baseSamples: Self! {
+extension Array where Element == User.Connected {
+	public static var baseSamples: Self! {
 		[User].samples
 			.map({ Element(user: $0) })
 	}
 
-	static var samples: Self! {
+	public static var samples: Self! {
 		[Post.Connected].baseSamples.connectedTo(users: .baseSamples).users
 	}
 }
 
-public extension User.Connected {
-	static var sample: Self! { [Self].samples.first }
+extension User.Connected {
+	public static var sample: Self! { [Self].samples.first }
 }
 #endif

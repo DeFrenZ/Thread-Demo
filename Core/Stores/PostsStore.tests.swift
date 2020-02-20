@@ -122,8 +122,8 @@ extension PostsStoreTests {
 }
 
 // MARK: Utilities
-private extension PostsStoreTests {
-	static let previousPosts: [Post] = Array([Post].samples.prefix(5))
-	static let posts: [Post] = Array([Post].samples.dropFirst(5))
-	static let error: FetchError = .badResource
+extension PostsStoreTests {
+	fileprivate static let previousPosts: [Post] = Array([Post].samples.prefix(5))
+	fileprivate static let posts: [Post] = Array([Post].samples.dropFirst(5))
+	fileprivate static let error: FetchError = .badResource
 }

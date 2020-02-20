@@ -26,8 +26,8 @@ public final class UsersStore<S: Scheduler>: ObservableObject {
 	public typealias GetUsers = () -> AnyPublisher<[User], FetchError>
 }
 
-public extension UsersStore where S == RunLoop {
-	convenience init(
+extension UsersStore where S == RunLoop {
+	public convenience init(
 		storage: Storage,
 		getUsers: @escaping GetUsers
 	) {
@@ -39,8 +39,8 @@ public extension UsersStore where S == RunLoop {
 	}
 }
 
-public extension UsersStore {
-	func fetch(_ fetchType: FetchType) {
+extension UsersStore {
+	public func fetch(_ fetchType: FetchType) {
 		switch (fetchType, users.lastValidData?.source) {
 		case (.storageOnly, nil):
 			try? fetchFromStorage()

@@ -50,8 +50,8 @@ public enum _RemoteDataSource {
 	case remote
 }
 
-public extension RemoteData {
-	mutating func setRemoteValue(to newValue: Result<Data, Failure>) {
+extension RemoteData {
+	public mutating func setRemoteValue(to newValue: Result<Data, Failure>) {
 		switch newValue {
 		case .success(let value):
 			lastValidData = (value, .remote)
@@ -62,8 +62,8 @@ public extension RemoteData {
 	}
 }
 
-public extension RemoteData {
-	func map <T> (_ transform: (Data) throws -> T) rethrows -> RemoteData<T, Failure> {
+extension RemoteData {
+	public func map <T> (_ transform: (Data) throws -> T) rethrows -> RemoteData<T, Failure> {
 		guard let lastValidData = self.lastValidData else {
 			return .init(lastValidData: nil, state: state)
 		}

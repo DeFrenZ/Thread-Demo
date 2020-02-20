@@ -46,8 +46,8 @@ extension Logger.Message.Segment: CustomDebugStringConvertible {
 	}
 }
 
-private extension Logger.Message.Segment.Privacy {
-	var debugDescriptionPrefix: String {
+extension Logger.Message.Segment.Privacy {
+	fileprivate var debugDescriptionPrefix: String {
 		switch self {
 		case .public: return "public: "
 		case .private: return "private: "
@@ -94,8 +94,8 @@ extension Logger.Message: ExpressibleByStringInterpolation {
 }
 
 // MARK: Operators
-public extension Logger.Message {
-	static func + (lhs: Self, rhs: Self) -> Self {
+extension Logger.Message {
+	public static func + (lhs: Self, rhs: Self) -> Self {
 		// TODO: Unify the ends in a single segment if both are `static`
 		.init(segments: lhs.segments + rhs.segments)
 	}

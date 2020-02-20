@@ -2,13 +2,13 @@
 import Combine
 
 @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-public extension Publishers {
-	typealias Log<T> = HandleEvents<T> where T: Publisher
+extension Publishers {
+	public typealias Log<T> = HandleEvents<T> where T: Publisher
 }
 
 @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-public extension Publisher {
-	func log(_ level: Logger.Level, on logger: Logger) -> Publishers.Log<Self> {
+extension Publisher {
+	public func log(_ level: Logger.Level, on logger: Logger) -> Publishers.Log<Self> {
 		handleEvents(
 			receiveSubscription: { logger.log(level: level, Self.buildDefaultSubscriptionMessage($0)) },
 			receiveOutput: { logger.log(level: level, Self.buildDefaultOutputMessage($0)) },
@@ -18,7 +18,7 @@ public extension Publisher {
 		)
 	}
 
-	func logOutputs(
+	public func logOutputs(
 		_ level: Logger.Level,
 		on logger: Logger,
 		message buildMessage: @escaping (Output) -> Logger.Message = Self.buildDefaultOutputMessage
@@ -26,7 +26,7 @@ public extension Publisher {
 		handleEvents(receiveOutput: { logger.log(level: level, buildMessage($0)) })
 	}
 
-	func logCompletion(
+	public func logCompletion(
 		_ level: Logger.Level,
 		on logger: Logger,
 		message buildMessage: @escaping (Subscribers.Completion<Failure>) -> Logger.Message = Self.buildDefaultCompletionMessage
@@ -34,7 +34,7 @@ public extension Publisher {
 		handleEvents(receiveCompletion: { logger.log(level: level, buildMessage($0)) })
 	}
 
-	func logFinish(
+	public func logFinish(
 		_ level: Logger.Level,
 		on logger: Logger,
 		message buildMessage: @escaping () -> Logger.Message = Self.buildDefaultFinishMessage
@@ -47,7 +47,7 @@ public extension Publisher {
 		})
 	}
 
-	func logFailure(
+	public func logFailure(
 		_ level: Logger.Level,
 		on logger: Logger,
 		message buildMessage: @escaping (Failure) -> Logger.Message = Self.buildDefaultFailureMessage
@@ -62,35 +62,35 @@ public extension Publisher {
 }
 
 @available(OSX 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)
-public extension Publisher {
-	static func buildDefaultSubscriptionMessage(_ subscription: Subscription) -> Logger.Message {
+extension Publisher {
+	public static func buildDefaultSubscriptionMessage(_ subscription: Subscription) -> Logger.Message {
 		"Received subscription: \(String(describing: subscription))"
 	}
 
-	static func buildDefaultOutputMessage(_ output: Output) -> Logger.Message {
+	public static func buildDefaultOutputMessage(_ output: Output) -> Logger.Message {
 		"Received output: \(String(describing: output))"
 	}
 
-	static func buildDefaultCompletionMessage(_ completion: Subscribers.Completion<Failure>) -> Logger.Message {
+	public static func buildDefaultCompletionMessage(_ completion: Subscribers.Completion<Failure>) -> Logger.Message {
 		switch completion {
 		case .finished: return buildDefaultFinishMessage()
 		case .failure(let error): return buildDefaultFailureMessage(error)
 		}
 	}
 
-	static func buildDefaultFinishMessage() -> Logger.Message {
+	public static func buildDefaultFinishMessage() -> Logger.Message {
 		"Received completion"
 	}
 
-	static func buildDefaultFailureMessage(_ error: Failure) -> Logger.Message {
+	public static func buildDefaultFailureMessage(_ error: Failure) -> Logger.Message {
 		"Received failure: \(String(describing: error))"
 	}
 
-	static func buildDefaultCancelMessage() -> Logger.Message {
+	public static func buildDefaultCancelMessage() -> Logger.Message {
 		"Received cancel"
 	}
 
-	static func buildDefaultRequestMessage(_ demand: Subscribers.Demand) -> Logger.Message {
+	public static func buildDefaultRequestMessage(_ demand: Subscribers.Demand) -> Logger.Message {
 		"Received demand: \(String(describing: demand))"
 	}
 }

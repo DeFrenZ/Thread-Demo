@@ -24,8 +24,8 @@ public protocol Storage {
 	func remove(for key: Key) throws
 }
 
-public extension Storage {
-	func readIfPresent <Value: Decodable> (_ type: Value.Type, for key: Key) throws -> Value? {
+extension Storage {
+	public func readIfPresent <Value: Decodable> (_ type: Value.Type, for key: Key) throws -> Value? {
 		do {
 			return try read(Value.self, for: key)
 		} catch Error.objectNotStored(key: key) {
@@ -33,7 +33,7 @@ public extension Storage {
 		}
 	}
 
-	func writeOrRemove <Value: Encodable> (_ value: Value?, for key: Key) throws {
+	public func writeOrRemove <Value: Encodable> (_ value: Value?, for key: Key) throws {
 		guard let value = value else {
 			try remove(for: key)
 			return
