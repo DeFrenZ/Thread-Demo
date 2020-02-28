@@ -12,7 +12,7 @@ public struct PostsList: View {
 			message: bannerMessage,
 			action: { self.performAction(.retry) }
 		) {
-			LoadingView(showLoader: .constant(showLoader)) {
+			LoadingView(showLoader: showLoader) {
 				List(posts ?? []) { post in
 					NavigationLink(destination: PostDetailView(post: post)) {
 						PostCell(post: post)

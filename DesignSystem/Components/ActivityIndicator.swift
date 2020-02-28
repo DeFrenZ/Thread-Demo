@@ -2,15 +2,15 @@ import SwiftUI
 import UIKit
 
 public struct ActivityIndicator: UIViewRepresentable {
-	private let style: UIActivityIndicatorView.Style
-	@Binding private var isAnimating: Bool
+	private var style: UIActivityIndicatorView.Style
+	private var isAnimating: Bool
 
 	public init(
 		style: UIActivityIndicatorView.Style = .medium,
-		isAnimating: Binding<Bool> = .constant(true)
+		isAnimating: Bool = true
 	) {
 		self.style = style
-		self._isAnimating = isAnimating
+		self.isAnimating = isAnimating
 	}
 
 	public func makeUIView(context: Context) -> UIActivityIndicatorView {
@@ -29,7 +29,7 @@ public struct ActivityIndicator: UIViewRepresentable {
 // MARK: - Preview
 struct ActivityIndicator_Preview: PreviewProvider {
 	static var previews: some View {
-		ActivityIndicator(style: .large, isAnimating: .constant(true))
+		ActivityIndicator(style: .large, isAnimating: true)
 			.previewLayout(.sizeThatFits)
 	}
 }

@@ -2,14 +2,14 @@ import SwiftUI
 
 /// A view that can be used to cover some content with a loader when the content isn't present or complete yet
 public struct LoadingView<Content: View>: View {
-	@Binding private var showLoader: Bool
+	private var showLoader: Bool
 	private var content: Content
 
 	public init(
-		showLoader: Binding<Bool>,
+		showLoader: Bool,
 		@ViewBuilder content contentBuilder: () -> Content
 	) {
-		self._showLoader = showLoader
+		self.showLoader = showLoader
 		self.content = contentBuilder()
 	}
 
@@ -29,7 +29,7 @@ public struct LoadingView<Content: View>: View {
 
 struct LoadingView_Previews: PreviewProvider {
     static var previews: some View {
-		LoadingView(showLoader: .constant(true)) {
+		LoadingView(showLoader: true) {
 			Text("""
 				Some example text,
 				which happens to be quite long,
