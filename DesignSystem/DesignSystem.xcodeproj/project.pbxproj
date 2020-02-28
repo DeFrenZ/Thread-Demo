@@ -14,11 +14,11 @@
 		0316CB0323FE9BD900607E23 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0316CAFF23FE9BD900607E23 /* BaseCell.swift */; };
 		0316CB0423FE9BD900607E23 /* Banner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0316CB0023FE9BD900607E23 /* Banner.swift */; };
 		0316CB0723FE9C9100607E23 /* PreviewProvider.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0316CB0623FE9C9100607E23 /* PreviewProvider.extensions.swift */; };
-		0316CB0A23FE9CDD00607E23 /* Collection.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0316CB0823FE9CDD00607E23 /* Collection.extensions.swift */; };
-		0316CB0B23FE9CDD00607E23 /* Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0316CB0923FE9CDD00607E23 /* Pair.swift */; };
 		0316CB0F23FE9DE000607E23 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0316CB0D23FE9DE000607E23 /* BannerView.swift */; };
 		0316CB1023FE9DE000607E23 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0316CB0E23FE9DE000607E23 /* LoadingView.swift */; };
 		0316CB1223FE9E0600607E23 /* SwiftUI.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0316CB1123FE9E0600607E23 /* SwiftUI.extensions.swift */; };
+		0346E4D12409834100E18F5A /* PreviewDevice.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346E4D02409834100E18F5A /* PreviewDevice.extensions.swift */; };
+		0346E4D32409838800E18F5A /* PreviewLayout.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346E4D22409838800E18F5A /* PreviewLayout.extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,11 +42,11 @@
 		0316CAFF23FE9BD900607E23 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
 		0316CB0023FE9BD900607E23 /* Banner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
 		0316CB0623FE9C9100607E23 /* PreviewProvider.extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreviewProvider.extensions.swift; sourceTree = "<group>"; };
-		0316CB0823FE9CDD00607E23 /* Collection.extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collection.extensions.swift; sourceTree = "<group>"; };
-		0316CB0923FE9CDD00607E23 /* Pair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pair.swift; sourceTree = "<group>"; };
 		0316CB0D23FE9DE000607E23 /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		0316CB0E23FE9DE000607E23 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		0316CB1123FE9E0600607E23 /* SwiftUI.extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUI.extensions.swift; sourceTree = "<group>"; };
+		0346E4D02409834100E18F5A /* PreviewDevice.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewDevice.extensions.swift; sourceTree = "<group>"; };
+		0346E4D22409838800E18F5A /* PreviewLayout.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewLayout.extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +104,8 @@
 		0316CB0523FE9C9100607E23 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				0316CB0923FE9CDD00607E23 /* Pair.swift */,
-				0316CB0823FE9CDD00607E23 /* Collection.extensions.swift */,
+				0346E4D02409834100E18F5A /* PreviewDevice.extensions.swift */,
+				0346E4D22409838800E18F5A /* PreviewLayout.extensions.swift */,
 				0316CB0623FE9C9100607E23 /* PreviewProvider.extensions.swift */,
 				0316CB1123FE9E0600607E23 /* SwiftUI.extensions.swift */,
 			);
@@ -232,14 +232,14 @@
 			files = (
 				0316CB0723FE9C9100607E23 /* PreviewProvider.extensions.swift in Sources */,
 				0316CB0123FE9BD900607E23 /* ActivityIndicator.swift in Sources */,
-				0316CB0A23FE9CDD00607E23 /* Collection.extensions.swift in Sources */,
 				0316CB0423FE9BD900607E23 /* Banner.swift in Sources */,
 				0316CB0F23FE9DE000607E23 /* BannerView.swift in Sources */,
 				0316CB0323FE9BD900607E23 /* BaseCell.swift in Sources */,
-				0316CB0B23FE9CDD00607E23 /* Pair.swift in Sources */,
 				0316CB0223FE9BD900607E23 /* BlurEffect.swift in Sources */,
 				0316CB1223FE9E0600607E23 /* SwiftUI.extensions.swift in Sources */,
+				0346E4D12409834100E18F5A /* PreviewDevice.extensions.swift in Sources */,
 				0316CB1023FE9DE000607E23 /* LoadingView.swift in Sources */,
+				0346E4D32409838800E18F5A /* PreviewLayout.extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
