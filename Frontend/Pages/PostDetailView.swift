@@ -11,12 +11,7 @@ public struct PostDetailView: View {
 
     public var body: some View {
 		return List() {
-			Section(
-				header: Text(verbatim: title)
-					.font(.subheadline)
-					.fontWeight(.semibold)
-					.lineLimit(nil)
-			) {
+			Section {
 				PostCell(post: post, showNumberOfComments: false)
 			}
 
