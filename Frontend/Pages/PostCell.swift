@@ -27,6 +27,9 @@ public struct PostCell: View {
 				EmptyView()
 			}
 		}
+			.accessibilityElement()
+			.accessibility(addTraits: .isStaticText)
+			.accessibility(label: Text(accessibilityLabel))
 	}
 
 	private var commentsItem: some View {
@@ -49,6 +52,13 @@ extension PostCell {
 	var username: String? { (post.user?.username).map({ "@\($0)" }) }
 	var title: String { post.title }
 	var commentsCount: Int? { post.comments?.count }
+	var accessibilityLabel: String {
+		let authorLabel = author.map({ "Post by \($0)" }) ?? "Post"
+		let commentsLabel = showNumberOfComments
+			? commentsCount.map({ ". Has \($0) comments" }) ?? ""
+			: ""
+		return "\(authorLabel): \(title)\(commentsLabel)"
+	}
 }
 
 // MARK: - Preview

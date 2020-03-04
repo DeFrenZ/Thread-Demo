@@ -17,6 +17,7 @@ public struct PostsList: View {
 					NavigationLink(destination: PostDetailView(post: post)) {
 						PostCell(post: post)
 					}
+						.accessibility(hint: Text(self.postAccessibilityHint))
 				}
 			}
 		}
@@ -55,6 +56,7 @@ extension PostsList {
 	}
 
 	var posts: [Post.Connected]? { postsData.lastValidData?.data }
+	var postAccessibilityHint: String { "Shows comments." }
 	var showLoader: Bool { isAnyStoreRetrieving || isAnyStoreIdleWithoutData }
 	var bannerMessage: String? {
 		errorMessage.map({ "\($0)\ntap to retry" })

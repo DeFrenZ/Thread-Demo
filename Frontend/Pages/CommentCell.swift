@@ -15,6 +15,9 @@ public struct CommentCell: View {
 			username: username,
 			cellBody: commentBody
 		)
+			.accessibilityElement()
+			.accessibility(addTraits: .isStaticText)
+			.accessibility(label: Text(accessibilityLabel))
     }
 }
 
@@ -23,6 +26,7 @@ extension CommentCell {
 	var author: String { comment.authorName }
 	var username: String { comment.authorEmail }
 	var commentBody: String { comment.body }
+	var accessibilityLabel: String { "Comment by \(author): \(commentBody)" }
 }
 
 // MARK: - Preview
