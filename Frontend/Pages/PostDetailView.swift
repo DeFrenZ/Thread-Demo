@@ -10,7 +10,7 @@ public struct PostDetailView: View {
 	}
 
     public var body: some View {
-		return List() {
+		return List {
 			Section {
 				PostCell(post: post, showNumberOfComments: false)
 			}
