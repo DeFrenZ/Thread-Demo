@@ -14,6 +14,8 @@
 		0316CAFA23FE9B4800607E23 /* Frontend.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0316CAF223FE9B2700607E23 /* Frontend.framework */; };
 		0316CAFB23FE9B4800607E23 /* Frontend.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0316CAF223FE9B2700607E23 /* Frontend.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0316CB2C23FEA29800607E23 /* FetchError+API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0316CB2B23FEA29800607E23 /* FetchError+API.swift */; };
+		031F9D8A24129AA200CFEE20 /* DesignSystem.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0316CAC523FE9B0700607E23 /* DesignSystem.framework */; };
+		031F9D8B24129AA200CFEE20 /* DesignSystem.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0316CAC523FE9B0700607E23 /* DesignSystem.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		03559A4B23FD93A60054DF17 /* Log.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 03559A2E23FD8D4C0054DF17 /* Log.framework */; };
 		03559A4C23FD93A60054DF17 /* Log.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 03559A2E23FD8D4C0054DF17 /* Log.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		036766FA235A4FBC000E9C8D /* LoggingSystem+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 036766F9235A4FBC000E9C8D /* LoggingSystem+App.swift */; };
@@ -126,6 +128,7 @@
 			files = (
 				03559A4C23FD93A60054DF17 /* Log.framework in Embed Frameworks */,
 				0316CA9823FE925B00607E23 /* Core.framework in Embed Frameworks */,
+				031F9D8B24129AA200CFEE20 /* DesignSystem.framework in Embed Frameworks */,
 				0316CAFB23FE9B4800607E23 /* Frontend.framework in Embed Frameworks */,
 				0316CA2623FDA01000607E23 /* API.framework in Embed Frameworks */,
 			);
@@ -169,6 +172,7 @@
 			files = (
 				03559A4B23FD93A60054DF17 /* Log.framework in Frameworks */,
 				0316CA9723FE925B00607E23 /* Core.framework in Frameworks */,
+				031F9D8A24129AA200CFEE20 /* DesignSystem.framework in Frameworks */,
 				0316CAFA23FE9B4800607E23 /* Frontend.framework in Frameworks */,
 				0316CA2523FDA01000607E23 /* API.framework in Frameworks */,
 			);
