@@ -30,7 +30,9 @@ extension OSLogHandler: LogHandler {
 		let metadataToLog = self.metadata.merging(metadata ?? [:], uniquingKeysWith: { _, new in new })
 		// !!!: Metadata is being appended at the end, but `os_log` potentially clips messages
 		// TODO: Use better formatting than `Metadata.description`
-		let metadataMessage: Logger.Message = """
+		let metadataMessage: Logger.Message = metadataToLog.isEmpty
+			? ""
+			: """
 
 			METADATA:
 			\(metadataToLog)
