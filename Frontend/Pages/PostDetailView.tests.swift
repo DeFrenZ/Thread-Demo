@@ -8,7 +8,7 @@ final class PostDetailViewTests: XCTestCase {
 extension PostDetailViewTests {
 	func test_accessibility_default() {
 		let view = PostDetailView(post: .sample)
-			.frame(width: 300, height: 1000)
+			.frame(width: 300, height: 1_000)
 
 		let elements = view.accessibilityNode
 			.flattenedElements

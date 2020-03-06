@@ -152,7 +152,6 @@ extension AccessibilityNode.Element: CustomDebugStringConvertible {
 // MARK: - UIKit
 extension NSObject {
 	public var accessibilityNode: AccessibilityNode {
-		print("Visiting \(self)")
 		if let element = accessibilityNodeElement {
 			return .element(element)
 		} else {
