@@ -44,6 +44,7 @@ struct PostDetailView_Previews: PreviewProvider {
 		NavigationView {
 			PostDetailView(post: .sample)
 		}
+			.previewLayout(.device)
 			.multiplePreviewEnvironments()
     }
 }

@@ -85,6 +85,7 @@ struct PostsList_Previews: PreviewProvider {
 		return NavigationView {
 			PostsList()
 		}
+			.previewLayout(.device)
 			.environmentObject(store)
 			.multiplePreviewEnvironments()
 	}

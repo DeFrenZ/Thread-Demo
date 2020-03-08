@@ -40,5 +40,6 @@ struct LoadingView_Previews: PreviewProvider {
 				.fontWeight(.black)
 				.expand()
 		}
+			.previewLayout(.device)
     }
 }

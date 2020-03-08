@@ -33,5 +33,6 @@ struct RootView_Previews: PreviewProvider {
     static var previews: some View {
         return RootView()
 			.environmentObject(DataUIStore.sampleLoaded)
+			.previewLayout(.device)
     }
 }

@@ -35,5 +35,6 @@ struct BannerView_Previews: PreviewProvider {
 			Text("Some very long message")
 				.expand()
 		}
+			.previewLayout(.device)
     }
 }
