@@ -17,6 +17,7 @@
 		0316CB0F23FE9DE000607E23 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0316CB0D23FE9DE000607E23 /* BannerView.swift */; };
 		0316CB1023FE9DE000607E23 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0316CB0E23FE9DE000607E23 /* LoadingView.swift */; };
 		0316CB1223FE9E0600607E23 /* SwiftUI.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0316CB1123FE9E0600607E23 /* SwiftUI.extensions.swift */; };
+		031F9D9F2412BBED00CFEE20 /* AccessibilityNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 031F9D9E2412BBED00CFEE20 /* AccessibilityNode.swift */; };
 		0346E4D12409834100E18F5A /* PreviewDevice.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346E4D02409834100E18F5A /* PreviewDevice.extensions.swift */; };
 		0346E4D32409838800E18F5A /* PreviewLayout.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346E4D22409838800E18F5A /* PreviewLayout.extensions.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,7 @@
 		0316CB0D23FE9DE000607E23 /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		0316CB0E23FE9DE000607E23 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		0316CB1123FE9E0600607E23 /* SwiftUI.extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftUI.extensions.swift; sourceTree = "<group>"; };
+		031F9D9E2412BBED00CFEE20 /* AccessibilityNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityNode.swift; sourceTree = "<group>"; };
 		0346E4D02409834100E18F5A /* PreviewDevice.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewDevice.extensions.swift; sourceTree = "<group>"; };
 		0346E4D22409838800E18F5A /* PreviewLayout.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewLayout.extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +78,7 @@
 				0316CAB523FE9AF500607E23 /* Tests.Info.plist */,
 				0316CAFC23FE9BD900607E23 /* Components */,
 				0316CB0C23FE9DE000607E23 /* Modifiers */,
+				031F9D9D2412BBDC00CFEE20 /* Accessibility */,
 				0316CB0523FE9C9100607E23 /* Utilities */,
 				0316CAA623FE9AF500607E23 /* Products */,
 			);
@@ -119,6 +122,14 @@
 				0316CB0E23FE9DE000607E23 /* LoadingView.swift */,
 			);
 			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		031F9D9D2412BBDC00CFEE20 /* Accessibility */ = {
+			isa = PBXGroup;
+			children = (
+				031F9D9E2412BBED00CFEE20 /* AccessibilityNode.swift */,
+			);
+			path = Accessibility;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +245,7 @@
 				0316CB0123FE9BD900607E23 /* ActivityIndicator.swift in Sources */,
 				0316CB0423FE9BD900607E23 /* Banner.swift in Sources */,
 				0316CB0F23FE9DE000607E23 /* BannerView.swift in Sources */,
+				031F9D9F2412BBED00CFEE20 /* AccessibilityNode.swift in Sources */,
 				0316CB0323FE9BD900607E23 /* BaseCell.swift in Sources */,
 				0316CB0223FE9BD900607E23 /* BlurEffect.swift in Sources */,
 				0316CB1223FE9E0600607E23 /* SwiftUI.extensions.swift in Sources */,
