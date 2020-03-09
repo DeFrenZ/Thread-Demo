@@ -2,7 +2,7 @@ import UIKit
 import SwiftUI
 
 @dynamicMemberLookup
-public enum AccessibilityNode {
+public enum AccessibilityNode: Equatable {
 	case element(Element)
 	case container(Container)
 
@@ -82,7 +82,7 @@ public enum AccessibilityNode {
 		}
 	}
 
-	public struct Container {
+	public struct Container: Equatable {
 		public var type: UIAccessibilityContainerType
 		public var identifier: String?
 		public var children: [AccessibilityNode]
