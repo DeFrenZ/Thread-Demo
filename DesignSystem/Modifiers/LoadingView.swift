@@ -15,6 +15,7 @@ public struct LoadingView<Content: View>: View {
 
     public var body: some View {
         content
+			.accessibility(hidden: showLoader)
 			.overlay(showLoader ? loader : nil)
     }
 

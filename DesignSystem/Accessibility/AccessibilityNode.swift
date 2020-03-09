@@ -40,7 +40,7 @@ public enum AccessibilityNode {
 		}
 	}
 
-	public struct Element {
+	public struct Element: Equatable {
 		public var traits: UIAccessibilityTraits
 		public var identifier: String?
 		public var label: String
@@ -76,7 +76,7 @@ public enum AccessibilityNode {
 			self.frame = frame
 		}
 
-		public struct CustomRotor {
+		public struct CustomRotor: Hashable {
 			public var name: String
 			public var systemType: UIAccessibilityCustomRotor.SystemRotorType
 		}
