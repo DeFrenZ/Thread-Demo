@@ -20,16 +20,16 @@ public struct Banner <Label: View>: View {
 		self.label = labelBuilder()
 	}
 
-    public var body: some View {
-        Button(action: { self.action?() }) {
+	public var body: some View {
+		Button(action: { self.action?() }) {
 			label
 				.font(Font.callout.weight(.semibold))
 				.foregroundColor(.white)
 				.multilineTextAlignment(.center)
 				.padding()
+				.frame(maxWidth: .infinity, minHeight: 44)
 		}
-			.frame(maxWidth: .infinity, minHeight: 44)
-			.background(Color.orange)
+			.background(Color.orange.edgesIgnoringSafeArea(.all))
     }
 }
 

@@ -31,9 +31,23 @@ public struct BannerView<Content: View>: View {
 
 struct BannerView_Previews: PreviewProvider {
     static var previews: some View {
-		BannerView(message: "Something happened") {
-			Text("Some very long message")
-				.expand()
+		Group {
+			BannerView(message: "Something happened") {
+				Text("Some very long message")
+					.expand()
+			}
+			NavigationView {
+				BannerView(message: "Something happened") {
+					Text("Some very long message")
+						.expand()
+				}.navigationBarTitle("Title", displayMode: .large)
+			}
+			NavigationView {
+				BannerView(message: "Something happened") {
+					Text("Some very long message")
+						.expand()
+				}.navigationBarTitle("Title", displayMode: .inline)
+			}
 		}
 			.previewLayout(.device)
     }
