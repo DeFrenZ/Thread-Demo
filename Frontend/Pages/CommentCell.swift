@@ -15,8 +15,6 @@ public struct CommentCell: View {
 			username: username,
 			cellBody: commentBody
 		)
-			.accessibilityElement()
-			.accessibility(addTraits: .isStaticText)
 			.accessibility(label: Text(accessibilityLabel))
     }
 }

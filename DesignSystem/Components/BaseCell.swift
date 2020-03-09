@@ -40,6 +40,17 @@ public struct BaseCell<Item: View>: View {
 				// Make the `Text` reach its ideal height
 				.fixedSize(horizontal: false, vertical: true)
 		}
+			.accessibilityElement()
+			.accessibility(addTraits: .isStaticText)
+			.accessibility(label: Text(accessibilityLabel))
+	}
+}
+
+// MARK: Presentation
+extension BaseCell {
+	var accessibilityLabel: String {
+		let authorLabel = author.map({ "\($0): " }) ?? ""
+		return "\(authorLabel)\(cellBody)"
 	}
 }
 

@@ -27,8 +27,6 @@ public struct PostCell: View {
 				EmptyView()
 			}
 		}
-			.accessibilityElement()
-			.accessibility(addTraits: .isStaticText)
 			.accessibility(label: Text(accessibilityLabel))
 	}
 
