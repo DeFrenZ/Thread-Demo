@@ -23,30 +23,40 @@ public struct BannerView<Content: View>: View {
 					Text(message)
 				}
 					.transition(.move(edge: .top))
-			})
+			})?
+				.animation(.spring())
 			content
 		}
     }
 }
 
 struct BannerView_Previews: PreviewProvider {
-    static var previews: some View {
-		Group {
-			BannerView(message: "Something happened") {
-				Text("Some very long message")
+	private struct Preview: View {
+		@State var showBanner: Bool = true
+		var body: some View {
+			BannerView(message: showBanner ? "Something happened" : nil) {
+				Button(action: { self.showBanner.toggle() }) {
+					Text("Toggle banner")
+						.padding()
+						.background(Color.orange)
+						.cornerRadius(15)
+						.foregroundColor(.white)
+				}
 					.expand()
 			}
+		}
+	}
+
+    static var previews: some View {
+		Group {
+			Preview()
 			NavigationView {
-				BannerView(message: "Something happened") {
-					Text("Some very long message")
-						.expand()
-				}.navigationBarTitle("Title", displayMode: .large)
+				Preview()
+					.navigationBarTitle("Title", displayMode: .large)
 			}
 			NavigationView {
-				BannerView(message: "Something happened") {
-					Text("Some very long message")
-						.expand()
-				}.navigationBarTitle("Title", displayMode: .inline)
+				Preview()
+					.navigationBarTitle("Title", displayMode: .inline)
 			}
 		}
 			.previewLayout(.device)
