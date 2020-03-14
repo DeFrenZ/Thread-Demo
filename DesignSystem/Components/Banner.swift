@@ -1,14 +1,7 @@
-//
-//  Banner.swift
-//  Thread Demo
-//
-//  Created by Davide De Franceschi on 17/10/2019.
-//  Copyright © 2019 Logic Craft Ltd. All rights reserved.
-//
-
 import SwiftUI
 
 public struct Banner <Label: View>: View {
+	@State private var safeAreaInsets: EdgeInsets = .init()
 	private var action: (() -> Void)?
 	private var label: Label
 
@@ -21,15 +14,22 @@ public struct Banner <Label: View>: View {
 	}
 
 	public var body: some View {
-		Button(action: { self.action?() }) {
-			label
+		SafeAreaReader {
+			Button(action: { self.action?() }) {
+				self.label
+					.padding()
+					.frame(maxWidth: .infinity, minHeight: 44)
+					.padding(safeAreaInsets)
+					.background(Color.orange)
+			}
+				.edgesIgnoringSafeArea(.all)
 				.font(Font.callout.weight(.semibold))
 				.foregroundColor(.white)
 				.multilineTextAlignment(.center)
-				.padding()
-				.frame(maxWidth: .infinity, minHeight: 44)
 		}
-			.background(Color.orange.edgesIgnoringSafeArea(.all))
+			.onPreferenceChange(SafeAreaKey.self) { safeAreaInsets in
+				self.safeAreaInsets = safeAreaInsets
+			}
     }
 }
 

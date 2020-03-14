@@ -18,21 +18,26 @@ public struct BannerView<Content: View>: View {
 
     public var body: some View {
         VStack(spacing: 0) {
-			bannerMessage.map({ message in
-				Banner(action: self.bannerAction) {
-					Text(message)
-				}
-					.transition(.move(edge: .top))
-			})?
-				.animation(.spring())
+			banner
 			content
 		}
+			.animation(.spring())
     }
+
+	private var banner: some View {
+		bannerMessage.map({ message in
+			Banner(action: self.bannerAction) {
+				Text(message)
+			}
+				// Ideally this would work for bottom banners as well, but the bottom safe area seems to work differently than the top one, surprisingly... (iOS 13.3)
+				.transition(.move(edge: .top))
+		})
+	}
 }
 
 struct BannerView_Previews: PreviewProvider {
 	private struct Preview: View {
-		@State var showBanner: Bool = true
+		@State private var showBanner: Bool = true
 		var body: some View {
 			BannerView(message: showBanner ? "Something happened" : nil) {
 				Button(action: { self.showBanner.toggle() }) {

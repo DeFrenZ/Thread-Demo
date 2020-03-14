@@ -22,6 +22,7 @@
 		0346E4D32409838800E18F5A /* PreviewLayout.extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0346E4D22409838800E18F5A /* PreviewLayout.extensions.swift */; };
 		03FB27DA24157AA400AB6BF9 /* LoadingView.tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB27D824157AA200AB6BF9 /* LoadingView.tests.swift */; };
 		03FB27DD24157E3400AB6BF9 /* Banner.tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB27DB24157E3200AB6BF9 /* Banner.tests.swift */; };
+		03FB27E92417ACF000AB6BF9 /* SafeAreaReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03FB27E82417ACF000AB6BF9 /* SafeAreaReader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		0346E4D22409838800E18F5A /* PreviewLayout.extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewLayout.extensions.swift; sourceTree = "<group>"; };
 		03FB27D824157AA200AB6BF9 /* LoadingView.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.tests.swift; sourceTree = "<group>"; };
 		03FB27DB24157E3200AB6BF9 /* Banner.tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Banner.tests.swift; sourceTree = "<group>"; };
+		03FB27E82417ACF000AB6BF9 /* SafeAreaReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeAreaReader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				0316CB0D23FE9DE000607E23 /* BannerView.swift */,
 				0316CB0E23FE9DE000607E23 /* LoadingView.swift */,
 				03FB27D824157AA200AB6BF9 /* LoadingView.tests.swift */,
+				03FB27E82417ACF000AB6BF9 /* SafeAreaReader.swift */,
 			);
 			path = Modifiers;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				0316CB0723FE9C9100607E23 /* PreviewProvider.extensions.swift in Sources */,
 				0316CB0123FE9BD900607E23 /* ActivityIndicator.swift in Sources */,
 				0316CB0423FE9BD900607E23 /* Banner.swift in Sources */,
+				03FB27E92417ACF000AB6BF9 /* SafeAreaReader.swift in Sources */,
 				0316CB0F23FE9DE000607E23 /* BannerView.swift in Sources */,
 				031F9D9F2412BBED00CFEE20 /* AccessibilityNode.swift in Sources */,
 				0316CB0323FE9BD900607E23 /* BaseCell.swift in Sources */,
