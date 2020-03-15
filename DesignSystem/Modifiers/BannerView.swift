@@ -3,12 +3,12 @@ import SwiftUI
 /// A view that optionally shows a top sliding banner that can be actioned
 public struct BannerView<Content: View>: View {
 	private var bannerMessage: String?
-	private var bannerAction: () -> Void
+	private var bannerAction: (() -> Void)?
 	private var content: Content
 
 	public init(
 		message: String?,
-		action: @escaping () -> Void = {},
+		action: (() -> Void)? = nil,
 		@ViewBuilder content contentBuilder: () -> Content
 	) {
 		self.bannerMessage = message

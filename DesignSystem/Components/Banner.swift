@@ -15,22 +15,36 @@ public struct Banner <Label: View>: View {
 
 	public var body: some View {
 		SafeAreaReader {
-			Button(action: { self.action?() }) {
-				self.label
-					.padding()
-					.frame(maxWidth: .infinity, minHeight: 44)
-					.padding(safeAreaInsets)
-					.background(Color.orange)
-			}
+			bannerBody
 				.edgesIgnoringSafeArea(.all)
-				.font(Font.callout.weight(.semibold))
-				.foregroundColor(.white)
-				.multilineTextAlignment(.center)
 		}
 			.onPreferenceChange(SafeAreaKey.self) { safeAreaInsets in
 				self.safeAreaInsets = safeAreaInsets
 			}
     }
+
+	@ViewBuilder
+	private var bannerBody: some View {
+		// TODO: Convert to `if-let` (or better, `guard`) when function builders support it
+		if action != nil {
+			Button(action: action!) {
+				mainBody
+			}
+		} else {
+			mainBody
+		}
+	}
+
+	private var mainBody: some View {
+		self.label
+			.padding()
+			.frame(maxWidth: .infinity, minHeight: 44)
+			.padding(safeAreaInsets)
+			.background(Color.orange)
+			.font(Font.callout.weight(.semibold))
+			.foregroundColor(.white)
+			.multilineTextAlignment(.center)
+	}
 }
 
 struct Banner_Previews: PreviewProvider {
